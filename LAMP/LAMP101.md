@@ -24,8 +24,9 @@ The LAMP stack is used for building and delivering web-based applications, such 
 
 chown defines who owns the file and is also used to change the ownership of a file, example
 
-                              ***$ ls -l file
-                              *** -rwxrwxr-x  2  celyne steghub   5 May  9 12:49 file
+                               ```ps
+                               ls -l file
+                               -rwxrwxr-x  2  celyne steghub   5 May  9 12:49 file
 
 Here celyne is the owner of the file and steghub is the group. We can use: sudo chown victor:sudo file to change the owner of the file to victor and the group to sudo; Now the file belongs to "victor" and everyone in "sudo" group.
 
