@@ -40,9 +40,6 @@ gives the rights of read, write and execute to everyone including owner, group a
                                      TCP & UDP
 
 TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both fundamental protocols in the Transport Layer of the TCP/IP suite, which is responsible for reliable communication between applications on different devices over a network although they differ in their approach to data transmission. Below are some of the differences:
-TCP is Connection-oriented while UDP is connectionless.
-TCP is slower while UDP is faster.
-TCP has a reliable, ordered delivery while UDP is the opposite.
 
 ![My image](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3Pa2R7Sv_vYfxTsfv13Tmn4j8e3MCK28VpMFvAd7rFAWeE5NfxQGDut9NGIYa6_sT23pybRxAHNyganhq-3oS9RwyX9Wa5l2enxgfvOS-AXUIwPaKymFRF0kwRcGpTlAWbkKlggsjihSD/s640/table-tcp-udp.png)
 
