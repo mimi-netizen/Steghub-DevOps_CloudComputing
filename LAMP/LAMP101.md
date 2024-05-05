@@ -2,10 +2,10 @@
 
 The software-development life-cycle (SDLC) is used to facilitate the development of a large software product in a systematic, well-defined, and cost-effective way.  
 Some reasons for using a life-cycle model include:  
-*Understanding an entire process  
-*Ensures a structured approach to development.  
-*Helps in planning of resources in advance.  
-*Helps in keeping track of progress
+-Understanding an entire process  
+-Ensures a structured approach to development.  
+-Helps in planning of resources in advance.  
+-Helps in keeping track of progress
 
 ![My Image](https://media.geeksforgeeks.org/wp-content/uploads/20231220113035/SDLC.jpg)
 
@@ -13,10 +13,10 @@ Some reasons for using a life-cycle model include:
 
 <span style="color: blue">LAMP</span> Stack is a software development stack comprising of Linux, Apache, MySQL and PHP.
 The LAMP stack is used for building and delivering web-based applications, such as:  
-\*Content Management Systems - CMS platforms, like WordPress, are developed using PHP.
-Ecommerce platforms - Relational databases, like MySQL, are a robust backend solution that can efficiently handle transactions, extensive product catalogs, and vast amounts of user data.
-Dynamic Websites that need to adjust content based on user interactions in real-time benefit from PHP's backend scripting capabilities.
-Data-driven applications benefit from the stack's ability to process data and complex data structures in real-time.
+-Content Management Systems - CMS platforms, like WordPress, are developed using PHP.  
+-Ecommerce platforms - Relational databases, like MySQL, are a robust backend solution that can efficiently handle transactions, extensive product catalogs, and vast amounts of user data.  
+-Dynamic Websites that need to adjust content based on user interactions in real-time benefit from PHP's backend scripting capabilities.  
+-Data-driven applications benefit from the stack's ability to process data and complex data structures in real-time.
 
 ![My image](https://phoenixnap.com/kb/wp-content/uploads/2022/01/visual-representation-of-the-lamp-stack-pnap.png)
 
