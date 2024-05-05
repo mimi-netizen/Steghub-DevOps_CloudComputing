@@ -1,4 +1,4 @@
-                                        #SDLC
+                                        SDLC
 
 The software-development life-cycle (SDLC) is used to facilitate the development of a large software product in a systematic, well-defined, and cost-effective way.  
 Some reasons for using a life-cycle model include:  
@@ -11,7 +11,7 @@ Some reasons for using a life-cycle model include:
 
 <span style="color: blue">LAMP</span> Stack is a software development stack comprising of Linux, Apache, MySQL and PHP.
 
-                                   #CHOWN & CHMOD
+                                   CHOWN & CHMOD
 
 chown defines who owns the file and is also used to change the ownership of a file, example
 
@@ -26,7 +26,7 @@ However with chmod we define who can do what? who has the right to read a file, 
 
 gives the rights of read, write and execute to everyone including owner, group and everyones else.
 
-                                     #TCP & UPD
+                                     TCP & UPD
 
 TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both fundamental protocols in the Transport Layer of the TCP/IP suite, which is responsible for reliable communication between applications on different devices over a network although they differ in their approach to data transmission. Below are some of the differences:
 TCP is Connection-oriented while UDP is connectionless.
