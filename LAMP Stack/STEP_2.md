@@ -1,4 +1,4 @@
-# Step 2 - Installimg MySQL
+# Step 2 - Installing MySQL
 
 MySQL is a powerful and reliable solution for storing and managing data in web applications. Its open-source nature, scalability, and ease of use make it a popular choice for developers. If your project requires structured data storage and retrieval, MySQL is an excellent option to consider.
 
