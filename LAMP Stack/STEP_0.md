@@ -93,5 +93,3 @@ If you are experiencing difficulties authorizing the EC2 Instance Connect servic
 Yay! We have just created our very first linux server in the cloud and our setup looks like this now
 
 ![image](images/server.jpg)
-
-## STEP 1 - Installing Apache & Updating the Firewall.
