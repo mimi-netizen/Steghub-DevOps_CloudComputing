@@ -116,8 +116,6 @@ $ sudo vim /etc/apache2/mods-enabled/dir.conf
 </IfModule>
 ```
 
-![Change file list order](./images/index-php-config.png)
-
 **Reload Apache**
 
 Apache is reloaded so the changes takes effect.
