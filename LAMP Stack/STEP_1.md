@@ -33,3 +33,44 @@ Common use cases:
 - Hosting dynamic websites built with server-side - scripting languages (PHP, Python, etc.)
 - Running web applications
 - Content Management Systems (CMS) like WordPress and Drupal
+
+## Installation
+
+To install apache use these commands:
+
+```powershell
+# Update a list of packages in package manager
+$ sudo apt update
+
+# run apache2 package installation with either of the two commands:
+$ sudo apt install apache2
+$ sudo apt-get install apache2 libapache2-mod-php
+
+# You can start, stop, and check the status of the Apache2 server with one of these commands:
+$ sudo systemctl stop apache2
+$ sudo systemctl start apache2
+$ sudo systemctl status apache2
+
+```
+
+![image](images/apacheRun.jpg)
+
+Next we check if our localhost is online using any of the three commands:
+
+```powershell
+$ telnet localhost 80
+$ curl http://localhost:80
+```
+
+![image](images/localhost.jpg)
+
+Then we update Security Group to access Apache Web Application.  
+We do this by going to our security groups then clicking edit inbound rules, click add rule, choose http.  
+Then we go back to our terminal and confirm if our server is working through the telnet command.
+![image](images/inbound.jpg)
+![image](images/add.jpg)
+![image](images/http.jpg)
+![image](images/telnetU.jpg)
+
+Our web is now working
+![image](images/ubuntu.jpg)
