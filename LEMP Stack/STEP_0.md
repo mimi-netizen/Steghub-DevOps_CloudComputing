@@ -1,4 +1,4 @@
-# WEB STACK IMPLEMENTATION (LEMP STACK) IN AWS
+# WEB STACK IMPLEMENTATION (LEMP STACK)
 
 ## Introduction
 
@@ -50,8 +50,8 @@ You can use the `ls` command to check if your file is in the chosen directory.
 Next, we inject these commands to make sure our server is up and running
 
 ```bash
-$ chmod 400 lemp.pem
-$ ssh -i lemp.pem ubuntu@13.51.168.11
+chmod 400 lemp.pem
+ssh -i lemp.pem ubuntu@13.51.168.11
 ```
 
 ![image](image/lemp_online.jpg)
