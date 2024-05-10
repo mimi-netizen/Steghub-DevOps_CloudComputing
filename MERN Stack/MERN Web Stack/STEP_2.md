@@ -57,3 +57,30 @@ Next, we open our browser and access our server
 `http://13.60.49.255:5000`
 
 ![image](image/we.jpg)
+
+Creating routes `mkdir routes` , `cd routes` , `touch api.js` , `vim api.js`
+
+![image](image/routes.jpg)
+
+then paste:
+
+```powershell
+const express = require('express');
+const router = express.Router();
+
+router.get('/todos', (req, res, next) => {
+
+});
+
+router.post('/todos', (req, res, next) => {
+
+});
+
+router.delete('/todos', (req, res, next) => {
+
+});
+
+module.exports = router;
+```
+
+![image](image/ro.jpg)
