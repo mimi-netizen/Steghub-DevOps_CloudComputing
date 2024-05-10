@@ -59,5 +59,5 @@ cd Todo
 
 Then `npm init` and `ls` to confirm your package.json is installed
 
-![image](image/in.jpg)
-![image](image/ls.jpg)
+![image](image/todo-init.jpg)
+![image](image/json.jpg)
