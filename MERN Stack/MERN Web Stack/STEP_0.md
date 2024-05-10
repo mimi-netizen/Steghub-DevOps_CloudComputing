@@ -18,6 +18,8 @@ The MERN stack is often used together to build web applications because it allow
 
 ## Install OpenSSH for Windows
 
+To complete this project we need an AWS account and a virtual server with Ubuntu Server OS, refer to LAMP STEP_0.
+
 To install OpenSSH using PowerShell, we run our PowerShell as an Administrator. To make sure that OpenSSH is available, run the following cmdlet:
 
 ```powershell
