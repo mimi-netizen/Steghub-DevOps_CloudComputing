@@ -79,3 +79,9 @@ try {
 ```
 
 save and close file.
+
+### Troubleshooting
+
+When the PHP script queried the database there was an error "502 Bad Gateway" displayed on the browser. This is because the PHP version specified in the Nginx server configuration is php8.1 while the version of the PHP installed is php8.3
+
+This was troubleshooted by updating the Nginx server configuration with PHP version php8.3
