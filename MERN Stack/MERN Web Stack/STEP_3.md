@@ -19,24 +19,22 @@ mkdir models && cd models && touch todo.js
 Then we paste in this code after typing `vim index.js`
 
 ```powershell
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-//create schema for todo
 const TodoSchema = new Schema({
 action: {
 type: String,
 required: [true, 'The todo text field is required']
 }
 })
-//create model for todo
+
 const Todo = mongoose.model('todo', TodoSchema);
 
 module.exports = Todo;
 ```
 
-![image](image/td.jpg)
+![image](image/models.jpg)
 
 Next, we need to update our routes file by opening our `vim api.js` , delete the code inside with `:%d` and paste in the code below:
 
@@ -47,7 +45,6 @@ const Todo = require('../models/todo');
 
 router.get('/todos', (req, res, next) => {
 
-//this will return all the data, exposing only the id and action field to the client
 Todo.find({}, 'action')
 .then(data => res.json(data))
 .catch(next)
@@ -74,4 +71,4 @@ Todo.findOneAndDelete({"_id": req.params.id})
 module.exports = router;
 ```
 
-![image](image/api.jpg)
+![image](image/api1.jpg)
