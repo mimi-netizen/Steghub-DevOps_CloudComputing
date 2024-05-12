@@ -42,6 +42,6 @@ This repository is licensed under the MIT License.
 
 ## Acknowledgments
 
-Thank you to the StegHub team for creating this curriculum and providing the opportunity to learn and grow. Special thanks to the maintainers and contributors of the tools and technologies used in this repository.
+Thank you to the StegHub team for creating this curriculum and providing the opportunity to learn and grow.
 
-We hope you enjoy this learning journey and look forward to your contributions to the DevOps and Cloud Engineering community!
+I hope you enjoy this learning journey and look forward to your contributions to the DevOps and Cloud Engineering community!
