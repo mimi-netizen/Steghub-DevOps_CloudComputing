@@ -4,9 +4,9 @@ First, we need to download and install postman on our machine: https://www.postm
 
 ![image](image/p.jpg)
 
-Next, we open send an API request, and create a POST request to our API
+Next, we open send an API request, and create a POST request to our API(make sure your server is running on your terminal)
 
-                http://13.60.49.255:5000/api/todos
+                http://localhost:5000/api/Todos
 
 ![image](image/post.jpg)
 
