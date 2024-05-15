@@ -6,14 +6,13 @@ We start by installation
 npm install express
 ```
 
-![image](image/express.jpg)
+![image](image/exe.jpg)
 
 create index.js file by typing `touch index.js`
 
-![image](image/touch.jpg)
-
 install `dotenv` module
-![image](image/dot.jpg)
+
+![image](image/doto.jpg)
 
 open index.js `vim index.js` then paste in this code
 
@@ -54,9 +53,9 @@ Next type `node index.js` and if everything works it should look like this
 ![image](image/run.jpg)
 
 Next, we open our browser and access our server
-`http://13.60.49.255:5000`
+`http://16.171.226.17:5000`
 
-![image](image/we.jpg)
+![image](image/web.jpg)
 
 Creating routes `mkdir routes` , `cd routes` , `touch api.js` , `vim api.js`
 
