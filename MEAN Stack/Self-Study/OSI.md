@@ -2,7 +2,11 @@
 
 ## Introduction
 
-The OSI (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a communication system into seven distinct layers. It was developed by the International Organization for Standardization (ISO) to facilitate interoperability between different computer systems and ensure seamless communication. Each layer of the OSI model has a specific set of responsibilities and interacts with the layers above and below it. In this article, we will delve into the details of the OSI model, exploring each layer and its functions, and understanding how they work together to enable effective communication.
+The OSI (Open Systems Interconnection) model is a conceptual framework that standardizes the functions of a communication system into seven distinct layers. It was developed by the International Organization for Standardization (ISO) to facilitate interoperability between different computer systems and ensure seamless communication. Each layer of the OSI model has a specific set of responsibilities and interacts with the layers above and below it.
+
+![image](image/1705741229676.gif)
+
+We will now delve into the details of the OSI model, exploring each layer and its functions, and understanding how they work together to enable effective communication.
 
 ### Table of Contents
 
@@ -28,6 +32,8 @@ The OSI (Open Systems Interconnection) model is a conceptual framework that stan
 The OSI model is a conceptual framework that defines the functions of a communication system. It provides a standardized way of understanding and implementing network protocols, ensuring compatibility and interoperability between different systems. The model is divided into seven layers, each responsible for specific tasks related to data transmission and communication. By separating the communication process into distinct layers, the OSI model simplifies the design, implementation, and troubleshooting of network systems.
 
 ### The Seven Layers of the OSI Model <a name="the-seven-layers-of-the-osi-model"></a>
+
+![image](image/1_7yPBGx_K8GymgeGfzhfznA.gif)
 
 #### 1. Physical Layer <a name="physical-layer"></a>
 
