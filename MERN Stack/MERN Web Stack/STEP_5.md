@@ -13,8 +13,20 @@ Next, we open send an API request, and create a POST request to our API(make sur
 In the Header below, Set the key as content-type, Value as application/json.  
 Press send
 
-![image](image/POSTE.jpg)
+![image](image/post-todos.jpg)
+
+Make sure it is running in the database
+
+![image](image/running-db.jpg)
 
 Now create a GET request by Clicking on http, choose GET, add the previous address from the post request, press send
 
-![image](image/GETE.jpg)
+![image](image/get-post.jpg)
+
+Create a DELETE requests to the API
+
+![image](image/delete.jpg)
+
+Refresh and ckeck database
+
+![image](image/da.jpg)
