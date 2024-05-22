@@ -17,3 +17,5 @@ The project consists of 2 parts:
 3. An EC2 linux server as a database(DB) server.
 
 4. Redhat OS or CentOS.
+
+NOTE: for ubuntu server, when connecting to it via SSH/Putty or any other tool, we used `ubuntu user`, but for RedHat we will use `ec2-user` user. Connection string will look like `ec2-user@<Public-IP>`.
