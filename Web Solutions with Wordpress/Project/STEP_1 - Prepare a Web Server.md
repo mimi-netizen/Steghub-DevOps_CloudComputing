@@ -121,7 +121,7 @@ sudo mkdir -p /home/recovery/logs
 Mount the newly created directory for website files on the app logical volume we earlier created
 
 ```powershell
-sudo mount /dev/webdata-vg/apps-lv/   /var/www/html/
+sudo mount /dev/webdata-vg/apps-lv/ /var/www/html/
 ```
 
 Back up all the files on the logs logical volume before mounting, this is done using rsync utility
