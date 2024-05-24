@@ -18,7 +18,7 @@ The project consists of 2 parts:
 
 3. An EC2 linux server as a database(DB) server.
 
-![image](image/web.jpg)
+![image](image/database.jpg)
 
 4. Redhat OS or CentOS.
 
