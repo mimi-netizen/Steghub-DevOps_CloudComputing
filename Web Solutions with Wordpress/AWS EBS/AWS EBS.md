@@ -20,7 +20,7 @@ EBS, or Elastic Block Storage, is a network drive that can be attached to an EC2
 
 - EBS Volumes can be created on their own, be attached to an EC2 instance, or multiple EC2 instances via EBS Multi-Attach.
 
-- BS Volumes come in 6 variations - gp2, gp3, io1, io2, st1, and sc1. Each type has been optimized for specific use cases and is prices accordingly.
+- BS Volumes come in 6 variations - gp2, gp3, io1, io2, st1, and sc1. Each type has been optimized for specific use cases and is priced accordingly.
 
 - Users can specify the amount of storage, the throughput, and a few other parameters of an EBS Volume. It’s important to keep in mind that certain families will have constraints for those parameters.
 
