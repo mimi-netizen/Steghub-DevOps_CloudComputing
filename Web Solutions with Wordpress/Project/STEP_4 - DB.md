@@ -55,8 +55,10 @@ Test your db connection by logging in to your db from your webserver, before tha
 Then access your webserver instance and also install mysql client
 
 ```powershell
-sudo yum install -y mysql-client
+sudo yum install -y mysql
 ```
+
+![image](image/server%20mysql.jpg)
 
 Log in to the mysql server remotely from your webserver
 
