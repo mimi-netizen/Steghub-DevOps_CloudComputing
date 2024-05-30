@@ -1,6 +1,4 @@
-Sure, here's a sample README file for the DevOps project you described:
-
-# DevOps Project: Multi-Tier Web Application
+# DevOps Tooling Website Solutions: Multi-Tier Web Application
 
 ## Overview
 
