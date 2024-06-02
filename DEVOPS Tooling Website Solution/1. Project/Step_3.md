@@ -34,15 +34,9 @@ sudo mkdir /var/www
 sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www
 ```
 
-![image](image/mkdir.jpg)
+![image](image/mkdir2.jpg)
 
-![image](image/touch%20test.jpg)
-
-![image](image/nfs%20test.jpg)
-
-![image](image/no%20test.jpg)
-
-4. Verify that NFS was mounted successfully by running df -h. Make sure that the changes will persist on Web Server after reboot:
+4. Verify that NFS was mounted successfully by running `df -h`. Make sure that the changes will persist on Web Server after reboot:
 
 ```
 sudo vi /etc/fstab
