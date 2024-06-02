@@ -14,7 +14,7 @@ Before proceeding with this task, ensure that you have the following components 
 
 The overall architecture of the project is depicted in the diagram below:
 
-![6006](https://user-images.githubusercontent.com/85270361/210139941-d69c03da-fc74-4781-a6f6-d60c411dc052.PNG)
+![6007](https://user-images.githubusercontent.com/85270361/210140264-3d8cb37c-d631-4a16-bbeb-22e8e172595e.PNG)
 
 ## Task Objectives
 
