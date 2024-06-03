@@ -19,6 +19,8 @@ Name:    dns.google
 Address:  8.8.8.8
 ```
 
+![image](image/ns.jpg)
+
 When you have just one Web server and load increases – you want to serve more and more customers, you can add more CPU and RAM or completely replace the server with a more powerful one – this is called "**vertical scaling**". This approach has limitations – at some
 point you reach the maximum capacity of CPU and RAM that can be installed into your server.
 
