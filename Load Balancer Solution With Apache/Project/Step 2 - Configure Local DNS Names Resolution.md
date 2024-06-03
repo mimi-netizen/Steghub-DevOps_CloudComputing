@@ -15,6 +15,8 @@ sudo vi /etc/hosts
 <WebServer2-Private-IP-Address> Web2
 ```
 
+![image](image/webs.jpg)
+
 Now you can update your LB config file with those names instead of IP addresses.
 
 ```powershell
@@ -23,15 +25,3 @@ BalancerMember http://Web2:80 loadfactor=5 timeout=1
 ```
 
 You can try to curl your Web Servers from LB locally `curl http://Web1` or `curl http://Web2` – it shall work.
-
-Remember, this is only internal configuration and it is also local to your LB server, these names will neither be ‘resolvable’ from other servers internally nor from the Internet.
-
-Targed Architecture
-Now your set up looks like this:
-
-![image](image)
-
-Congratulations!
-You have just implemented a Load balancing Web Solution for your DevOps team.
-
-![image](image)
