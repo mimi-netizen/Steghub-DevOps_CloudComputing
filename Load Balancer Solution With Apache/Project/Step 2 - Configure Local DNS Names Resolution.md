@@ -15,7 +15,7 @@ sudo vi /etc/hosts
 <WebServer2-Private-IP-Address> Web2
 ```
 
-![image](image/webs.jpg)
+![image](image/local.jpg)
 
 Now you can update your LB config file with those names instead of IP addresses.
 
@@ -25,3 +25,5 @@ BalancerMember http://Web2:80 loadfactor=5 timeout=1
 ```
 
 You can try to curl your Web Servers from LB locally `curl http://Web1` or `curl http://Web2` – it shall work.
+
+![image](image/10.web2.jpg)
