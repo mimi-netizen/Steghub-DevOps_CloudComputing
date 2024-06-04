@@ -15,7 +15,7 @@ sudo vi /etc/hosts
 <WebServer2-Private-IP-Address> Web2
 ```
 
-![image](image/local.jpg)
+![image](image/web.jpg)
 
 Now you can update your LB config file with those names instead of IP addresses.
 
