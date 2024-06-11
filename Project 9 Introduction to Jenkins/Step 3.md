@@ -1,6 +1,4 @@
-# CONFIGURE JENKINS TO COPY FILES TO NFS SERVER VIA SSH
-
-## Step 3 – Configure Jenkins to copy files to NFS server via SSH
+# Configure Jenkins to copy files to NFS server via SSH
 
 Now we have our artifacts saved locally on Jenkins server, the next step is to copy them to our NFS server to /mnt/apps directory.
 
@@ -12,7 +10,7 @@ SSH".
 
 On "Available" tab search for "Publish Over SSH" plugin and install it
 
-![6025]()
+![6025](image/publish-over-ssh.jpg)
 
 2. Configure the job/project to copy artifacts over to NFS server.
    On main dashboard select "Manage Jenkins" and choose "Configure System" menu item.
@@ -28,18 +26,16 @@ Scroll down to Publish over SSH plugin configuration section and configure it to
 Test the configuration and make sure the connection returns Success. Remember, that TCP port 22 on NFS server must be open to receive
 SSH connections.
 
-![6026]()
+![6026](image/jenkins-nfs-success.jpg)
 
 Save the configuration, open your Jenkins job/project configuration page and add another one "Post-build Action"
-
-![6027]()
 
 Configure it to send all files probuced by the build into our previouslys define remote directory. In our case we want to copy all
 files and directories – so we use \*\*.
 
 If you want to apply some particular pattern to define which files to send – use this syntax.
 
-![6028]()
+![6028](image/post-build.jpg)
 
 Save this configuration and go ahead, change something in README.MD file in your GitHub Tooling repository.
 
@@ -50,6 +46,8 @@ SSH: Transferred 25 file(s)
 Finished: SUCCESS
 ```
 
+![image](image/last-build-error.jpg)
+
 If you find an error, change security settings of your NFS Server
 
 ```powershell
@@ -57,16 +55,20 @@ sudo chown -R nobody:nobody /mnt
 sudo chmod -R 777 /mnt
 ```
 
+![image](image/build-4-success.jpg)
+![image](image/build-history.jpg)
+
 To make sure that the files in /mnt/apps have been udated – connect via SSH/Putty to your NFS server and check README.MD file
 
 ```
 cat /mnt/apps/README.md
 ```
 
+![image](image/readme-github.jpg)
+![image](image/readme-terminal.jpg)
+
 If you see the changes you had previously made in your GitHub – the job works as expected.
 
 Congratulations!
 You have just implemented your first Continous Integration solution using Jenkins CI. Watch out for advanced CI configurations in
 upcoming projects.
-
-![6029]()
