@@ -1,21 +1,18 @@
-# Step 2
+# Configure Jenkins to retrieve source codes from GitHub using Webhooks
 
-Configure Jenkins to retrieve source codes from GitHub using Webhooks
 In this part, you will learn how to configure a simple Jenkins job/project (these two terms can be used interchangeably). This job
 will will be triggered by GitHub webhooks and will execute a ‘build’ task to retrieve codes from GitHub and store it locally on
 Jenkins server.
 
 1. Enable webhooks in your GitHub repository settings
 
-![6017]()
+![6017](image/webhook.jpg)
 
 2. Go to Jenkins web console, click "New Item" and create a "Freestyle project"
 
-![6018]()
+![6018](image/project-9-jenkins.jpg)
 
 To connect your GitHub repository, you will need to provide its URL, you can copy from the repository itself
-
-![6019]()
 
 In configuration of your Jenkins freestyle project choose Git repository, provide there the link to your Tooling GitHub repository
 and credentials (user/password) so Jenkins could access files in the repository.
@@ -41,8 +38,8 @@ Now, go ahead and make some change in any file in your GitHub repository (e.g. R
 You will see that a new build has been launched automatically (by webhook) and you can see its results – artifacts, saved on Jenkins
 server.
 
-![6024]()
-![artifacts]()
+![6024](image/github-changes.jpg)
+![artifacts](image/artifacts.jpg)
 
 You have now configured an automated Jenkins job that receives files from GitHub by webhook trigger (this method is considered as
 ‘push’ because the changes are being ‘pushed’ and files transfer is initiated by GitHub). There are also other methods: trigger one
@@ -54,4 +51,4 @@ By default, the artifacts are stored on Jenkins server locally
 ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
 ```
 
-![image]
+![image](image/last-build-number.jpg)
