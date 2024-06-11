@@ -1,5 +1,7 @@
 # Load Balancer Solution with Nginx and SSL/TLS
 
+![image](image/nginx.svg)
+
 In this project, we will learn how to configure an Nginx Load Balancer solution and ensure secure connections to your web solutions using SSL/TLS certificates. This will help us understand the importance of load balancing and secure connections in a real-world scenario.
 
 ## Learning Objectives
