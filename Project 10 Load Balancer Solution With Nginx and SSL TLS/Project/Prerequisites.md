@@ -1,5 +1,7 @@
 # LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS
 
+![image](image/nginx.gif)
+
 By now you have learned what Load Balancing is used for and have configured an LB solution using Apache, but a DevOps engineer must
 be a versatile professional and know different alternative solutions for the same problem. That is why, in this project we will
 configure an Nginx Load Balancer solution.
