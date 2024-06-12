@@ -4,7 +4,7 @@
 
 By now you have learned what Load Balancing is used for and have configured an LB solution using Apache, but a DevOps engineer must
 be a versatile professional and know different alternative solutions for the same problem. That is why, in this project we will
-configure an Nginx Load Balancer solution.
+configure a Nginx Load Balancer solution.
 
 It is also extremely important to ensure that connections to your Web solutions are secure and information is encrypted in transit – we
 will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
