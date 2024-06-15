@@ -1,5 +1,7 @@
 # Elastic IP
 
+![image](image/OIP.jfif)
+
 An Elastic IP address (EIP) is a static, public IP address that is designed to be reassigned to different AWS (Amazon Web Services) resources dynamically. An EIP allows binding a static IP address with a running Amazon EC2 instance, Amazon RDS database instance or Elastic Load Balancer. This allows preserving a static public IP address even if the underlying resources change.
 
 ## Key Features
