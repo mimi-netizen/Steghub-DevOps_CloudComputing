@@ -1,5 +1,7 @@
 # Bastion Host
 
+![image](image/bastion.jpg)
+
 A bastion host is a special purpose computer on a network specifically designed and configured to withstand attacks. It is hosted in a specially protected demilitarized zone (DMZ) and only accepts connections from a trusted internal network and the untrusted external network, but does not allow direct connections between the two.
 
 ## Purpose of a Bastion Host
