@@ -1,5 +1,7 @@
 # Playbooks
 
+![image](image/image-7.webp)
+
 Playbooks are files that define automation workflows in Ansible. They are used to execute a series of tasks on remote managed nodes to configure systems, deploy applications, orchestrate services etc. Playbooks use YAML syntax and allow defining reusable and modular automation workflows.
 
 ## Key Elements of Playbooks
