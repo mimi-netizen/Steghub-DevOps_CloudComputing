@@ -1,5 +1,7 @@
 # YAML
 
+![image](image/ansible-playbook-yaml.webp)
+
 YAML (YAML Ain't Markup Language) is a human-readable data serialization standard for programming languages. It is commonly used for configuration files, but could be used in many applications where data is being stored or transmitted. YAML is a superset of JSON and allows for native data types like maps, sets, and sequences without the need for custom types.
 
 ## Key Features of YAML
