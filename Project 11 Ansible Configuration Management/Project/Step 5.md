@@ -1,6 +1,5 @@
 # CREATE A COMMON PLAYBOOK
 
-Step 5 – Create a Common Playbook
 It is time to start giving Ansible the instructions on what you needs to be performed on all servers listed in inventory/dev.
 
 In common.yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems
@@ -8,7 +7,7 @@ within the infrastructure.
 
 Update your playbooks/common.yml file with following code:
 
-```
+```powershell
 ---
 - name: update web, nfs and db servers
   hosts: webservers, nfs, db
@@ -37,11 +36,10 @@ Update your playbooks/common.yml file with following code:
         state: latest
 ```
 
-Examine the code above and try to make sense out of it. This playbook is divided into two parts, each of them is intended to
-perform the same task: install wireshark utility (or make sure it is updated to the latest version) on your RHEL 8 and Ubuntu
-servers. It uses root user to perform this task and respective package manager: yum for RHEL 8 and apt for Ubuntu.
+![image](image/servers.jpg)
 
-Feel free to update this playbook with following tasks:
+Examine the code above and try to make sense out of it. This playbook is divided into two parts, each of them is intended to perform the same task: install wireshark utility (or make sure it is updated to the latest version) on your RHEL 8 and Ubuntu
+servers. It uses root user to perform this task and respective package manager: yum for RHEL 8 and apt for Ubuntu.
 
 Feel free to update this playbook with following tasks:
 
