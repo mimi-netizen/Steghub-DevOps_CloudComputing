@@ -18,7 +18,8 @@ Your updated with Ansible architecture now looks like this:
 
 ![6038](https://user-images.githubusercontent.com/85270361/210154593-092a4ee2-ab8b-4212-a260-8845c3f8693a.PNG)
 
-Optional step – Repeat once again
+## Optional step - Repeat once again
+
 Update your ansible playbook with some new Ansible tasks and go through the full
 checkout -> change codes -> commit -> PR -> merge -> build -> ansible-playbook cycle again to see how easily you can manage a
 servers fleet of any size with just one command!
