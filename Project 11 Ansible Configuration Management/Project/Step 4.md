@@ -38,11 +38,15 @@ eval `ssh-agent -s`
 ssh-add <path-to-private-key>
 ```
 
+![image](image/pid.jpg)
+
 Confirm the key has been added with the command below, you should see the name of your key
 
 ```
 ssh-add -l
 ```
+
+![image](image/add.jpg)
 
 Now, ssh into your Jenkins-Ansible server using ssh-agent
 
@@ -50,11 +54,14 @@ Now, ssh into your Jenkins-Ansible server using ssh-agent
 ssh -A ubuntu@public-ip
 ```
 
+![image](image/A.jpg)
+![image](image/done.jpg)
+
 Also notice, that your Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.
 
 Update your inventory/dev.yml file with this snippet of code:
 
-```
+```powershell
 [nfs]
 <NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user'
 
@@ -68,3 +75,7 @@ Update your inventory/dev.yml file with this snippet of code:
 [lb]
 <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu'
 ```
+
+![image](image/instances.jpg)
+
+![image](image/ser.jpg)
