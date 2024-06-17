@@ -11,3 +11,15 @@
 2. After you have successfully installed VSC, configure it to connect to your newly created GitHub repository. In the extension tab, install Remote Development.
 
 ![image](image/remote.jpg)
+
+3. Clone down your ansible-config-mgt repo to your Jenkins-Ansible instance
+
+```powershell
+git clone <ansible-config-mgt repo link>
+```
+
+Or open the files/folder on your vs code and click on clone repository
+
+![image](image/file-section.jpg)
+
+![image](image/ac.jpg)
