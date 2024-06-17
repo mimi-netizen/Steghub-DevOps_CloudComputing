@@ -16,6 +16,8 @@ bugfix, hotfix, feature, release (e.g. feature/prj-145-lvm)
 
 ![image](image/publish-branch.jpg)
 
+![image](image/br.jpg)
+
 3. Create a directory and name it playbooks – it will be used to store all your playbook files.
 
 ![image](image/playbooks.jpg)
