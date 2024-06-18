@@ -10,9 +10,33 @@ cd ansible-config-mgt
 ansible-playbook -i inventory/dev.yml playbooks/common.yml
 ```
 
-You can go to each of the servers and check if wireshark has been installed by running which wireshark or wireshark --version
+![image](image/7.1.jpg)
+![image](image/7.2.jpg)
+![image](image/e1.jpg)
+![image](image/e2.jpg)
+![image](image/e3.jpg)
 
-![6037](https://user-images.githubusercontent.com/85270361/210154560-3fa50ba8-67b4-45c8-9da1-8d9bdd45e418.PNG)
+You can go to each of the servers and check if wireshark has been installed by running `which wireshark` or `wireshark --version`
+
+#### NFS
+
+![image](image/nfs.jpg)
+
+#### Webserver 1
+
+![image](image/w1.jpg)
+
+#### Webserver 2
+
+![image](image/w2.jpg)
+
+#### lb
+
+![image](image/lb.jpg)
+
+#### db
+
+![image](image/db.jpg)
 
 Your updated with Ansible architecture now looks like this:
 
