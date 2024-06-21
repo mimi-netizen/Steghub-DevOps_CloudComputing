@@ -5,3 +5,6 @@
 *.psm1 linguist-language=PowerShell
 
 *.sh linguist-language=Bash
+
+*.md linguist-language=Markdown
+*.md linguist-documentation=true
