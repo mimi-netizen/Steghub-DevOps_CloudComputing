@@ -1,10 +1,22 @@
-# Auto detect text files and perform LF normalization
+*.yml linguist-language=YAML
+*.yaml linguist-language=YAML
+*.yml linguist-detectable=true
+*.yaml linguist-detectable=true
+*.yml linguist-documentation=false
+*.yaml linguist-documentation=false
+*.yml linguist-vendored=false
+*.yaml linguist-vendored=false
+
+*.j2 linguist-language=Jinja
+
 *.ps1 linguist-language=PowerShell
 *.ps1xml linguist-language=PowerShell
 *.psd1 linguist-language=PowerShell
 *.psm1 linguist-language=PowerShell
 
-*.sh linguist-language=Bash
+*.sh linguist-language=Shell
+*.bash linguist-language=Shell
+*.zsh linguist-language=Shell
 
 *.md linguist-language=Markdown
 *.md linguist-documentation=true
