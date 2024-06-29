@@ -143,13 +143,146 @@ Artifactory provides robust access control features, including role-based access
 
 ## Step 5: Integrate Artifactory with CI/CD Tools
 
-### Jenkins Integration
+Integrating Artifactory with your CI/CD tools is essential for automating artifact management and ensuring a seamless development workflow. This section will guide you through the process of integrating Artifactory with popular CI/CD tools like Jenkins, GitLab, and Azure DevOps.
 
-To integrate Artifactory with Jenkins, install the [JFrog Artifactory plugin](https://plugins.jenkins.io/artifactory/) from the Jenkins plugin manager. Configure the plugin with your Artifactory server details and use it to publish and retrieve artifacts as part of your Jenkins pipelines.
+## Jenkins Integration
 
-### GitLab Integration
+### Install the JFrog Artifactory Plugin
 
-To integrate Artifactory with GitLab, configure your GitLab CI/CD pipeline to use Artifactory for storing and retrieving artifacts. Refer to the [Artifactory GitLab integration documentation](https://www.jfrog.com
+1. **Open Jenkins**: Navigate to your Jenkins instance.
+2. **Manage Jenkins**: Click on "Manage Jenkins" from the Jenkins dashboard.
+3. **Manage Plugins**: Select "Manage Plugins."
+4. **Available Tab**: In the "Available" tab, search for "JFrog Artifactory Plugin."
+5. **Install**: Select the plugin and click "Install without restart."
+
+### Configure the Plugin
+
+1. **Manage Jenkins**: Go back to "Manage Jenkins."
+2. **Configure System**: Click on "Configure System."
+3. **JFrog Artifactory**: Scroll down to the "JFrog Artifactory" section.
+4. **Add Artifactory Server**: Click on "Add Artifactory Server" and enter your Artifactory server URL, username, and password.
+
+### Use the Plugin in a Pipeline
+
+1. **Create a New Pipeline**: Create a new Jenkins pipeline job.
+2. **Pipeline Script**: Use the following example script to publish artifacts to Artifactory:
+
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Your build steps here
+            }
+        }
+        stage('Publish to Artifactory') {
+            steps {
+                script {
+                    def server = Artifactory.server 'your-artifactory-server-id'
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "target/*.jar",
+                                "target": "libs-release-local"
+                            }
+                        ]
+                    }"""
+                    server.upload(uploadSpec)
+                }
+            }
+        }
+    }
+}
+```
+
+Replace `your-artifactory-server-id` with the ID of your configured Artifactory server.
+
+## GitLab Integration
+
+### Configure GitLab CI/CD Pipeline
+
+1. **.gitlab-ci.yml**: Add the following configuration to your `.gitlab-ci.yml` file:
+
+```yaml
+stages:
+  - build
+  - deploy
+
+variables:
+  ARTIFACTORY_URL: "https://your-artifactory-instance/artifactory"
+  ARTIFACTORY_REPO: "libs-release-local"
+  ARTIFACTORY_USER: "your-username"
+  ARTIFACTORY_PASSWORD: "your-password"
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+
+deploy:
+  stage: deploy
+  script:
+    - curl -u $ARTIFACTORY_USER:$ARTIFACTORY_PASSWORD -T build/libs/*.jar "$ARTIFACTORY_URL/$ARTIFACTORY_REPO/"
+```
+
+Replace `your-artifactory-instance`, `your-username`, and `your-password` with your Artifactory details.
+
+## Azure DevOps Integration
+
+### Install the JFrog Artifactory Extension
+
+1. **Azure DevOps Marketplace**: Navigate to the [Azure DevOps Marketplace](https://marketplace.visualstudio.com/).
+2. **Search for JFrog Artifactory**: Search for the "JFrog Artifactory" extension.
+3. **Install**: Click "Get it free" and follow the prompts to install the extension in your Azure DevOps organization.
+
+### Configure a Pipeline
+
+1. **Create a New Pipeline**: Create a new pipeline in Azure DevOps.
+2. **Edit YAML**: Edit the pipeline YAML file to include the following steps:
+
+```yaml
+trigger:
+  - main
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: UseJava@1
+    inputs:
+      versionSpec: "11"
+      jdkArchitectureOption: "x64"
+
+  - script: ./gradlew build
+    displayName: "Build with Gradle"
+
+  - task: ArtifactoryGenericUpload@1
+    inputs:
+      artifactoryService: "your-artifactory-service-connection"
+      specSource: "file"
+      specPath: "$(Build.SourcesDirectory)/upload-spec.json"
+      collectBuildInfo: true
+      publishBuildInfo: true
+
+  - task: ArtifactoryPublishBuildInfo@1
+    inputs:
+      artifactoryService: "your-artifactory-service-connection"
+```
+
+### Create an Upload Spec File
+
+Create an `upload-spec.json` file in your repository with the following content:
+
+```json
+{
+  "files": [
+    {
+      "pattern": "build/libs/*.jar",
+      "target": "libs-release-local"
+    }
+  ]
+```
 
 ## Best Practices for Using Artifactory
 
