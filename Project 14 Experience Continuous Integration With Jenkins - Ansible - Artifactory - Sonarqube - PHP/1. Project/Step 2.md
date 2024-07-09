@@ -79,7 +79,7 @@ You should have a subdomains list like this:
 
 ## Ansible Inventory should look like this
 
-```
+```bash
 ├── ci
 ├── dev
 ├── pentest
@@ -91,7 +91,7 @@ You should have a subdomains list like this:
 
 ci inventory file
 
-```
+```bash
 [jenkins]
 <Jenkins-Private-IP-Address>
 
@@ -107,7 +107,7 @@ ci inventory file
 
 dev Inventory file
 
-```
+```bash
 [tooling]
 <Tooling-Web-Server-Private-IP-Address>
 
@@ -127,7 +127,7 @@ ansible_python_interpreter=/usr/bin/python
 
 pentest inventory file
 
-```
+```bash
 [pentest:children]
 pentest-todo
 pentest-tooling
