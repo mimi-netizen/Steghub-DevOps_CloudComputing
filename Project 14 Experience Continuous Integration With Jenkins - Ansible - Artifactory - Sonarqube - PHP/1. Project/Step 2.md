@@ -23,10 +23,9 @@ Try to utilize your AWS free tier as much as you can, you can also register a ne
 Alternatively, you can use Google Cloud (GCP) to rent virtual machines from this cloud service provider – you can get $300 credit
 here or here (NOTE: Please read instructions carefully to get your credits)
 
-NOTE: This is still NOT a cloud-focus project yet. AWS cloud end to end project begins from project-15. Therefore, do not worry about
-advanced AWS or GCP configuration. All we need here is virtual machines that can be accessed over SSH.
+> NOTE: This is still NOT a cloud-focus project yet. AWS cloud end to end project begins from project-15. Therefore, do not worry about advanced AWS or GCP configuration. All we need here is virtual machines that can be accessed over SSH.
 
-To minimize the cost of cloud servers, you don not have to create all the servers at once, simply spin up a minimal server set up as
+To minimize the cost of cloud servers, you do not have to create all the servers at once, simply spin up a minimal server set up as
 you progress through the project implementation and have reached a need for more.
 
 To get started, we will focus on these environments initially.
@@ -54,7 +53,8 @@ represented in the below table and diagrams.
 
 ![6049](https://user-images.githubusercontent.com/85270361/210165287-131f9463-e7fa-4ce9-b260-9f47d13421c4.PNG)
 
-DNS requirements
+## DNS requirements
+
 Make DNS entries to create a subdomain for each environment. Assuming your main domain is total.com
 
 You should have a subdomains list like this:
