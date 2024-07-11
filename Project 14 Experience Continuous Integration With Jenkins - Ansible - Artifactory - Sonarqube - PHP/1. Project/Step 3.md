@@ -201,7 +201,13 @@ pipeline {
 This will trigger a build and you will be able to see the effect of our basic `Jenkinsfile` configuration by going through the console
 output of the build.
 
-![image]()
+![image](image/a1.jpg)
+
+![image](image/a2.jpg)
+
+![image](image/a3.jpg)
+
+![image](image/a4.jpg)
 
 To really appreciate and feel the difference of Cloud Blue UI, it is recommended to try triggering the build again from Blue Ocean
 interface.
@@ -212,9 +218,17 @@ interface.
 
 3. Click on the play button against the branch
 
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/c6902703-5aef-4c59-a2b0-124f5ac3d0a3)
+   ![image](image/p1.jpg)
 
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/cd29a156-f08d-49c5-a420-c3a7d60be659)
+   ![image](image/ppp.jpg)
+
+   ![image](image/pp.jpg)
+
+   ![image](image/pppp.jpg)
+
+   ![image](image/ppppp.jpg)
+
+\
 
 > Notice that this pipeline is a multibranch one. This means, if there were more than one branch in GitHub, Jenkins would have scanned
 > the repository to discover them all and we would have been able to trigger a build for each branch.
