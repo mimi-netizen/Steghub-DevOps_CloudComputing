@@ -242,6 +242,8 @@ git checkout -b feature/jenkinspipeline-stages
 
 ```
 
+![](image/g.jpg)
+
 2. Currently we only have the _Build stage_. Let us add another stage called _Test_. Paste the code snippet below and push the new changes
    to GitHub.
 
@@ -269,21 +271,29 @@ pipeline {
 }
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/aa5602d3-735a-4483-923a-c07f76b07808)
+![image](image/g1.jpg)
+
+![](image/a5.jpg)
+
+![](image/a6.jpg)
 
 4. To make your new branch show up in Jenkins, we need to tell Jenkins to scan the repository.
 
 1. Click on the "Administration" button
 
-1. Navigate to the Ansible project and click on `Scan repository now`
+1. Navigate to the Ansible project and click on `Scan repository now` then `Scan repository Log`
+
+![](image/s.jpg)
 
 1. Refresh the page and both branches will start building automatically. You can go into Blue Ocean and see both branches there too.
 
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/984cbcc5-cde1-45c2-b539-c41f04e394fb)
+   ![image](image/s1.jpg)
 
 1. In Blue Ocean, you can now see how the Jenkinsfile has caused a new step in the pipeline launch build for the new branch.
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a8826ed8-9215-4669-8cf3-ae8f3b0bda43)
+![image](image/s2.jpg)
+
+![image](image/s3.jpg)
 
 ### A QUICK TASK FOR YOU!
 
@@ -304,7 +314,7 @@ and test stages)
    3. Clean up
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f321a8cb-bbd5-4591-9d1b-f82d877cc9fd)
+![image](image/stages.jpg)
 
 ```bash
 5. Verify in Blue Ocean that all the stages are working, then merge your feature branch to the main branch
@@ -312,4 +322,12 @@ and test stages)
 6. Eventually, your main branch should have a successful pipeline like this in blue ocean
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/36bb0f6b-f402-4a6f-a156-4cedad8fd524)
+![image](image/con1.jpg)
+
+![image](image/clean.jpg)
+
+![image](image/stage1.jpg)
+
+![image](image/stage2.jpg)
+
+![image](image/stage3.jpg)
