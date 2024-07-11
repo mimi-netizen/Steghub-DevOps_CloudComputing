@@ -33,7 +33,7 @@ from Jenkins UI.
 
 Let's lunch a AWS ec2 with an Ubuntu OS instance and configure the jenkins server on it.
 
-![]()
+![](image/jen.jpg)
 
 Install jenkins and it's dependencies using the terminal.
 
@@ -41,13 +41,17 @@ Install jenkins and it's dependencies using the terminal.
 sudo apt-get update  # Update the instance
 
 # Download jenkins key
-sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+sudo wget -q -O /tmp/jenkins.io.key https://pkg.jenkins.io/debian/jenkins.io.key
 
-# Add jenkins repository
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+# Add the key to the trusted keyring
+sudo apt-key add /tmp/jenkins.io.key
 
-# Add jenkins key
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA
+# Verify that the key was added successfully
+sudo apt-key list
+
+# Create a new file in the trusted.gpg.d directory to permanently store the Jenkins repository key
+sudo sh -c 'echo "deb https://pkg.jenkins.io/debian binary/" > /etc/apt/sources.list.d/jenkins.list'
+
 
 # Install Java
 sudo add-apt-repository ppa:openjdk-r/ppa
@@ -65,25 +69,11 @@ sudo systemctl status jenkins
 
 ```
 
-![]()
+![](image/stat.jpg)
 
 ### 1.2. Open TCP port 8080
 
-![]()
-
-### 1.3. Set up SSH-agent
-
-```
-eval `ssh-agent -s`
-ssh-add <path-to-private-key>
-```
-
-```
-eval `ssh-agent -s`
-ssh-add <private key>.pem
-ssh-add -l
-ssh -A ubuntu@IP
-```
+![](image/in.jpg)
 
 ## 2. Navigate to Jenkins URL
 
@@ -91,33 +81,73 @@ ssh -A ubuntu@IP
 <Jenkins-server-Elastic-IP>:8080
 ```
 
+![](image/j1.jpg)
+
+![](image/j2.jpg)
+
 ## 3. Install & Open Blue Ocean Jenkins Plugin
 
 In the Jenkins dashboard, click on **Manage Jenkins** -> **Manage plugins** and search for `Blue Ocean plugin`. Install and open Blue Ocean plugin
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/9d620074-9a78-422a-849e-476fde406990)
+![image](image/blue.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/26cf30d1-dd71-4571-9a7f-c5e2f2ca2893)
+![image](image/b.jpg)
 
-## 4. Create a new pipeline
+## Configure blue ocean pipeline with git repo
 
-## 5. Select GitHub
+### Follow the steps below:
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/065e0b63-107d-49b9-af19-6d8b154af6e8)
+- **Click "Open blue oceans" plugin and create a new pipeline**
 
-## 6. Connect Jenkins with GitHub
+![image](image/open.jpg)
 
-## 7. Login to GitHub & Generate an Access Token
+![image](image/p2.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/d4e968fb-76ef-4c49-9bc5-3da0d99d23cc)
+![](image/p3.jpg)
 
-## 8. Copy Access Token
+- **Connect Jenkins with GitHub**
 
-## 9. Paste the token and connect
+![](image/p4.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/71a801d0-eaa9-4cf7-b08b-c4bc5bd9b32f)
+- **Login to GitHub & Generate an Access Token**
 
-## 10. Create a new Pipeline
+To generate a GitHub personal access token, you can follow these steps:
+
+1. **Log in to your GitHub account**: Go to the GitHub website (https://github.com/) and log in to your account.
+
+2. **Go to the Settings page**: Click on your profile picture in the top-right corner of the page, and then select "Settings" from the dropdown menu or go to https://github.com/settings/tokens
+
+![](image/t.jpg)
+
+3. **Navigate to the Developer Settings**: In the left-hand menu, scroll down and click on "Developer settings".
+
+4. **Create a new personal access token**: In the left-hand menu, click on "Personal access tokens", then click on the "Generate new token" button.
+
+5. **Configure the token**: You will be presented with a form to configure your personal access token. Here are the steps:
+
+   - **Note**: Give your token a descriptive name, such as "My Personal Access Token".
+   - **Expiration**: Choose the expiration date for your token. You can select "No expiration" if you want the token to never expire.
+   - **Select scopes**: Choose the permissions you want to grant to your token. The specific scopes you need will depend on the actions you want to perform with the token. Common scopes include `repo` (for accessing private repositories), `gist` (for creating and managing gists), and `user` (for accessing your user profile).
+
+6. **Generate the token**: After configuring the token, click the "Generate token" button at the bottom of the page.
+
+7. **Copy the token**: Once the token is generated, make sure to copy it immediately, as you won't be able to view it again after leaving the page. You can copy the token by clicking on the "Copy" button next to the token.
+
+Remember to keep your personal access token secure, as it provides access to your GitHub account. You should treat it like a password and not share it with anyone.
+
+If you need to revoke or delete a personal access token, you can do so by going to the "Personal access tokens" page in your GitHub settings and clicking on the "Delete" button next to the token you want to remove.
+
+- **Copy Access Token , Paste the token and connect**
+
+![image](image/t1.jpg)
+
+- **Create a new Pipeline**
+
+![](image/t2.jpg)
+
+![](image/t3.jpg)
+
+![](image/t4.jpg)
 
 At this point you may not have a [Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) in the Ansible repository, so
 Blue Ocean will attempt to give you some guidance to create one. But we do not need that. We will rather create one ourselves.
@@ -125,7 +155,7 @@ So, click on Administration to exit the Blue Ocean console.
 
 **Here is our newly created pipeline. It takes the name of your GitHub repository**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/411746d4-8a9c-48d1-8d57-6574f5d94d8e)
+![image](image/t5.jpg)
 
 ## Let us create our Jenkinsfile
 
