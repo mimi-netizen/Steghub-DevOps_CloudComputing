@@ -161,7 +161,7 @@ So, click on Administration to exit the Blue Ocean console.
 
 In Vscode, inside the Ansible project, create a new directory and name it `deploy`, create a new file `Jenkinsfile` inside the directory
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/54966adb-61a4-45b3-9a09-4f5dbc30456c)
+![image](image/j.jpg)
 
 Add the code snippet below to start building the Jenkinsfile gradually. This pipeline currently has just one stage called Build and
 the only thing we are doing is using the shell script module to echo Building Stage
@@ -182,24 +182,26 @@ pipeline {
 }
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/8ece4b57-ce9a-455a-a963-1ab3111ddf92)
+![image](image/j3.jpg)
 
 **Now go back into the Ansible pipeline in Jenkins, and select configure**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/bd9b9bd7-76be-4c66-a610-ff86bb3c5871)
+![image](image/c.jpg)
 
 **Scroll down to Build Configuration section and specify the location of the Jenkinsfile at `deploy/Jenkinsfile`**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/824d9f98-aab9-49ad-a1a3-522bd0487db9)
+![image](image/c1.jpg)
 
-**Back to the pipeline again, this time click `Build now`**
+**Back to the pipeline again, this time click `scan repository now` then `Scan Repository Log`**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/252b08d6-78aa-4906-8c76-b9219c2f7136)
+![](image/c3.jpg)
+
+**`Build now`**
 
 This will trigger a build and you will be able to see the effect of our basic `Jenkinsfile` configuration by going through the console
 output of the build.
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/0e83effc-f60d-4484-aab9-40b5167f297c)
+![image]()
 
 To really appreciate and feel the difference of Cloud Blue UI, it is recommended to try triggering the build again from Blue Ocean
 interface.
