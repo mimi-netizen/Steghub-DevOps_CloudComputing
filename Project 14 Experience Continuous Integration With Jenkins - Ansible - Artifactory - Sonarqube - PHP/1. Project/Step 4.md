@@ -200,11 +200,27 @@ https://wiki.jenkins.io/display/JENKINS/Building+a+software+project
 
 **After fixing all errors final result looks**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/6650edf8-54aa-4598-a45e-c032535a1b83)
+![image](image/h.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a820b1cf-853b-4555-ade4-4de4f39bfc21)
+![image](image/h1.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/74f20f33-3634-4d13-880a-fa8a20c849fa)
+![image](image/h2.jpg)
+
+![image](image/h3.jpg)
+
+![image](image/h5.jpg)
+
+![image](image/h6.jpg)
+
+![image](image/h7.jpg)
+
+![image](image/h8.jpg)
+
+![image](image/h9.jpg)
+
+![image](image/h10.jpg)
+
+![image](image/h11.jpg)
 
 If everything goes well for you, it means, the Dev environment has an up-to-date configuration. But what if we need to deploy to
 other environments?
