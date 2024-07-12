@@ -61,76 +61,113 @@ Let's delete the content of current Jenkinsfile nad create a new Jenkinsfile fro
 To do this let's ensure git module is checking out SCM from main branch.
 
 ```
-  pipeline {
-  agent any
+pipeline {
+    agent any
 
-  environment {
-    ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
-    ANSIBLE_HOST_KEY_CHECKING = 'False'
-  }
+    environment {
+        ANSIBLE_CONFIG = "${WORKSPACE}/deploy/ansible.cfg"
+    }
 
-  stages {
-    stage("Initial cleanup") {
-      steps {
-        dir("${WORKSPACE}") {
-          deleteDir()
+    stages {
+        stage('Initial cleanup') {
+            steps {
+                dir("${WORKSPACE}") {
+                    deleteDir()
+                }
+            }
         }
-      }
-    }
 
-    stage('Checkout SCM') {
-      steps {
-        git branch: 'main', url: 'https://github.com/melkamu372/ansible-config-mgt.git'
-      }
-    }
-
-    stage('Prepare Ansible For Execution') {
-      steps {
-        sh 'echo ${WORKSPACE}'
-        sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
-      }
-    }
-
-    stage('Test SSH Connection') {
-      steps {
-        sshagent(['private-key']) {
-          sh 'ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/melkamu_key.pem ec2-user@172.31.26.78 exit'
+        stage('Checkout SCM') {
+            steps {
+                git branch: 'main', url: 'https://github.com/mimi-netizen/ansible-config-mgt.git'
+            }
         }
-      }
-    }
 
-    stage('Run Ansible playbook') {
-      steps {
-        sshagent(['private-key']) {
-          ansiblePlaybook(
-            become: true,
-            credentialsId: 'private-key',
-            disableHostKeyChecking: true,
-            installation: 'ansible',
-            inventory: "${WORKSPACE}/inventory/dev.yml",
-            playbook: "${WORKSPACE}/playbooks/site.yml"
-          )
+        stage('Prepare Ansible For Execution') {
+            steps {
+                sh 'echo ${WORKSPACE}'
+                sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'
+            }
         }
-      }
-    }
 
-    stage('Clean Workspace after build') {
-      steps {
-        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
-      }
+        stage('Test SSH Connections') {
+            steps {
+                script {
+                    def allHosts = [
+                        'ubuntu@172.31.4.97',
+                        'ec2-user@172.31.4.97'
+                    ]
+
+                    sshagent(['private-key']) {
+                        allHosts.each { host ->
+                            sh "ssh -o StrictHostKeyChecking=no ${host} exit"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Run Ansible playbook') {
+            steps {
+                sshagent(['private-key']) {
+                    ansiblePlaybook(
+                        become: true,
+                        credentialsId: 'private-key',
+                        disableHostKeyChecking: true,
+                        installation: 'ansible',
+                        inventory: '${WORKSPACE}/inventory/dev.yml',
+                        playbook: '${WORKSPACE}/playbooks/site.yml'
+                    )
+                }
+            }
+        }
+
+        stage('Clean Workspace after build') {
+            steps {
+                cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+            }
+        }
     }
-  }
 }
-
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/536d29af-1ef1-46dc-83c0-5fc9dfd41ad8)
+![image](image/e.jpg)
 
 > **Note**: Ensure that Ansible runs against the Dev environment successfully.
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/7c185a98-066b-40a4-af65-e09ebb4aeecc)
+![image](image/e1.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/51bcc360-b257-47ce-815d-dbeeb333ad09)
+![image](image/e2.jpg)
+
+4. To ensure jenkins properly connects to all servers, install another plugin called ssh agent
+
+![](image/ssh.jpg)
+
+![](image/ssh1.jpg)
+
+Then go to manage jenkins > credentials > global > add credentials
+
+**Then follow the steps below:**
+
+Kind: SSH Username with private key
+Scope: Global (Jenkins, nodes, items, all child items, etc)
+
+ID: private-key (or any ID you prefer)
+Username: Leave it blank or set a default value (e.g., defaultuser) # This is because we are using servers of different username i.e ubbuntu and ec2-user. This value won’t be used because the actual usernames will be specified in the Ansible inventory file.
+
+Private Key: Enter the private key directly
+
+![](image/ssh2.jpg)
+
+![](image/ssh3.jpg)
+
+Update inventory/dev.yml by specifying the private IP address of the servers
+
+![](image/db.jpg)
+
+Update the playbook as well
+
+![](image/db1.jpg)
 
 **Possible errors to watch out for:**
 
