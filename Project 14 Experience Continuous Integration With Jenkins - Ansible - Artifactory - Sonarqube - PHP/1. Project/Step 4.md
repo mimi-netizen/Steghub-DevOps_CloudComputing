@@ -32,11 +32,13 @@ Verify the Installation
 ansible --version
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/725a4bc6-b359-42e1-8597-0e17bd9ae83a)
+![image](image/aa.jpg)
 
 2. Installing Ansible plugin in Jenkins UI On the dashboard page, click on Manage Jenkins > Manage plugins > Available type in ansible and install without restart
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/8c366254-f85a-4dff-85bb-c4e4d3b6221b)
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2feaf956-a280-4fbe-a29f-c50b6a746646)
+
+   ![image](image/aaa.jpg)
+
+   ![image](image/aaaa.jpg)
 
 Click on Dashboard > Manage Jenkins > Global Tool Configuration > Add Ansible. Add a name and the path ansible is installed on the jenkins server
 
@@ -46,7 +48,9 @@ get path
  which ansible
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/cbdfca05-fa88-48b7-8e70-1831222547e9)
+![image](image/b2.jpg)
+
+![image](image/b3.jpg)
 
 3. Creating Jenkinsfile from scratch. (Delete all you currently have in there and start all over to get Ansible to run successfully)
 
