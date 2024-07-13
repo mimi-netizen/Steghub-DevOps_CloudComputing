@@ -226,6 +226,7 @@ If everything goes well for you, it means, the Dev environment has an up-to-date
 other environments?
 
 - Are we going to manually update the Jenkinsfile to point inventory to those environments? such as sit, uat, pentest, etc.
+
 - Or do we need a dedicated git branch for each environment, and have the inventory part hard coded there.
 
 Think about those for a minute and try to work out which one sounds more like a better solution.
@@ -239,7 +240,7 @@ Well, unfortunately, we will not be doing any of the highlighted options. What w
 
 To deploy to other environments, we will need to use parameters
 
-1. Update `sit inventory` with new servers
+1. Update `sit inventory` with new servers `(inventory/sit.yml)`
 
 ```
 [tooling]
@@ -259,7 +260,7 @@ ansible_python_interpreter=/usr/bin/python
 <SIT-DB-Server-Private-IP-Address>
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/90a2c307-5d34-422d-b4b8-d22d61cc81bf)
+![image](image/y.jpg)
 
 2. Update `Jenkinsfile` to introduce parameterization. Below is just one parameter. It has a default value in case if no value is
    specified at execution. It also has a description so that everyone is aware of its purpose.
@@ -275,19 +276,43 @@ pipeline {
 ...
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/98aad8de-2501-4062-a2ca-2da93d9bc178)
+![image](image/y1.jpg)
 
 3. In the Ansible execution section, remove the hardcoded inventory/dev and replace with `${inventory}
    From now on, each time you hit on execute, it will expect an input.
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/30b44153-56d8-4a97-b737-ddc13e3af980)
+   ![image](image/y2.jpg)
 
 > Notice that the default value loads up, but we can now specify which environment we want to deploy the configuration to. Simply type
 > `sit` and `hit` Run
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/5a4550a5-5e28-4538-9e03-88bcf62a6f1f)
+![image](image/y3.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b1ff271f-db69-426f-b4b7-3f41fdf4cd39)
+![image](image/y4.jpg)
+
+![image](image/y5.jpg)
 
 4. Add another parameter. This time, introduce tagging in Ansible. You can limit the Ansible execution to a specific role or playbook
    desired. Therefore, add an Ansible tag to run against webserver only. Test this locally first to get the experience. Once you
    understand this, update Jenkinsfile and run it from Jenkins
+
+- Update `playbook/site.yml` with tags
+
+![image](image/y6.jpg)
+
+- Add another parameter to the jenkinsfile. Name the parameter ansible_tags and the default value webserver
+
+```bash
+string(name: 'ansible_tags', defaultValue: 'webserver', description: 'Ansible tags to run specific roles or tasks')
+```
+
+![image](image/y7.jpg)
+
+- Update the Ansible execution section to prompt for tag
+
+![image](image/y8.jpg)
+
+- Click on the play button and update the inventory field to sit and the ansible_tags to webserver
+
+![image](image/y9.jpg)
+
+- Click on Run to run the build
