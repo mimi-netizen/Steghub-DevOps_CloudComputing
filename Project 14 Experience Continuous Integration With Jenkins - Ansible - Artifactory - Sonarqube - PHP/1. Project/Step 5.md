@@ -8,6 +8,59 @@ Our goal here is to deploy the application onto servers directly from Artifactor
 Ansible with an Artifactory role, simply use this guide to create an Ansible role for Artifactory (ignore the Nginx part).
 [Configure Artifactory on Ubuntu 20.04](https://www.howtoforge.com/tutorial/ubuntu-jfrog/)
 
+```bash
+/path/to/your/laravel/project
+├── app
+│   ├── Console
+│   ├── Exceptions
+│   ├── Http
+│   │   ├── Controllers
+│   │   ├── Middleware
+│   ├── Models
+│   ├── Providers
+├── bootstrap
+│   ├── cache
+├── config
+│   ├── app.php
+│   ├── database.php
+│   └── ...
+├── database
+│   ├── factories
+│   ├── migrations
+│   ├── seeders
+├── public
+│   ├── index.php
+│   ├── css
+│   ├── js
+│   ├── ...
+├── resources
+│   ├── js
+│   ├── lang
+│   ├── views
+│   └── ...
+├── routes
+│   ├── api.php
+│   ├── channels.php
+│   ├── console.php
+│   ├── web.php
+├── storage
+│   ├── app
+│   ├── framework
+│   ├── logs
+├── tests
+│   ├── Feature
+│   ├── Unit
+├── vendor
+├── .env
+├── artisan
+├── composer.json
+├── composer.lock
+├── package.json
+├── phpunit.xml
+└── webpack.mix.js
+
+```
+
 **Prerequests**  Make sure port 8082 is opened in artifactory server
 
 ```

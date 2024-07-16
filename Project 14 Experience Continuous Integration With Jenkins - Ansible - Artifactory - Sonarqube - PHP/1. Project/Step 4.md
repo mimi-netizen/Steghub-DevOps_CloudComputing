@@ -316,3 +316,13 @@ string(name: 'ansible_tags', defaultValue: 'webserver', description: 'Ansible ta
 ![image](image/y9.jpg)
 
 - Click on Run to run the build
+
+![](image/as.jpg)
+
+![](image/as1.jpg)
+
+![](image/as2.jpg)
+
+![](image/as3.jpg)
+
+![](image/as4.jpg)
