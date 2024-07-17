@@ -179,9 +179,57 @@ Configure the server ID, URL and Credentials, run Test Connection.
 
 ### Phase 2 – Integrate Artifactory repository with Jenkins
 
-1.  Create a dummy Jenkinsfile in the todo app repository > In VScode create a new Jenkinsfile in the Todo repository
+1.  Create a dummy Jenkinsfile in the todo app repository > In VScode create a new Jenkinsfile in the Todo repository:
+
+    1.1 First step, Fork the TODO repository below into your GitHub account.
+
+        `https://github.com/StegTechHub/php-todo.git`
+
+    1.2 Create a basic Jenkinsfile in the root of the TODO application repository. This file will define your pipeline stages.
+
+```bash
+    pipeline {
+    agent any
+
+  stages {
+
+     stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
+        }
+
+    stage('Checkout SCM') {
+      steps {
+            git branch: 'main', url: 'https://github.com/mimi-netizen/php-todo.git'
+      }
+    }
+
+    stage('Prepare Dependencies') {
+      steps {
+             sh 'composer install'
+             sh 'php artisan migrate'
+             sh 'php artisan db:seed'
+             sh 'php artisan key:generate'
+      }
+    }
+  }
+}
+```
+
+![](image/q8.jpg)
 
 2.  Using Blue Ocean, create a multibranch Jenkins pipeline
+
+- Use Blue Ocean in Jenkins to create a new multibranch pipeline.
+
+![](image/z.jpg)
+
+- Connect it to your GitHub repository where the TODO application is forked.
+
+![](image/z1.jpg)
 
 3.  In jenkins server Install my sql client:
 
@@ -189,7 +237,11 @@ Configure the server ID, URL and Credentials, run Test Connection.
 sudo apt install mysql-client -y
 ```
 
+![image](image/z2.jpg)
+
 On the database server, create database and user
+
+- On your database server, create the necessary database and user as specified in the TODO application `.env`.
 
 ```
 Create database homestead;
@@ -197,7 +249,7 @@ CREATE USER 'homestead'@'%' IDENTIFIED BY 'sePret^i';
 GRANT ALL PRIVILEGES ON * . * TO 'homestead'@'%';
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4721ad96-9cbe-442b-beb7-749864a666c4)
+![image](image/q9.jpg)
 
 Login into the DB-server(mysql server) and set the the bind address to 0.0.0.0:
 
@@ -205,24 +257,46 @@ Login into the DB-server(mysql server) and set the the bind address to 0.0.0.0:
 sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 
+![](image/z3.jpg)
+
 Restart the my sql- server:
 
 ```
 sudo systemctl restart mysql
 ```
 
-4. Update the database connectivity requirements in the file .env.sample
+![](image/z4.jpg)
 
-```
-DB_HOST=172.31.26.78
+4. Create a `.env` file in TODO repo and update it with the credentials to connect the database, use sample the code below :
+
+```bash
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=SomeRandomString
+APP_URL=http://localhost
+
+DB_HOST=172.31.8.236
 DB_DATABASE=homestead
 DB_USERNAME=homestead
 DB_PASSWORD=sePret^i
-DB_CONNECTION=mysql
-DB_PORT=3306
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_DRIVER=smtp
+MAIL_HOST=mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/94fa0b61-6d14-4ddb-80d4-dc1cc849f176)
+![image](image/t6.jpg)
 
 5. Update _Jenkinsfile_ with proper pipeline configuration
 
@@ -242,7 +316,7 @@ pipeline {
 
     stage('Checkout SCM') {
       steps {
-            git branch: 'main', url: 'https://github.com/melkamu372/php-todo.git'
+            git branch: 'main', url: 'https://github.com/mimi-netizen/php-todo.git'
       }
     }
 
@@ -259,15 +333,16 @@ pipeline {
 }
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/28254d6d-1633-4850-8525-c4f940a67e62)
-
 > **Notice the Prepare Dependencies section**
 
-- The required file by PHP is _.env_ so we are renaming `.env.sample` to `.env`
 - Composer is used by PHP to install all the dependent libraries used by the application
 - php artisan uses the .env file to setup the required database objects
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4e7d79ed-e066-455b-a54c-3f5932902e75)
+_Note_ : The php version installed by the composer is 8.3.6 while the php version of the todo application is 7.4. Ensure to remove the current version and install php 7.4 and its dependencies to avoid error.
+
+5. Run the TODO Pipeline:
+
+![image](image/x6.jpg)
 
 – After successful run of this step,
 login to the database,password:`root`
@@ -277,9 +352,11 @@ mysql -u root -p
 ```
 
 run show tables and you will see the tables being created for you
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f43b92e6-76f9-4833-a954-1f4cae6937aa)
+
+![image](image/db2.jpg)
 
 1. Update the Jenkinsfile to include Unit tests step
+
    first install
 
 ```
@@ -294,6 +371,8 @@ stage('Execute Unit Tests') {
              sh './vendor/bin/phpunit'
       }
 ```
+
+![](image/xn.jpg)
 
 ### Phase 3 – Code Quality Analysis
 
