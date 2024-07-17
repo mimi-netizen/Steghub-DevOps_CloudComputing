@@ -154,17 +154,17 @@ php -v
 composer -v
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/98e98be5-ab3a-4c71-9e29-0b54b243e3f0)
+![image](image/x5.jpg)
 
 3.  Install Jenkins plugins
 
-        1 .  [Plot plugin](https://plugins.jenkins.io/plot/)
+        1 .  Plot plugin
 
-    ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2eec50c9-e487-48c2-9640-ea2f6e8c8d4f)
+    ![image](image/q4.jpg)
 
-        2 .  [Artifactory plugin](https://www.jfrog.com/confluence/display/JFROG/Jenkins+Artifactory+Plug-in)
+        2 .  Artifactory plugin
 
-    ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1c750e6d-951e-4377-b192-34b5acca7a43)
+    ![image](image/q5.jpg)
 
 - We will use _plot_ plugin to display tests reports, and code coverage information.
 - The _Artifactory_ plugin will be used to easily upload code artifacts into an Artifactory server.
@@ -172,6 +172,10 @@ composer -v
 4. In Jenkins UI configure Artifactory
 
 Configure the server ID, URL and Credentials, run Test Connection.
+
+![](image/q6.jpg)
+
+![](image/q7.jpg)
 
 ### Phase 2 – Integrate Artifactory repository with Jenkins
 
