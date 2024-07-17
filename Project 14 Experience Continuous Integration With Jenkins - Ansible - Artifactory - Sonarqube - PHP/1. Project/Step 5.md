@@ -67,18 +67,41 @@ Ansible with an Artifactory role, simply use this guide to create an Ansible rol
 ansible-galaxy collection install jfrog.platform
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/7b3d08b7-4018-485c-a8fb-e1b88716e353)
+![image](image/art.jpg)
+
+Update `playbook/site.yml`
+
+![](image/art1.jpg)
+
+Update `inventory/ci.yml`
+
+![](image/art2.jpg)
+
+![](image/art3.jpg)
+
+Run the playbook against `ci.yml` to install jfrog artifactory
+
+![](image/x.jpg)
+
+![](image/x1.jpg)
+
+![](image/x2.jpg)
+
+![](image/x3.jpg)
+
+![](image/x4.jpg)
 
 In the browser, login into artifactory with the default authentication `admin` and `password`
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/61ac8b1c-9a3d-4ff6-ba99-abe1ecadb5e8)
+
+![image](image/q.jpg)
+
+![image](image/q1.jpg)
 
 Create a local repository `todo-dev-local`
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4807aa33-a562-4d35-8e0b-a959e5e183cb)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/8c637a75-62f5-4b59-81be-ceee3eaee510)
+![image](image/q2.jpg)
 
-In Jenkins UI configure Artifactory, enter the public ip for the artifactory, the login details and test the connection manage Jenkins> configure> Jfrog Platform url
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ac1f40e1-12e4-43cb-98ee-6cde41694a19)
+![image](image/q3.jpg)
 
 ### Phase 1 – Prepare Jenkins
 
@@ -88,7 +111,7 @@ In Jenkins UI configure Artifactory, enter the public ip for the artifactory, th
 https://github.com/StegTechHub/php-todo.git
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4446c862-f53f-4b5c-b8d4-6204c51bf8fd)
+![image](image/f.jpg)
 
 2. On you Jenkins server, install PHP, its dependencies and Composer tool (Feel free to do this manually at first, then update
    your Ansible accordingly later)
