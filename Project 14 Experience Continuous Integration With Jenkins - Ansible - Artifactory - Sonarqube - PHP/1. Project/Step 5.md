@@ -777,17 +777,13 @@ deploy to the Development environment.
     state: restarted
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/04f5ea5a-1980-409a-9c72-1630cf1f4ea5)
-
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/04874304-1216-4ab7-83c9-1751f5556983)
-
 Make sure zip is installed
 
 ```bash
 $ sudo apt install zip -y
 ```
 
-![image](image/qx.jpg)
+![image](image/success.jpg)
 
 But how are we certain that the code being deployed has the quality that meets corporate and customer requirements? Even though we
 have implemented **Unit Tests** and **Code Coverage Analysis** with **phpunit** and **phploc**, we still need to implement **Quality Gate** to ensure
