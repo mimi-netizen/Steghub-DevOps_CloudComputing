@@ -29,7 +29,7 @@ file discriptor and ulimit.
 
 This can be achieved by making session changes which does not persist beyond the current session terminal.
 
-```
+```bash
 sudo sysctl -w vm.max_map_count=262144
 sudo sysctl -w fs.file-max=65536
 ulimit -n 65536
@@ -38,44 +38,44 @@ ulimit -u 4096
 
 To make a permanent change, edit the file /etc/security/limits.conf and append the below
 
-```
+```bash
 vi /etc/security/limits.conf
 ```
 
-```
+```bash
 sonarqube   -   nofile   65536
 sonarqube   -   nproc    4096
 ```
 
 Before installing, let us update and upgrade system packages:
 
-```
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
 Install [wget](https://www.gnu.org/software/wget/) and [unzip](https://linux.die.net/man/1/unzip) packages
 
-```
+```bash
 sudo apt-get install wget unzip -y
 ```
 
 Install [OpenJDK](https://openjdk.org/) and [Java Runtime Environment](https://docs.oracle.com/goldengate/1212/gg-winux/GDRAD/java.htm#BGBFJHAB) (JRE) 11
 
-```
+```bash
 sudo apt-get install openjdk-11-jdk -y
 sudo apt-get install openjdk-11-jre -y
 ```
 
 Set default JDK – To set default JDK or switch to OpenJDK enter below command:
 
-```
+```bash
 sudo update-alternatives --config java
 ```
 
 If you have multiple versions of Java installed, you should see a list like below:
 
-```
+```bash
 Selection    Path                                            Priority   Status
 
 ------------------------------------------------------------
@@ -93,114 +93,124 @@ Type "1" to switch OpenJDK 11
 
 Verify the set JAVA Version:
 
-```
+```bash
 java -version
 ```
 
 **Output**
 
+![](image/u.jpg)
+
 ### Install and Setup PostgreSQL 10 Database for SonarQube
 
 The command below will add PostgreSQL repo to the repo list:
 
-```
+```bash
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
 ```
 
 **Download PostgreSQL software**
 
-```
+```bash
 wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
 ```
 
 I**nstall PostgreSQL Database Server**
 
-```
+```bash
 sudo apt-get -y install postgresql postgresql-contrib
 ```
 
 **Start PostgreSQL Database Server**
 
-```
+```bash
 sudo systemctl start postgresql
 ```
 
 **Enable it to start automatically at boot time**
 
-```
+```bash
 sudo systemctl enable postgresql
 ```
 
+![](image/u1.jpg)
+
 **Change the password for default postgres user (Pass in the password you intend to use, and remember to save it somewhere)**
 
-```
+```bash
 sudo passwd postgres
 ```
 
 **Switch to the postgres user**
 
-```
+```bash
 su - postgre
 ```
 
+![](image/u2.jpg)
+
 **Create a new user by typing**
 
-```
+```bash
 createuser sonar
 ```
 
 **Switch to the PostgreSQL shell**
 
-```
+```bash
 psql
 ```
 
+![](image/u3.jpg)
+
 **Set a password for the newly created user for SonarQube database**
 
-```
+```bash
 ALTER USER sonar WITH ENCRYPTED password 'sonar';
 ```
 
 **Create a new database for PostgreSQL database by running:**
 
-```
+```bash
 CREATE DATABASE sonarqube OWNER sonar;
 ```
 
 **Grant all privileges to sonar user on sonarqube Database.**
 
-```
+```bash
 grant all privileges on DATABASE sonarqube to sonar;
 ```
 
 **Exit from the psql shell:**
 
-```
+```bash
 \q
 ```
 
 **Switch back to the sudo user by running the exit command**
 
-```
+```bash
 exit
 ```
+
+![](image/u4.jpg)
 
 ### Install SonarQube on Ubuntu 24.04 LTS
 
 **Navigate to the tmp directory to temporarily download the installation files**
 
-```
+```bash
 cd /tmp && sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.3.zip
 ```
 
 **Unzip the archive setup to /opt directory**
 
-```
+```bash
 sudo unzip sonarqube-7.9.3.zip -d /opt
 ```
 
 **Move extracted setup to /opt/sonarqube directory**
 
-```
+```bash
 sudo mv /opt/sonarqube-7.9.3 /opt/sonarqube
 ```

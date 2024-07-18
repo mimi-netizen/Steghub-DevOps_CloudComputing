@@ -58,6 +58,8 @@ sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube
 
 ```
 
+![](image/u5.jpg)
+
 Edit the sonar script file and set RUN_AS_USER
 
 ```
@@ -84,6 +86,8 @@ sudo nano /opt/sonarqube/bin/linux-x86-64/sonar.sh
 RUN_AS_USER=sonar
 
 ```
+
+![](image/u6.jpg)
 
 Now, to start SonarQube we need to do following: Switch to sonar user
 
@@ -130,6 +134,8 @@ To check SonarQube logs, navigate to /opt/sonarqube/logs/sonar.log directory
 ```
 tail /opt/sonarqube/logs/sonar.log
 ```
+
+![](image/u7.jpg)
 
 ## Output
 
