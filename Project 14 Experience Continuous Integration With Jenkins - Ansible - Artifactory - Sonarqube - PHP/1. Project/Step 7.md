@@ -221,7 +221,7 @@ sonarqube installation let us update our ansible config project
 1. Set Up Inventory File:
    Define our target host(s) in an inventory file.
 
-   - `sonarcube instance`
+   - `sonarqube instance`
 
 2. Update Ansible Playbook:
    update a playbook that includes tasks for installing PostgreSQL, creating the SonarQube database and user, installing SonarQube, and configuring it to use PostgreSQL. Use the codes below:
@@ -230,7 +230,7 @@ sonarqube installation let us update our ansible config project
 
 3. Update Role by adding role fo PostgreSQL and SonarQube :
 
-   - `roles/sonar/tasks(main.yml, postgres.yml,sonarcube.yml)`
+   - `roles/sonar/tasks(main.yml, postgres.yml,sonarqube.yml)`
 
 #### main.yml
 
@@ -365,7 +365,7 @@ sonarqube installation let us update our ansible config project
     priv: "ALL"
 ```
 
-#### sonarcube.yml
+#### sonarqube.yml
 
 ```bash
 - name: install unzip and wget
