@@ -459,8 +459,8 @@ http://server_IP:9000 OR http://localhost:9000 or http://public_ip:9000/sonar
 
 Login to SonarQube with default administrator username and password – admin
 
-![](image/hu3.jpg)
+![](image/ruru.jpg)
 
-![](image/hu5.jpg)
+![](image/ru.jpg)
 
 Now, when SonarQube is up and running, it is time to setup our Quality gate in Jenkins.

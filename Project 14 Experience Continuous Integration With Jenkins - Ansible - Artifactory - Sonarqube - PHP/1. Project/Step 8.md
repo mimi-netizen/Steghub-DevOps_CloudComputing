@@ -2,11 +2,11 @@
 
 - In Jenkins, install [SonarScanner plugin](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/jenkins-extension-sonarqube/)
 
-  ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1e14fe3a-5706-4f82-9938-6ec90b322ac3)
+  ![image](image/r.jpg)
 
 - Navigate to configure system in Jenkins. Add SonarQube server as shown below: Manage **Jenkins** > **Configure System**
 
-  ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/3f64d116-a97a-4df4-8032-c94f4f15345e)
+  ![image](image/r1.jpg)
 
 - Generate authentication token in SonarQube
 
