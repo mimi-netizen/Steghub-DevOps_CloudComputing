@@ -1,21 +1,24 @@
 # Configure SonarQube and Jenkins For Quality Gate
 
 - In Jenkins, install [SonarScanner plugin](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/jenkins-extension-sonarqube/)
-- In Jenkins, install SonarScanner plugin
+
   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1e14fe3a-5706-4f82-9938-6ec90b322ac3)
 
 - Navigate to configure system in Jenkins. Add SonarQube server as shown below: Manage **Jenkins** > **Configure System**
+
   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/3f64d116-a97a-4df4-8032-c94f4f15345e)
 
 - Generate authentication token in SonarQube
 
   **User** > **My Account** > **Security** > **Generate Tokens**
+
   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ea13e42b-365d-4d05-8852-2c1cf0052d55)
 
 - Configure Quality Gate Jenkins Webhook in SonarQube – The URL should point to your Jenkins server
   http://{JENKINS_HOST}/sonarqube-webhook/
 
 **Administration** > **Configuration** > **Webhook**s > **Create**
+
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b0eb04ed-5390-4dcf-9636-2f97477a8fbf)
 
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4c8b712c-06e3-4ebb-8900-f9dffc9dc02e)
@@ -23,6 +26,7 @@
 - Setup SonarQube scanner from Jenkins – Global Tool Configuration
 
 Manage Jenkins > Global Tool Configuration
+
 ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2978ac27-8ea3-43b2-a115-82fabaa7f9a6)
 
 ### Update Jenkins Pipeline to include SonarQube scanning and Quality Gate

@@ -212,25 +212,29 @@ Login to SonarQube with default administrator username - admin and password - ad
 
 ![](image/ck1.jpg)
 
-## OPTIONAL
-
 ### We understand how to manually install SonarQube on Ubuntu 20.04 with PostgreSQL as the backend database here let us Launch a instance for sonarqube and configure the environemnt using ansible:
+
+![](image/cu.jpg)
 
 sonarqube installation let us update our ansible config project
 
 1. Set Up Inventory File:
    Define our target host(s) in an inventory file.
 
-   - `sonarqube instance`
+   ![](image/cu1.jpg)
 
 2. Update Ansible Playbook:
    update a playbook that includes tasks for installing PostgreSQL, creating the SonarQube database and user, installing SonarQube, and configuring it to use PostgreSQL. Use the codes below:
 
    - `playbooks/site.yml`
 
+   ![](image/cu2.jpg)
+
 3. Update Role by adding role fo PostgreSQL and SonarQube :
 
    - `roles/sonar/tasks(main.yml, postgres.yml,sonarqube.yml)`
+
+![](image/cu3.jpg)
 
 #### main.yml
 
@@ -433,12 +437,30 @@ sonarqube installation let us update our ansible config project
 
 4. Execute the Playbook
 
+![](image/cu4.jpg)
+
+![](image/su.jpg)
+
+![](image/su1.jpg)
+
+![](image/su2.jpg)
+
+![](image/su3.jpg)
+
+![](image/v.jpg)
+
+![](image/v1.jpg)
+
 **Access SonarQube**
 
 ```bash
-http://server_IP:9000 OR http://localhost:9000
+http://server_IP:9000 OR http://localhost:9000 or http://public_ip:9000/sonar
 ```
 
 Login to SonarQube with default administrator username and password – admin
+
+![](image/hu3.jpg)
+
+![](image/hu5.jpg)
 
 Now, when SonarQube is up and running, it is time to setup our Quality gate in Jenkins.
