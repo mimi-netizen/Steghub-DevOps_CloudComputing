@@ -246,72 +246,103 @@ For Branch sonar
 > In the real world, DevOps engineers will push this back to developers to work on the code further, based on SonarQube quality report.
 > Once everything is good with code quality, the pipeline will pass and proceed with sipping the codes further to a higher environment.
 
-### Complete the following tasks to finish Project 14
+## Complete the following tasks to finish Project 14
 
 1. Introduce Jenkins agents/slaves – Add 2 more servers to be used as Jenkins slave. Configure Jenkins to run its pipeline jobs
    randomly on any available slave nodes.
-   Let's add 2 more servers to be used as Jenkins slave and install java in them.  
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ac716691-59fb-405f-9a9e-4cd9311b23f6)
+   Let's add 2 more servers to be used as Jenkins slave and install java in them.
 
-```
+   ![image](image/slave.jpg)
+
+```bash
+# Install  java on slave nodes
+sudo yum install java-11-openjdk-devel -y
+
+# Check the java version
+java --version
+
+# Update packages
 sudo apt update
-sudo apt install default-jdk
+
+# Install ansible on slave nodes
+sudo apt install ansible -y
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/7a4645c8-bb8d-4950-8772-c2e73d62d10f)
+![image](image/1.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f0fe6d73-12ac-40ae-9b08-e52c4bf39bb1)
+![image](image/2.jpg)
 
 2. Configure webhook between Jenkins and GitHub to automatically run the pipeline when there is a code push. Let's Configure the new nodes on Jenkins Server.
+
    Navigate to **Dashboard** > **Manage Jenkins** > **Nodes**, click on New node and enter a Name and click on create.
-   ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/becc5848-9f29-4366-a155-d2c95043798c)
+
+   ![image](image/3.jpg)
 
 **To connect to slave_one completed this fields and save.**
 
-Name: slave_one
-Remote root directory: /opt/build (This can be any directory for the builds)
-Labels: slave_one
-save
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/906af197-bb70-4a84-aeb7-120aa4a5b8f5)
+- Name: slave_one
 
-To connect to slave_one, click on the slave_one and if you finsih configuration save it you see
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/fc124386-2e2d-4901-8ab4-ac9c6553fa08)
+- Remote root directory: /opt/build (This can be any directory for the builds)
+
+- Labels: slave_one
+
+- save
+
+![image](image/4.jpg)
+
+To connect to slave_one, click on the `slave_one` and if you finish configuration save it you see
+
+![image](image/5.jpg)
 
 Use either options. In this case, I use the first option
 
-> befor running please check yor public ip addres of your jenkin is same as the if not go to Dashboard> manage Jenkin > systme and update current IP
+Ensure to open port `5000` on the slave node server
 
-```
+Go to `dashboard` > `manage jenkins` > `security` > `Agents`, on Jenkins Set the TCP port for inbound agents to fixed and set the port at 5000
+
+![](image/6.jpg)
+
+> before running please check your public ip address of your jenkins is same as the if not go to `Dashboard`> `manage Jenkins` > `system` and update current IP
+
+```bash
 sudo mkdir -p /opt/build
 sudo chown -R ubuntu:ubuntu /opt/build
 sudo chmod -R 755 /opt/build
 ls -ld /opt/build
-```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a0096577-6378-44ef-8656-956f24d23a87)
+# Download agent.jar to /opt/build. Make sure it has Jenkins IP here
+curl -sO http://13.56.215.245:8080/jnlpJars/agent.jar
 
-**To make it run in background and `&`**
-
-```
-java -jar agent.jar -webSocket -url http://50.17.45.184:8080/ -secret @secret-file -name "slave_one" -workDir "/opt/build" &
+# Download agent.jar to /opt/build. Ensure it has Jenkins IP here
+sudo java -jar agent.jar -url http://13.56.215.245:8080/ -secret 4dd3b0b23c99e63ac95d8d569f307c0f1f00d37e4ad381ffe2c21e18f17ae17f -name "slave_1" -workDir "/opt/build "
 
 ```
 
-**Repate same thing for the second**
-slave_one
+![image](image/7.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/1f21c131-8a7e-4c43-aae2-386512955e0a)
+Verify that slave_1 is connected in jenkins
 
-slave_two
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/a735f3a4-ccfa-4692-b171-2dbe909d4490)
+![](image/8.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2dca8f1d-ff4c-43f6-92d2-a3f742de9839)
+**Repeat same thing for the second**
+
+![](image/9.jpg)
+
+![](image/10.jpg)
+
+![](image/11.jpg)
+
+- Configure webhook between Jenkins and GitHub to automatically run the pipeline when there is a code push.
+
+  - Configure webhook between Jenkins and GitHub to automatically run the pipeline when there is a code push. The PHP-Todo repo, click on `Settings` > `Webhooks`. For the Payload URL input - `http://<jenkins-publib-ip>:8080/github-webhook/` and in content-type, select application/json and save.
+
+![](image/hook.jpg)
 
 3. Deploy the application to all the environments in order to deploy to all environment we Add these stages to our existing Jenkins pipeline script
 
 **Development**
 
-```
+```bash
 stage ('Deploy to Dev Environment') {
             agent { label 'slave_one' } // Specify the Jenkins slave to use for deployment
             steps {
@@ -322,7 +353,7 @@ stage ('Deploy to Dev Environment') {
 
 **Test Environment**
 
-```
+```bash
         stage ('Deploy to Test Environment') {
             agent { label 'slave_two' } // Specify another Jenkins slave for deployment
             steps {
@@ -333,7 +364,7 @@ stage ('Deploy to Dev Environment') {
 
 **Production Environment**
 
-```
+```bash
         stage ('Deploy to Production Environment') {
             agent any
             steps {
@@ -342,16 +373,15 @@ stage ('Deploy to Dev Environment') {
         }
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2e0e4713-1b71-4185-a55a-d7a658fc8671)
-
-**Running on slave console Output**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f19fcc0a-ce9c-443d-b598-9179eda33fa8)
+![image](image/13.jpg)
 
 4. **Optional** – Experience pentesting in pentest environment by configuring [Wireshark](https://www.wireshark.org/) there and just explore for information sake only.[Watch Wireshark Tutorial here](https://youtu.be/lb1Dw0elw0Q)
 
 - Ansible Role for Wireshark:
 - https://github.com/ymajik/ansible-role-wireshark (Ubuntu)
 - https://github.com/wtanaka/ansible-role-wireshark (RedHat)
+
   ### The End of Project 14
+
   We have just experienced one of the most interesting and complex projects in our Project Based Learning journey
   so far.
