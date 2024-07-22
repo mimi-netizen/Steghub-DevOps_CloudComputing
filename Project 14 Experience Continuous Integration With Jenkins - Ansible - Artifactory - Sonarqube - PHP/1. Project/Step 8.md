@@ -128,6 +128,8 @@ in your browser.
 Indeed, this has been one of the longest projects from Project 1, and if everything has worked out for you so far, you should have
 a view like below:
 
+![](image/passed.jpg)
+
 ![image](image/todo.jpg)
 
 ![](image/todo1.jpg)
@@ -143,7 +145,7 @@ pushed a poor-quality code onto the development environment.
 
 - Navigate to php-todo project in SonarQube
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/f6d68924-aae4-4c5d-a84e-f05c543f6dad)
+![](image/todo2.jpg)
 
 There are bugs, and there is 0.0% code coverage. (code coverage is a percentage of unit tests added by developers to test functions
 and objects in the code)
@@ -151,9 +153,10 @@ and objects in the code)
 - If you click on php-todo project for further analysis, you will see that there is 6 hours’ worth of technical debt, code smells
   and security issues in the code.
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/afeef638-16c7-43c8-8af9-c9dbd98c93be)
+![image](image/todo4.jpg)
 
 In the development environment, this is acceptable as developers will need to keep iterating over their code towards perfection.
+
 But as a DevOps engineer working on the pipeline, we must ensure that the quality gate step causes the pipeline to fail if the
 conditions for quality are not met.
 
@@ -181,14 +184,14 @@ Let us update our Jenkinsfile to implement this:
 - First, we will include a When condition to run Quality Gate whenever the running branch is either develop, hotfix, release, main,
   or master
 
-```
+```bash
 when { branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"}
 ```
 
 Then we add a timeout step to wait for SonarQube to complete analysis and successfully finish the pipeline only when code quality
 is acceptable.
 
-```
+```bash
  timeout(time: 1, unit: 'MINUTES') {
         waitForQualityGate abortPipeline: true
     }
@@ -196,7 +199,7 @@ is acceptable.
 
 The complete stage will now look like this:
 
-```
+```bash
  stage('SonarQube Quality Gate') {
       when { branch pattern: "^develop*|^hotfix*|^release*|^main*", comparator: "REGEXP"}
         environment {
@@ -217,17 +220,27 @@ The complete stage will now look like this:
 To test, create different branches and push to GitHub. You will realise that only branches other than develop, hotfix, release,
 main, or master will be able to deploy the code.
 
-**Create a new branch feature/sonar-test and commit, push the new code.**
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/0c09806f-08b8-4091-8bc0-64426dc02461)
+**Create a new branch sonar and commit, push the new code.**
+
+![image](image/son.jpg)
+
+![](image/son1.jpg)
 
 If everything goes well, you should be able to see something like this:
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/c8d7e050-c026-403a-9dd4-0fb242f24c29)
+![](image/son2.jpg)
 
-For Branch feature/sonar-test
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b84fdf2a-e79e-4c16-a64e-ef1222053de9)
+![](image/son3.jpg)
 
 For main branch
+
+![image](image/xs.jpg)
+
+![image](image/xs1.jpg)
+
+For Branch sonar
+
+![image](image/xs2.jpg)
 
 > Notice that with the current state of the code, it cannot be deployed to Integration environments due to its quality.
 > In the real world, DevOps engineers will push this back to developers to work on the code further, based on SonarQube quality report.
