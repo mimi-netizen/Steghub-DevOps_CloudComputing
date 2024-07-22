@@ -6,28 +6,28 @@
 
 - Navigate to configure system in Jenkins. Add SonarQube server as shown below: Manage **Jenkins** > **Configure System**
 
-  ![image](image/r1.jpg)
+  ![image](image/sonar.jpg)
 
 - Generate authentication token in SonarQube
 
   **User** > **My Account** > **Security** > **Generate Tokens**
 
-  ![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/ea13e42b-365d-4d05-8852-2c1cf0052d55)
+  ![image](image/r2.jpg)
 
 - Configure Quality Gate Jenkins Webhook in SonarQube – The URL should point to your Jenkins server
   http://{JENKINS_HOST}/sonarqube-webhook/
 
 **Administration** > **Configuration** > **Webhook**s > **Create**
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/b0eb04ed-5390-4dcf-9636-2f97477a8fbf)
+![image](image/r3.jpg)
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4c8b712c-06e3-4ebb-8900-f9dffc9dc02e)
+![image](image/r4.jpg)
 
 - Setup SonarQube scanner from Jenkins – Global Tool Configuration
 
-Manage Jenkins > Global Tool Configuration
+`Manage Jenkins` > `Global Tool Configuration`
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/2978ac27-8ea3-43b2-a115-82fabaa7f9a6)
+![image](image/r5.jpg)
 
 ### Update Jenkins Pipeline to include SonarQube scanning and Quality Gate
 
@@ -49,23 +49,27 @@ Below is the snippet for a Quality Gate stage in Jenkinsfile
 
 > NOTE: The above step will fail because we have not updated `sonar-scanner.properties`
 
+![](image/runtime.jpg)
+
 - Configure sonar-scanner.properties – From the step above, Jenkins will install the scanner tool on the Linux server. You will need
   to go into the tools directory on the server to configure the properties file in which SonarQube will require to function during
   pipeline execution.
 
-```
+```bash
 cd /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/conf/
 ```
 
+![](image/ab1.jpg)
+
 Open sonar-scanner.properties file
 
-```
+```bash
 sudo vi sonar-scanner.properties
 ```
 
 Add configuration related to `php-todo` project
 
-```
+```bash
 sonar.host.url=http://<SonarQube-Server-IP-address>:9000
 sonar.projectKey=php-todo
 #----- Default source code encoding
@@ -76,7 +80,7 @@ sonar.php.tests.reportPath=build/logs/junit.xml
 
 ```
 
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/22a2f1b6-6665-4d23-834c-22a3c0314591)
+![image](image/ab2.jpg)
 
 > HINT: To know what exactly to put inside the `sonar-scanner.properties` file, SonarQube has a configurations page where you can get
 > some directions.
@@ -89,14 +93,15 @@ Then, within the steps use shell to run the scanner from `bin` directory.
 
 To further examine the configuration of the scanner tool on the Jenkins server – navigate into the tools directory
 
-```
+```bash
 cd /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/bin
 ```
 
 List the content to see the scanner tool `sonar-scanner`. That is what we are calling in the pipeline script.
 
-Output of (ls -latr)
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/786257c6-4420-4f49-a109-f393a1ed85fb)
+Output of (`ls -latr`)
+
+![image](image/ab3.jpg)
 
 So far you have been given code snippets on each of the stages within the Jenkinsfile. But, you should also be able to generate
 Jenkins configuration code yourself.
@@ -122,7 +127,14 @@ in your browser.
 
 Indeed, this has been one of the longest projects from Project 1, and if everything has worked out for you so far, you should have
 a view like below:
-![image](https://github.com/melkamu372/StegHub-DevOps-Cloud-Engineering/assets/47281626/4890b539-32c9-4fa8-9655-e63050996975)
+
+![image](image/todo.jpg)
+
+![](image/todo1.jpg)
+
+![](image/todo2.jpg)
+
+![](image/todo3.jpg)
 
 **But we are not completely done yet!**
 
