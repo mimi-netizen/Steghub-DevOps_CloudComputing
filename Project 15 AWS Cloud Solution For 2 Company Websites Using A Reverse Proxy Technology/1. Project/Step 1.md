@@ -129,21 +129,35 @@ Actions > Edit VPC Settings > Enable DNS hostnames
 
 Create public and private subnets in each availablity zones respectively. Thus, we create public subnet in availability zone A and B respectively. We create 4 private subnets with respect to the diagram we are working with as such we create 2 private subnets each in availability zone A and B.
 
-![](./images/subnet1.png)
-![](./images/subnet2.png)
-![](./images/subnet3.png)
-![](./images/subnet4.png)
-![](./images/subnet5.png)
-![](./images/subnet6.png)
+On the left panel menu of the VPC UI, click on Subnet > Create Subnet.
+
+- VPC: 10.0.0.0/16
+
+- Public Subnet 1: 10.0.1.0/24 in Zone A
+
+- Public Subnet 2: 10.0.2.0/24 in Zone B
+
+- Private Subnet 1: 10.0.3.0/24 in Zone A
+
+- Private Subnet 2: 10.0.4.0/24 in Zone B
+
+- Private Subnet 3: 10.0.5.0/24 in Zone A
+
+- Private Subnet 4: 10.0.6.0/24 in Zone B
+
+![](image/s1.jpg)
+![](image/S2.jpg)
+![](image/S3.jpg)
+![](image/S4.jpg)
+![](image/S5.jpg)
+![](image/S6.jpg)
+![](image/S7.jpg)
+![](image/S8.jpg)
 
 Enable Auto-assign public IPv4 address in the public subnets.
 Actions > Edit subnet settings > Enable auto-assign public IPv4
 
-![](./images/en-auto-assign-pubIP.png)
-
-All Subnets
-
-![](./images/all-subnets.png)
+![](image/s9.jpg)
 
 ### 3. Create a route table and associate it with public subnets
 
