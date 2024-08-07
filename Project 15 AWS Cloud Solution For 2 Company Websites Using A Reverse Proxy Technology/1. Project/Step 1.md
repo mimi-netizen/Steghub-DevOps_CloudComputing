@@ -207,12 +207,9 @@ Attach it to the created VPC: Select the internet gateway you just created > Cli
 
 ### 6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accisble from the Internet)
 
-In the public route table, Click route tab > Edit route > Add route
-since we are routing traffic to the internet, the destination will be `0.0.0.0/0`
+Go back to Route Tables and select the Public Route Table > Click on the Routes tab > Click Edit routes. Click Add route > Destination: 0.0.0.0/0 > Target: Select the internet gateway you created > Click Save routes
 
-![](./images/route-pub-rt.png)
-
-![](./images/pub-route.png)
+![](image/ig1.jpg)
 
 ### 7. Create 3 [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 
