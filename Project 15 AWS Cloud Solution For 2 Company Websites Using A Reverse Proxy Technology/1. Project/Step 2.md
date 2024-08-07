@@ -1,6 +1,6 @@
 # Setup EFS
 
-[Amazon Elastic File System (Amazon EFS)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html) provides a simple, scalable, fully managed elastic [Network File System (NFS)](https://en.wikipedia.org/wiki/Network_File_System) for use with AWS Cloud services and on-premises resources. In this project, we will utulize EFS service and mount filesystems on both Nginx and Webservers to store data.
+[Amazon Elastic File System (Amazon EFS)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html) provides a simple, scalable, fully managed elastic [Network File System (NFS)](https://en.wikipedia.org/wiki/Network_File_System) for use with AWS Cloud services and on-premises resources. In this project, we will utilize EFS service and mount filesystems on both Nginx and Webservers to store data.
 
 1. Create an EFS filesystem
 
@@ -9,10 +9,13 @@
 
 3. Associate the Security groups created earlier for data layer.
 
-![](./images/create-FS.png)
-![](./images/create-FS-cont.png)
+![](image/efs.jpg)
 
-![](./images/efs.png)
+![](image/efs1.jpg)
+
+![](image/efs2.jpg)
+
+![](image/efs3.jpg)
 
 4. Create an EFS access point.
 
@@ -20,16 +23,17 @@ This will specify where the webservers will mount with, thus creating 2 mount po
 
 Access point for wordpress server
 
-![](./images/wp-access-point.png)
+![](image/wap.jpg)
 
 Access point for tooling server
 
-![](./images/tooling-access-pt.png)
+![](image/tooling-ap.jpg)
 
 EFS access points
 
-![](./images/efs-access-points.png)
-![](./images/EFS-access-pt.png)
+![](image/ap3.jpg)
+
+![](image/ap4.jpg)
 
 # Setup RDS
 
