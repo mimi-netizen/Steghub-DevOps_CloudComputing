@@ -223,11 +223,15 @@ Create Elastic IP to configured with the NAT gateway. The NAT gateway enables co
 
 ### 8. Create a [Nat Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) and assign one of the Elastic IPs (\*The other 2 will be used by [Bastion hosts](https://aws.amazon.com/solutions/implementations/linux-bastion/))
 
-![](./images/create-NAT.png)
+Create a Nat Gateway and assign the Elastic IPs Click on VPC > NAT gateways > Create NAT gateway
+
+Select a Public Subnet Connection Type: Public Allocate Elastic IP
+
+![](image/nat.jpg)
 
 - Edit a route in private route table, and associate it with the Nat Gateway.
 
-  ![](./images/route-Nat.png)
+  ![](image/nat1.jpg)
 
 ### 9. Create a [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html#CreatingSecurityGroups) for:
 
