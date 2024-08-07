@@ -272,24 +272,18 @@ We will need TLS certificates to handle secured connectivity to our Application 
 3. Use DNS to validate the domain name
 4. Tag the resource
 
-![](./images/ACM.png)
-
-![](./images/cert-created.png)
-
 - Ensure to create record on Route 53 after creating the certificate. This will generate a CNAME record type in Route 53. We will attach this certificate to all the load balancers.
 
   - Click, Create records in Route 53 > Create records
 
-    ![](./images/create-record-cname.png)
-
-    ![](./images/cname-created.png)
+    ![](image/rec.jpg)
 
     Copy the CNAME name and the CNAME value generated then
     Go to Cloudns, Click on CNAME > Add new record. Paste the CNAME name and value to validate the record for AWS to issue the certificate (The Certificate status remain pending unitl the record is validated by the Domain provider.)
 
-    ![](./images/validate-records.png)
+    ![](image/cname.jpg)
 
-    ![](./images/cloudns-records.png)
+    ![](image/cn.jpg)
 
     After validating the record, AWS will issue the Certificate and the status changes to issued.
 
