@@ -60,33 +60,38 @@ To configure `RDS`, follow steps below:
 
 1. Create a `subnet group` and add 2 private subnets (data Layer)
 
-![](./images/rds-subnet-grp.png)
-![](./images/rds-subnet-grp-created.png)
+![](image/rds.jpg)
+
+![](image/rds1.jpg)
+
+![](image/rds2.jpg)
+
+![](image/rds3.jpg)
 
 2. Create an RDS Instance for `mysql 8.*.*`
 
-![](./images/mysql.png)
+![](image/db.jpg)
 
 3. To satisfy our architectural diagram, you will need to select either `Dev/Test` or `Production` Sample Template. But to minimize AWS cost, you can select the `Do not create a standby instance` option under `Availability & durability` sample template (The production template will enable Multi-AZ deployment)
 
-![](./images/rds-template.png)
+![](image/db1.jpg)
 
 4. Configure other settings accordingly (For test purposes, most of the default settings are good to go). In the real world, you will need to size the database appropriately. You will need to get some information about the usage. If it is a highly transactional database that grows at 10GB weekly, you must bear that in mind while configuring the initial storage allocation, storage autoscaling, and maximum storage threshold.
 
-![](./images/rds-settings-cont.png)
+![](image/db2.jpg)
 
 5. Configure VPC and security (ensure the database is not available from the Internet)
 
-![](./images/rds-vpc.png)
-![](./images/rds-vpc-cont.png)
+![](image/rds4.jpg)
+![](image/rds5.jpg)
 
 6. Configure backups and retention
 7. Encrypt the database using the KMS key created earlier
 8. Enable [CloudWatch](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/monitoring-cloudwatch.html) monitoring and export Error and Slow Query logs (for production, also include Audit)
 
-![](./images/rds-backup.png)
+![](image/db3.jpg)
 
-![](./images/rds.png)
+![](image)
 
 # Proceed With Compute Resources
 
