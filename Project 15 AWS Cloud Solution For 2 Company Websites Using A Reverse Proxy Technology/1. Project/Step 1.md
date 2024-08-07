@@ -87,6 +87,30 @@ Copy the name server (NS) values from AWS, then go to your free domain, edit the
 
 ![](image/ns.jpg)
 
+The next step is to get a certificate from `AWS Certificate Manager`. The reason we are creating a certificate first is because when creating `ALB` we need to select a certificate.
+
+- Click on request a Cert > Request public cert > Next
+
+![](image/cert.jpg)
+
+![](image/cert1.jpg)
+
+In the domain name, we are going to use a wild card i.e (\*.). should in case we want to have another `name` or `subdomain`, the `WILDCARD` will make sure that any name before the domain name is attached to the `certificate`. e.g kydd.cdk-aws.dns-dynamic.net
+
+![](image/cdk.jpg)
+
+NOTE: Because we are using DNS verification is going to automatically write to the Rout53 to confirm
+
+![](image/cer.jpg)
+
+**_NOTE : As you proceed with configuration, ensure that all resources are appropriately tagged, for example:_**
+
+Project: Give your project a name `Project-15`
+
+Environment: `dev`
+
+Automated:`No` (If you create a recource using an automation tool, it would be Yes)
+
 ## Set Up a Virtual Private Network (VPC)
 
 Always make reference to the architectural diagram and ensure that your configuration is aligned with it.
