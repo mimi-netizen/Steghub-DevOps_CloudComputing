@@ -117,13 +117,13 @@ Always make reference to the architectural diagram and ensure that your configur
 
 ### 1. Create a [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
 
-![vpc](./images/create-vpc.png)
+![vpc](image/vpc.jpg)
 
 ### Enable DNS hostnames.
 
 Actions > Edit VPC Settings > Enable DNS hostnames
 
-![](./images/enable-dns-hostname.png)
+![](image/vpc1.jpg)
 
 ### 2. Create subnets as shown in the architecture
 
