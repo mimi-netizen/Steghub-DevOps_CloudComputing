@@ -213,7 +213,13 @@ Go back to Route Tables and select the Public Route Table > Click on the Routes 
 
 ### 7. Create 3 [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
 
-![](./images/create-eip.png)
+one for `Nat getway` and the other 2 will be used by `Bastion hosts`
+
+Create Elastic IP to configured with the NAT gateway. The NAT gateway enables connection from the public subnet to private subnet and it needs a static ip to make this happen.
+
+- VPC > Elastic IP addresses > Allocate Elastic IP address - add a name tag and click on allocate
+
+![](image/eip.jpg)
 
 ### 8. Create a [Nat Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) and assign one of the Elastic IPs (\*The other 2 will be used by [Bastion hosts](https://aws.amazon.com/solutions/implementations/linux-bastion/))
 
