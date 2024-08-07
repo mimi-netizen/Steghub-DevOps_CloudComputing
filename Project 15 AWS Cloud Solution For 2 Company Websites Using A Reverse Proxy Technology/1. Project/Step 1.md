@@ -190,26 +190,20 @@ The public route table and it's associated public subnets
 
 ### 4. Create a route table and associate it with private subnets
 
-Create a private route table for the private subnets
+Create a private route table for the private subnets and Associate it with private subnets
 
-![](./images/create-private-rt.png)
-
-Associate it with private subnets
-
-![](./images/ass-privt-rt-subnets.png)
-
-The route tables
-
-![](./images/rout-tables.png)
+![](image/private.jpg)
 
 ### 5. Create an [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)
 
-![](./images/create-igw.png)
+Click on Internet Gateways on the left-hand side > Create internet gateway > Enter a name for your internet gateway > Create internet gateway
 
-Attach it to the created VPC.
+![](image/ig.jpg)
 
-![](./images/attach-igw.png)
-![](./images/igw-attached.png)
+Attach it to the created VPC: Select the internet gateway you just created > Click the Actions dropdown, then select Attach to VPC >Select the VPC you created earlier >Click Attach internet gateway.
+
+![](image/at.jpg)
+![](image/at1.jpg)
 
 ### 6. Edit a route in public route table, and associate it with the Internet Gateway. (This is what allows a public subnet to be accisble from the Internet)
 
