@@ -163,16 +163,30 @@ Actions > Edit subnet settings > Enable auto-assign public IPv4
 
 Create a public route table for the public subnets
 
-![](./images/create-pub-rt.png)
+**In the left-hand navigation pane, click on Route Tables > Create route table button**
+
+Enter the following details:
+
+- **Name tag:** Provide a name for your route table Public Route Table
+- **VPC:** Select the VPC you created earlier.
+- Click **Create route table.**
+
+![](image/route.jpg)
 
 Associate it with public subnets.
 Click on the route table > Subnet Association > Edit Subnet Association.
 
-![](./images/ass-pub-rt-subnets.png)
+- Select the Public Route Table from the list.
+- Click on the Subnet associations tab.
+- Click Edit subnet associations.
+- In the Select subnets section, check the boxes for Public Subnet 1 and Public Subnet 2.
+- Click Save associations.
+
+![](image/sub.jpg)
 
 The public route table and it's associated public subnets
 
-![](./images/pub-rt.png)
+![](image/subnet.jpg)
 
 ### 4. Create a route table and associate it with private subnets
 
