@@ -237,31 +237,31 @@ Select a Public Subnet Connection Type: Public Allocate Elastic IP
 
 - **External [Application Load Balancer](https://aws.amazon.com/elasticloadbalancing/application-load-balancer/):** External `ALB` will be available from the Internet
 
-![](./images/ext-ALB-SG.png)
+![](image/alb.jpg)
 
 - **Bastion Servers:** Access to the Bastion servers should be allowed only from workstations that need to SSH into the bastion servers. Hence, you can use your workstation public IP address. To get this information, simply go to your terminal and type `curl www.canhazip.com`
 
-![](./images/bastion-sg.png)
+![](image/bas.jpg)
 
 - **Nginx Servers:** Access to Nginx should only be allowed from an external Application Load balancer (ALB).
 
-![](./images/nginx-sg.png)
+![](image/nginx.jpg)
 
 - **Internal Application Load Balancer:** This is `not` an internet facing `ALB` rather used to distribute internal traffic comming from Nginx (reverse proxy) to our Webservers Auto Scalling Groups in our private subnets. It also helps us to prevent single point of failure.
 
-![](./images/int-ALB-SG.png)
+![](image/int.jpg)
 
 - **Webservers:** Access to Webservers should only be allowed from the internal ALB.
 
-![](./images/webservers-sg.png)
+![](image/WEB.jpg)
 
 - **Data Layer:** Access to the Data layer, which is comprised of [Amazon Relational Database Service (`RDS`)](https://aws.amazon.com/rds/) and [Amazon Elastic File System (EFS)](https://aws.amazon.com/efs/) must be carefully desinged - only webservers should be able to connect to `RDS`, while Nginx and Webservers will have access to `EFS Mountpoint`.
 
-![](./images/data-sg.png)
+![](image/ws.jpg)
 
 All Security Groups
 
-![](./images/SGs.png)
+![](image/sg.jpg)
 
 ## TLS Certificates From Amazon Certificate Manager (ACM)
 
