@@ -200,45 +200,45 @@ git clone https://github.com/aws/efs-utils
 cd efs-utils
 ```
 
-![](./images/clone-efs-utils.png)
+![](image/utils.jpg)
 
 ```bash
 sudo yum install -y make
 ```
 
-![](./images/install-make.png)
+![](image/utils1.jpg)
 
 ```bash
 sudo yum install -y rpm-build
 ```
 
-![](./images/install-rpm-build.png)
+![](image/utils2.jpg)
 
 ```bash
 # openssl-devel is needed by amazon-efs-utils-2.0.4-1.el9.x86_64
 sudo yum install openssl-devel -y
 ```
 
-![](./images/install-openssl-devel.png)
+![](image/utils3.jpg)
 
 ```bash
 # Cargo command needs to be installed as it is necessary for building the Rust project included in the source.
 sudo yum install cargo -y
 ```
 
-![](./images/install-cargo.png)
+![](image/utils4.jpg)
 
 ```bash
 sudo make rpm
 ```
 
-![](./images/make-rpm.png)
+![](image/utils5.jpg)
 
 ```bash
 sudo yum install -y  ./build/amazon-efs-utils*rpm
 ```
 
-![](./images/install-efs-utils.png)
+![](image/utils6.jpg)
 
 **Repeat the steps above for Webservers**
 
