@@ -261,7 +261,7 @@ sudo mkdir /etc/ssl/private
 
 sudo chmod 700 /etc/ssl/private
 
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/fnc.key -out /etc/ssl/certs/fnc.crt
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/cdk.key -out /etc/ssl/certs/cdk.crt
 ```
 
 ![](./images/nginx-ssl-key.png)
@@ -278,20 +278,20 @@ sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 sudo yum install -y mod_ssl
 ```
 
-![](./images/install-mod-ssl.png)
+![](image/apache.jpg)
 
 ```bash
-sudo openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/fnc.key -x509 -days 365 -out /etc/pki/tls/certs/fnc.crt
+sudo openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/cdk.key -x509 -days 365 -out /etc/pki/tls/certs/cdk.crt
 ```
 
-![](./images/apache-tls-key.png)
+![](image/apache2.jpg)
 
 ```bash
 # Edit the ssl.conf to conform with the key and crt file created.
 sudo vim /etc/httpd/conf.d/ssl.conf
 ```
 
-![](./images/edit-apache-config.png)
+![](image/apache3.jpg)
 
 ## [Create an AMI](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html) out of the EC2 instances
 
