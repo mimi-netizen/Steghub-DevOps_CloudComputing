@@ -114,7 +114,7 @@ The Launch Templates requires `AMI` and `Userdata` while the Load balancer requi
 
 1. Create EC2 Instances based on CentOS [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) per each [Availability Zone in the same Region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html). Use EC2 instance of [T2 family](https://aws.amazon.com/ec2/instance-types/t2/) (e.g. t2.micro or similar) with security group (All traffic - anywhere).
 
-![](./images/base-servers.png)
+![](image/instance.jpg)
 
 2. Ensure that it has the following software installed:
 
@@ -135,19 +135,19 @@ The Launch Templates requires `AMI` and `Userdata` while the Load balancer requi
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 ```
 
-![](./images/epel-release.png)
+![](image/in.jpg)
 
 ```bash
 sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
 
-![](./images/dnf-utils.png)
+![](image/in1.jpg)
 
 ```bash
 sudo yum install wget vim python3 telnet htop net-tools ntp -y
 ```
 
-![](./images/err-ntp.png)
+![](image/in2.jpg)
 
 The error occured because the ntp package is not available in the repositories for our Enterprise Linux 9 system. Instead of ntp, chrony can be used, which is the default NTP implementation in newer versions of RHEL and its derivatives, including Enterprise Linux 9.
 
@@ -155,7 +155,7 @@ The error occured because the ntp package is not available in the repositories f
 sudo yum install wget vim python3 telnet htop git mysql net-tools chrony -y
 ```
 
-![](./images/install-software-nginx.png)
+![](image/in3.jpg)
 
 ```bash
 sudo systemctl start chronyd
@@ -163,9 +163,15 @@ sudo systemctl enable chronyd
 sudo systemctl status chronyd
 ```
 
-![](./images/start-chrony.png)
+![](image/in4.jpg)
 
 **NB**: **Repeat the above steps for Bastion and Webservers**
+
+bastion
+![](image/bastion.jpg)
+
+webserver
+![](image/webs.jpg)
 
 ### Nginx and Webserver (Set SELinux policies so that our servers can function properly on all the redhat instance).
 
