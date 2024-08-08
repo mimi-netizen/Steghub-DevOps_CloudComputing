@@ -91,7 +91,7 @@ To configure `RDS`, follow steps below:
 
 ![](image/db3.jpg)
 
-![](image)
+![](image/db4.jpg)
 
 # Proceed With Compute Resources
 
