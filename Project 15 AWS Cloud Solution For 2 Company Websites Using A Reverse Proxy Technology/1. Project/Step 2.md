@@ -299,35 +299,44 @@ On the EC2 instance page, Go to Actions > Image and templates > Create image
 
 **For Bastion AMI**
 
-![](./images/bastion-ami.png)
+![](image/bast.jpg)
 
 **For Nginx AMI**
 
-![](./images/nginx-ami.png)
+![](image/ng.jpg)
 
 **For Webservers AMI**
 
-![](./images/webservers-ami.png)
+![](image/wami.jpg)
 
 **All AMIs**
 
-![](./images/all-ami.png)
+![](image/ami.jpg)
 
 ## CONFIGURE TARGET GROUPS
 
 Create Target groups for Nginx, Worpress and Tooling
 
+- Select Instances as the target type
+- Ensure the protocol HTTPS on secure TLS port 443
+- Ensure that the health check path is /healthstatus
+- Register Nginx Instances as targets
+- Ensure that health check passes for the target group
+
 **For Nginx Target Group**
 
-![](./images/nginx-tg.png)
-![](./images/nginx-tg-cont.png)
+![](image/gin.jpg)
+![](image/gin1.jpg)
+![](image/gin2.jpg)
 
 **For Wordpress Target Group**
 
-![](./images/wordpress-tg.png)
-![](./images/wordpress-tg-cont.png)
+![](image/word.jpg)
 
 **For Tooling Target Group**
 
-![](./images/tooling-tg.png)
-![](./images/tooling-tg-cont.png)
+![](image/tool.jpg)
+
+**All Target Groups**
+
+![](image/tool1.jpg)
