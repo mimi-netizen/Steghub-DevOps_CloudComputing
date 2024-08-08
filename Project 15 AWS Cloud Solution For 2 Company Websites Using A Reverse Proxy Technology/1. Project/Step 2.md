@@ -184,9 +184,11 @@ sudo setsebool -P httpd_execmem=1
 sudo setsebool -P httpd_use_nfs 1
 ```
 
-![](./images/selinux-policy.png)
+![](image/set.jpg)
 
-**NB: Repeat the step above for Webservers**
+**Repeat the step above for Webservers**
+
+![](image/set1.jpg)
 
 ### Install Amazon EFS utils for mounting the targets on the Elastic file system (Nginx and Webserver).
 
