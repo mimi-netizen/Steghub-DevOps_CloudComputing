@@ -234,29 +234,38 @@ sudo systemctl restart httpd
 10. Set [scale out](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-lifecycle.html) if CPU utilization reaches 90%
 11. Ensure there is an [SNS](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) topic to send scaling notifications
 
-### Create Auto Scaling Group for Bation
+### Create Auto Scaling Group for Bastion
 
-![](./images/bastion-AGS.png)
-![](./images/bastion-ASG1.png)
+![](image/z.jpg)
+![](image/z1.jpg)
+![](image/z2.jpg)
+![](image/z3.jpg)
+![](image/z4.jpg)
 
 **Access RDS through Bastion connection to craete database for wordpress and tooling.**
 
 Copy the RDS endpoint to be used as host
 
-![](./images/db-end-point.png)
+![](image/z5.jpg)
 
-![](./images/ssh-agent.png)
+![](image/z6.jpg)
 
-![](./images/db.png)
+![](image/z7.jpg)
 
 ### Create Auto Scaling Group for Nginx
 
-![](./images/nginx-ASG.png)
-![](./images/nginx-ASG1.png)
-![](./images/nginx-ASG-adv.png)
-![](./images/nginx-config-grp-size.png)
-![](./images/nginx-ASG-l.png)
-![](./images/nginx-asg-sns.png)
+![](image/y.jpg)
+![](image/y1.jpg)
+![](image/y2.jpg)
+![](image/y3.jpg)
+![](image/y4.jpg)
+![](image/y5.jpg)
+![](image/y6.jpg)
+![](image/y7.jpg)
+![](image/y8.jpg)
+![](image/y9.jpg)
+![](image/y10.jpg)
+![](image/y11.jpg)
 
 ### Repeat the Nginx Auto Scaling Group steps above for Wordpress and Tooling with their right launch template
 
