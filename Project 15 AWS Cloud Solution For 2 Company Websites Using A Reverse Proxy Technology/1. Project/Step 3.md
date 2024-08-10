@@ -90,11 +90,9 @@ The default target configured on the listener while creating the internal load b
 
 **NB:Don't forget to update the reverse.conf file by updating proxy_pass value to the end point of the internal load balancer (DNS name) before using the userdata so as to clone the updated repository.**
 
-![](./images/reverse-conf.png)
-
 **Repeat the same setting for Bastion, the difference here is the userdata input, AMI and security group**.
 
-![](./images/bastion-userdata.png)
+![](image/basti.jpg)
 
 ### Wordpress Userdata
 
@@ -102,55 +100,66 @@ NB: Both Wordpress and Tooling make use of Webserver AMI.
 
 Update the mount point to the file system, this should be done on access points for tooling and wordpress respectively.
 
-`sudo mount -t efs -o tls,accesspoint=fsap-0941d279e4caf2238 fs-01bb3fe22fdd61691:/ /var/www/`
+      Go to EFS > access points and select wordpress, click on attach, and there you can seen the command to attach the access points mount points
 
-![](./images/mount-p-for-userdata.png)
+`sudo mount -t efs -o tls,accesspoint=fsap-0d7f6bbe26976b344 fs-09f8367a7f9f0857c:/ /var/www/`
 
-![](./images/attche-mp.png)
+![](image/fst.jpg)
+
+![](image/fst1.jpg)
 
 The RDS end point is also needed
 
-![](./images/db-end-point.png)
+         Go to RDS > Databases > select the database you created earlier
+
+![](image/db-end-point.jpg)
 
 Paste the rds end-point in the wordpress userdata and tooling userdata
 
 ```bash
 #!/bin/bash
-mkdir /var/www/
 
-sudo mount -t efs -o tls,accesspoint=fsap-0941d279e4caf2238 fs-01bb3fe22fdd61691:/ /var/www/
+exec > /var/log/wordpress.log 2>&1
 
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
+mkdir -p /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-0d7f6bbe26976b344 fs-09f8367a7f9f0857c:/ /var/www/
 
-yum module reset php -y
-yum module enable php:remi-7.4 -y
+# Install and start Apache
 
-yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
 
-systemctl start php-fpm
-systemctl enable php-fpm
+# Install PHP and necessary extensions
+
+sudo yum module reset php -y
+sudo yum module enable php:remi-7.4 -y
+sudo yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
 
 wget http://wordpress.org/latest.tar.gz
-
 tar xzvf latest.tar.gz
 rm -rf latest.tar.gz
-
 cp wordpress/wp-config-sample.php wordpress/wp-config.php
-mkdir /var/www/html/
-cp -R /wordpress/* /var/www/html/
+
+mkdir -p /var/www/html/
+cp -R /wordpress/\* /var/www/html/
+
 cd /var/www/html/
 touch healthstatus
 
-sed -i "s/localhost/fnc-database.ch8uqc8uw3p0.us-east-1.rds.amazonaws.com/g" wp-config.php
-sed -i "s/username_here/adminuser/g" wp-config.php
-sed -i "s/password_here/Admin123$/g" wp-config.php
+sed -i "s/localhost/cdk-rds.cly8ayoym3bc.us-west-1.rds.amazonaws.com/g" wp-config.php
+sed -i "s/username_here/celyne/g" wp-config.php
+sed -i "s/password_here/devopspbl/g" wp-config.php
 sed -i "s/database_name_here/wordpressdb/g" wp-config.php
 
 chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 
+# Restart Apache
+
 systemctl restart httpd
+
 ```
 
 ![](./images/wp-userdata.png)
@@ -159,47 +168,57 @@ systemctl restart httpd
 
 ```bash
 #!/bin/bash
-mkdir /var/www/
 
-sudo mount -t efs -o tls,accesspoint=fsap-0a05d5cb95059314c fs-01bb3fe22fdd61691:/ /var/www/
+exec > /var/log/tooling.log 2>&1
 
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
+# Create directory and mount EFS
 
-yum module reset php -y
-yum module enable php:remi-7.4 -y
+mkdir -p /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-09c86085067becad5 fs-09f8367a7f9f0857c:/ efs /var/www/
 
-yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+# Install and start Apache
 
-systemctl start php-fpm
-systemctl enable php-fpm
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
 
-git clone https://github.com/francdomain/tooling.git
+# Install PHP and necessary extensions
 
-mkdir /var/www/html
-cp -R /tooling/html/*  /var/www/html/
+sudo yum module reset php -y
+sudo yum module enable php:remi-7.4 -y
+sudo yum install -y php php-common php-mbstring php-opcache php-intl php-xml php-gd php-curl php-mysqlnd php-fpm php-json
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+
+# Clone the tooling repository
+
+git clone https://github.com/mimi-netizen/tooling.git
+mkdir -p /var/www/html/
+cp -R tooling/html/\* /var/www/html/
+
+# Setup MySQL database
+
 cd /tooling
-
-mysql -h fnc-database.ch8uqc8uw3p0.us-east-1.rds.amazonaws.com -u adminuser -p toolingdb < tooling-db.sql
+mysql -h cdk-rds.cly8ayoym3bc.us-west-1.rds.amazonaws.com -u celyne -p toolingdb < tooling-db.sql
 
 cd /var/www/html/
 touch healthstatus
 
-sed -i "s/$db = mysqli_connect('mysql.tooling.svc.cluster.local', 'admin', 'admin', 'tooling');/$db = mysqli_connect('fnc-database.ch8uqc8uw3p0.us-east-1.rds.amazonaws.com', 'adminuser', 'Admin123$', 'toolingdb');/g" functions.php
+sed -i "s/$db = mysqli_connect('mysql.tooling.svc.cluster.local', 'admin', 'admin', 'tooling');/$db = mysqli_connect('cdk-rds.cly8ayoym3bc.us-west-1.rds.amazonaws.com', 'celyne', 'devopspbl', 'toolingdb');/g" functions.php
 
 chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 
-mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_backup
+# Disable Apache welcome page and restart Apache
 
-systemctl restart httpd
+sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_backup
+sudo systemctl restart httpd
 ```
 
-![](./images/tooling-userdata.png)
+![](image/mkd.jpg)
 
 **All launch templates created**.
 
-![](./images/all-templates.png)
+![](image/all.jpg)
 
 ## CONFIGURE AUTOSCALING FOR NGINX
 
