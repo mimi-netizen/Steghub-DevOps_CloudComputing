@@ -2,7 +2,7 @@
 
 ### External Application Load Balancer To Route Traffic To NGINX
 
-Nginx EC2 Instances will have configurations that accepts incoming traffic only from Load Balancers. No request should go directly to Nginx servers. With this kind of setup, we will benefit from intelligent routing of requests from the ALB to Nginx servers across the 2 Availability Zones. We will also be able to [offload](https://avinetworks.com/glossary/ssl-offload/) SSL/TLS certificates on the ALB instead of Nginx. Therefore, Nginx will be able to perform faster since it will not require extra compute resources to valifate certificates for every request.
+Nginx EC2 Instances will have configurations that accepts incoming traffic only from Load Balancers. No request should go directly to Nginx servers. With this kind of setup, we will benefit from intelligent routing of requests from the ALB to Nginx servers across the 2 Availability Zones. We will also be able to [offload](https://avinetworks.com/glossary/ssl-offload/) SSL/TLS certificates on the ALB instead of Nginx. Therefore, Nginx will be able to perform faster since it will not require extra compute resources to validate certificates for every request.
 
 1. Create an Internet facing ALB
 2. Ensure that it listens on HTTPS protocol (TCP port 443)
@@ -11,11 +11,15 @@ Nginx EC2 Instances will have configurations that accepts incoming traffic only 
 5. Select Security Group
 6. Select Nginx Instances as the target group
 
-![](./images/ext-alb.png)
-![](./images/ext-alb-cont.png)
-![](./images/ext-alb-cont1.png)
+![](image/x.jpg)
+![](image/x1.jpg)
+![](image/x2.jpg)
+![](image/x3.jpg)
+![](image/x4.jpg)
+![](image/x5.jpg)
+![](image/x6.jpg)
 
-![](./images/ext-alb-created.png)
+![](image)
 
 ### Application Load Balancer To Route Traffic To Webservers
 
