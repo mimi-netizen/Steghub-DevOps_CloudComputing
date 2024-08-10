@@ -19,7 +19,7 @@ Nginx EC2 Instances will have configurations that accepts incoming traffic only 
 ![](image/x5.jpg)
 ![](image/x6.jpg)
 
-![](image)
+![](image/ext.jpg)
 
 ### Application Load Balancer To Route Traffic To Webservers
 
@@ -37,11 +37,15 @@ To solve this problem, we must use a load balancer. But this time, it will be an
 
 **NOTE:** This process must be repeated for both WordPress and Tooling websites.
 
-![](./images/int-alb.png)
-![](./images/int-alb-cont.png)
-![](./images/int-alb-cont1.png)
+![](image/q.jpg)
+![](image/q1.jpg)
+![](image/q2.jpg)
+![](image/q3.jpg)
+![](image/q4.jpg)
+![](image/q5.jpg)
+![](image/q6.jpg)
 
-![](./images/./all-alb.png)
+![](image/q7.jpg)
 
 The default target configured on the listener while creating the internal load balancer is to forward traffic to wordpress on port 443. Hence, we need to create a rule to route traffic to tooling as well.
 
