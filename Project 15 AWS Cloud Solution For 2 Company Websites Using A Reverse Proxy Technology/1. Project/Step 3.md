@@ -271,7 +271,7 @@ Copy the RDS endpoint to be used as host
 
 All Auto Scaling Groups
 
-![](./images/ASGs.png)
+![](image/server.jpg)
 
 # Configuring DNS with Route53
 
@@ -284,30 +284,28 @@ Create other records such as [CNAME, alias and A records](https://docs.aws.amazo
 NOTE: You can use either CNAME or alias records to achieve the same thing. But alias record has better functionality because it is a faster to resolve DNS record, and can coexist with other records on that name. Read [here](https://support.dnsimple.com/articles/differences-between-a-cname-alias-url/#:~:text=The%20A%20record%20maps%20a,a%20name%20to%20another%20name.&text=The%20ALIAS%20record%20maps%20a,the%20HTTP%20301%20status%20code) to get to know more about the differences.
 
 - Create an alias record for the root domain and direct its traffic to the ALB DNS name.
-- Create an alias record for `tooling.fncloud.dns-dynamic.net` and direct its traffic to the ALB DNS name.
+- Create an alias record for `tooling.cdk-aws.dns-dynamic.net` and direct its traffic to the ALB DNS name.
 
-![](./images/record1.png)
-![](./images/record2.png)
+![](image/p.jpg)
+![](image/p1.jpg)
+![](image/p2.jpg)
+![](image/p3.jpg)
 
-![](./images/route53-records.png)
+![](image/p4.jpg)
 
 ### Ensure that health check passes for the target groups
 
 **Nginx Target Group Health Check**
 
-![](./images/nginx-health-check.png)
+![](image/healthy.jpg)
 
 **Wordpress Target Group Health Check**
 
-![](./images/wp-health-check.png)
+![](image/healthy2.jpg)
 
 **Tooling Target Group Health Check**
 
-![](./images/tooling-health-check.png)
-
-All instances
-
-![](./images/ASG-instances.png)
+![](image/healthy1.jpg)
 
 **Access the tooling webserver using Bastion to Confirm the userdata configuration for database connection in functions.php file**.
 
