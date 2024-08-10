@@ -264,13 +264,11 @@ sudo chmod 700 /etc/ssl/private
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/cdk.key -out /etc/ssl/certs/cdk.crt
 ```
 
-![](./images/nginx-ssl-key.png)
-
 ```bash
 sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 ```
 
-![](./images/nginx-ssl-cert.png)
+![](image/nginx%20dhrapam.jpg)
 
 ## Set up self-signed certificate for the Apache Webserver instance
 
