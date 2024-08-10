@@ -78,12 +78,17 @@ The default target configured on the listener while creating the internal load b
 4. Configure [Userdata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) to update yum package repository and install nginx.
    Ensure to `enable auto-assign public IP` in the Advance Network Configuration
 
-![](./images/craete-nginx-lt.png)
-![](./images/nginx-lt-cont.png)
-![](./images/nginx-lt-1.png)
-![](./images/nginx-lt-userdata.png)
+![](image/m.jpg)
+![](image/m1.jpg)
+![](image/m2.jpg)
+![](image/m3.jpg)
+![](image/m4.jpg)
+![](image/m5.jpg)
+![](image/m6.jpg)
 
-We need to update the reverse.conf file by updating proxy_pass value to the end point of the internal load balancer (DNS name) before using the userdata so as to clone the updated repository.
+![](image/m7.jpg)
+
+**NB:Don't forget to update the reverse.conf file by updating proxy_pass value to the end point of the internal load balancer (DNS name) before using the userdata so as to clone the updated repository.**
 
 ![](./images/reverse-conf.png)
 
