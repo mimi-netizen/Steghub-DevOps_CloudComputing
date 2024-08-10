@@ -62,13 +62,13 @@ The default target configured on the listener while creating the internal load b
    - Enter the `hostnames` for which you want to route traffic. (tooling.com and www.tooling.com).
    - Choose the appropriate target group for the `hostname`.
 
-![](./images/linstener-tag.png)
-![](./images/add-condition.png)
-![](./images/define-rule.png)
-![](./images/forward-to.png)
-![](./images/listener-traffic-rule.png)
+![](image/f.jpg)
+![](image/f1.jpg)
+![](image/f2.jpg)
+![](image/f3.jpg)
+![](image/f4.jpg)
 
-![](./images/listener-rules.png)
+![](image/f5.jpg)
 
 ## PREPARE LAUNCH TEMPLATE FOR NGINX (ONE PER SUBNET)
 
