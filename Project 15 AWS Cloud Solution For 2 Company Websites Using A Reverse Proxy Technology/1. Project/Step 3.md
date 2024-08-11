@@ -313,18 +313,20 @@ NOTE: You can use either CNAME or alias records to achieve the same thing. But a
 
 **Now let us access our tooling website via a browser using our DNS name**
 
-![](./images/tooling-website.png)
+![](image/php.jpg)
 
-![](./images/tooling-website-secure.png)
+![](image/tooling-admin.jpg)
 
 **Let's access our wordpress website**
 
-![](./images/wp-login-config.png)
+![](image/wordpress1.jpg)
 
-![](./images/wp-login.png)
+![](image/wordpress-installation.jpg)
 
-![](./images/wp-wesite.png)
+![](image/login.jpg)
 
-![](./images/wp-website-secure.png)
+![](image/wordpress-done.jpg)
 
 We have just created a secured, scalable and cost-effective infrastructure to host 2 enterprise websites using various Cloud services from AWS. At this point, our infrastructure is ready to host real websites' load.
+
+![6093](https://user-images.githubusercontent.com/85270361/210172232-c67f275b-621a-4338-bf19-dec4fc0e08be.PNG)
