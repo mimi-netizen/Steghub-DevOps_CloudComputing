@@ -278,29 +278,29 @@ In this example, we're using the `PACKER_AWS_ACCESS_KEY` and `PACKER_AWS_SECRET_
 
 Here are some best practices for managing variables in Packer:
 
-**1. **Define variables in a separate section\*\*: Define variables in a separate section of your template, such as `variables` or `env`, to keep them organized and easy to maintain.
+1. Define variables in a separate section: Define variables in a separate section of your template, such as `variables` or `env`, to keep them organized and easy to maintain.
 
-**2. **Use meaningful variable names\*\*: Use meaningful and descriptive variable names that indicate their purpose or value.
+2. Use meaningful variable names: Use meaningful and descriptive variable names that indicate their purpose or value.
 
-**3. **Group related variables together\*\*: Group related variables together, such as AWS credentials or environment-specific settings, to make them easier to manage.
+3. Group related variables together: Group related variables together, such as AWS credentials or environment-specific settings, to make them easier to manage.
 
-**4. **Use environment variables for sensitive information\*\*: Use environment variables for sensitive information, such as access keys or secret keys, to avoid hardcoding them in your template.
+4. Use environment variables for sensitive information: Use environment variables for sensitive information, such as access keys or secret keys, to avoid hardcoding them in your template.
 
-**5. **Avoid hardcoding values\*\*: Avoid hardcoding values in your template whenever possible. Instead, use variables to make your template more flexible and reusable.
+5. Avoid hardcoding values: Avoid hardcoding values in your template whenever possible. Instead, use variables to make your template more flexible and reusable.
 
-**6. **Use default values\*\*: Use default values for variables to provide a fallback value when the variable is not set.
+6. Use default values: Use default values for variables to provide a fallback value when the variable is not set.
 
-**7. **Document your variables\*\*: Document your variables in your template or in a separate documentation file to make it easier for others to understand their purpose and usage.
+7. Document your variables: Document your variables in your template or in a separate documentation file to make it easier for others to understand their purpose and usage.
 
-**8. **Use a consistent naming convention\*\*: Use a consistent naming convention for your variables, such as using underscores or camelCase, to make them easier to read and understand.
+8. Use a consistent naming convention: Use a consistent naming convention for your variables, such as using underscores or camelCase, to make them easier to read and understand.
 
-**9. **Avoid circular dependencies\*\*: Avoid circular dependencies between variables by ensuring that each variable only depends on other variables that are already defined.
+9. Avoid circular dependencies: Avoid circular dependencies between variables by ensuring that each variable only depends on other variables that are already defined.
 
-**10. **Test your variables\*\*: Test your variables to ensure they are being replaced correctly in your template and that they produce the expected output.
+10. Test your variables: Test your variables to ensure they are being replaced correctly in your template and that they produce the expected output.
 
-**11. **Use Packer's built-in variables\*\*: Use Packer's built-in variables, such as `{{timestamp}}` or `{{build_name}}`, to simplify your template and reduce the need for custom variables.
+11. Use Packer's built-in variables: Use Packer's built-in variables, such as `{{timestamp}}` or `{{build_name}}`, to simplify your template and reduce the need for custom variables.
 
-**12. **Keep your variables up-to-date\*\*: Keep your variables up-to-date and in sync with your infrastructure and application changes to ensure your template remains accurate and effective.
+12. Keep your variables up-to-date: Keep your variables up-to-date and in sync with your infrastructure and application changes to ensure your template remains accurate and effective.
 
 ## Common errors related to variable usage in Packer:
 
