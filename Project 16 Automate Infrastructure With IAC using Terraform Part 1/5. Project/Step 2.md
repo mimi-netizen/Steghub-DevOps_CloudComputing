@@ -143,15 +143,17 @@ Add below configuration to the main.tf file:
 terraform plan
 ```
 
+![](image/plan1.jpg)
+
 ```bash
 terraform apply
 ```
 
-![image]()
+![image](image/apply2.jpg)
 
-![image]()
+![image](image/vpc.jpg)
 
-![image]()
+![image](image/sub.jpg)
 
 **Observations:**
 
@@ -168,6 +170,10 @@ First, destroy the current infrastructure. Since we are still in development, th
 terraform destroy
 ```
 
-![image]()
+![image](image/destroy.jpg)
+
+![image](image/destroy1.jpg)
+
+![image](image/destroy2.jpg)
 
 Now let us improve our code by refactoring it.
