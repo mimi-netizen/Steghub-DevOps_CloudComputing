@@ -1,6 +1,6 @@
 # Introducing `variables.tf` & `terraform.tfvars`
 
-Instead of havng a long lisf of variables in main.tf file, we can actually make our code a lot more readable and better structured by
+Instead of having a long list of variables in main.tf file, we can actually make our code a lot more readable and better structured by
 moving out some parts of the configuration content to other files.
 
 - We will put all variable declarations in a separate file
@@ -11,7 +11,7 @@ moving out some parts of the configuration content to other files.
 3. Create another file, name it terraform.tfvars
 4. Set values for each of the variables.
 
-**`Maint.tf`**
+**`Main.tf`**
 
 ```bash
 # Get list of availability zones
@@ -43,7 +43,7 @@ resource "aws_subnet" "public" {
 }
 ```
 
-![image]()
+![image](image/1.jpg)
 
 **`variables.tf`**
 
@@ -77,7 +77,7 @@ variable "enable_classiclink_dns_support" {
 }
 ```
 
-![image]()
+![image](image/2.jpg)
 
 **`terraform.tfvars`**
 
@@ -97,7 +97,7 @@ enable_classiclink_dns_support = "false"
 preferred_number_of_public_subnets = 2
 ```
 
-![image]()
+![image](image/3.jpg)
 
 You should also have this file structure in the PBL folder.
 
@@ -110,26 +110,30 @@ You should also have this file structure in the PBL folder.
     └── variables.tf
 ```
 
-![image]()
+![image](image/4.jpg)
 
 Run terraform plan and ensure everything works
 `Plan`
-![image]()
+![image](image/planning.jpg)
+
+![image](image/planning1.jpg)
 
 `apply`
-![image]()
+![image](image/applying.jpg)
+
+![image](image/applying1.jpg)
 
 `Verify VPC in AWS management Console`
-![image]()
+![image](image/resource.jpg)
 
-![image]()
+![image](image/resource1.jpg)
 
 ```bash
 # Delete the infastructure
 terraform destroy
 ```
 
-![image]()
+![image](image/dest.jpg)
 
 ### The End of Project 16
 
