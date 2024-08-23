@@ -51,7 +51,7 @@ configuration snippets that will follow.
 > terraform init
 ```
 
-![image]()
+![image](image/init.jpg)
 
 **Observations:**
 
@@ -66,13 +66,15 @@ Let's verify what terraform intends to create
 terraform plan
 ```
 
-![image]()
+![image](image/plan.jpg)
 
 - Then, if you are happy with changes planned, execute
 
 ```bash
  terraform apply
 ```
+
+![](image/apply.jpg)
 
 **Observations:**
 
