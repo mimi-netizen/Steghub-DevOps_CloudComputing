@@ -95,7 +95,13 @@ aws_access_key_id = YOUR_ACCESS_KEY
 aws_secret_access_key = YOUR_SECRET_KEY
 ```
 
-Create an S3 bucket to store Terraform state file. You can name it something like `yourname`-dev-terraform-bucket
+**_create a folder called PBL and install boto3_**
+
+![](image/pbl.jpg)
+
+**_Create an S3 bucket to store Terraform state file._**
+
+You can name it something like `yourname`-dev-terraform-bucket
 (Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming ).
 
 We will use this bucket from Project-17 onwards.
