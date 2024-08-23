@@ -155,9 +155,13 @@ To do this, we can introuduce length() function, which basically determines the 
 Since data.aws_availability_zones.available.names returns a list like ["us-east-1a", "us-east-1b", "us-east-1c"] we can pass
 it into a lenght function and get number of the AZs.
 
+```bash
 length(["us-east-1a", "us-east-1b", "us-east-1c"])
+```
 
 Open up terraform console and try it
+
+![](image/nt.jpg)
 
 Now we can simply update the public subnet block like this
 
@@ -262,9 +266,11 @@ resource "aws_subnet" "public" {
 
 ```
 
-![image]()
+Now run `terraform plan` to see the how many subnets that will be created
 
-![image]()
+![image](image/pl1.jpg)
+
+![image](image/pl2.jpg)
 
 Note: You should try changing the value of preferred_number_of_public_subnets variable to null and notice how many subnets get
 created.
