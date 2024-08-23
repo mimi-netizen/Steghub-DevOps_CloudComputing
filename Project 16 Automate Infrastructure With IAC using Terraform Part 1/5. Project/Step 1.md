@@ -102,14 +102,26 @@ aws_secret_access_key = YOUR_SECRET_KEY
 **_Create an S3 bucket to store Terraform state file._**
 
 You can name it something like `yourname`-dev-terraform-bucket
-(Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucken naming ).
+(Note: S3 bucket names must be unique unique within a region partition, you can read about S3 bucke naming ).
 
 We will use this bucket from Project-17 onwards.
-for me `melkamu-dev-terraform-bucket`
+for me `kydd-dev-terraform-bucket`
 
-![image]()
+- Type S3 in search bar in aws management console
+- Click on create bucket
+- Enter a Bucket name, AWS Region, Enable Bucket Versioning, Add a Tag and click create bucket.
 
-![image]()
+![image](image/s3.jpg)
+
+![image](image/s31.jpg)
+
+![image](image/s32.jpg)
+
+![image](image/s33.jpg)
+
+![image](image/s34.jpg)
+
+![image](image/s35.jpg)
 
 **Verfiy this in AWS CLI**
 
@@ -117,13 +129,7 @@ for me `melkamu-dev-terraform-bucket`
 aws s3 ls
 ```
 
-![image]()
-
-Install Boto3 (Boto3 is a AWS SDK for Python) in your local machine
-
-```bash
-pip install boto3
-```
+![image](image/s36.jpg)
 
 When you have configured authentication and installed boto3, make sure you can programmatically access your AWS account by running
 following commands in >python:
@@ -143,4 +149,4 @@ Save the above code to a file (e.g., list_buckets.py) or run it directly in a Py
 
 You shall see your previously created S3 bucket name – melkamu-dev-terraform-bucket
 
-![image]()
+![image](image/bot.jpg)
