@@ -3,19 +3,22 @@
 Let us create a directory structure
 Open your Visual Studio Code and:
 
-- Create a folder called PBL
-- Create a file in the folder, name it main.tf
+- Create a file in the PBL folder, name it main.tf
 
 Your setup should look like this.
 
-![image]()
+![image](image/main.jpg)
 
 ## Provider and VPC resource section
 
 Set up Terraform CLI as per this [instruction](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
 
+![](image/terra.jpg)
+
 - Add AWS as a provider, and a resource to create a VPC in the main.tf file.
+
 - Provider block informs Terraform that we intend to build infrastructure within AWS.
+
 - Resource block will create a VPC.
 
 ```bash
