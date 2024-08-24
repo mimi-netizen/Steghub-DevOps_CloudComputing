@@ -1,6 +1,6 @@
-# Internet Gateways
+# Internet Gateways & `format()` function
 
-Internet Gateways & format() function Create an Internet Gateway in a separate Terraform file `internet_gateway.tf`
+Create an Internet Gateway in a separate Terraform file `internet_gateway.tf`
 
 ```bash
 resource "aws_internet_gateway" "igw" {
@@ -15,7 +15,7 @@ resource "aws_internet_gateway" "igw" {
 }
 ```
 
-![image]()
+![image](image/int.jpg)
 
 Did you notice how we have used format() function to dynamically generate a unique name for this resource? The first part of the %s
 takes the interpolated value of aws_vpc.main.id while the second %s appends a literal string IG and finally an exclamation mark is
@@ -44,7 +44,7 @@ tags = merge(
   )
 ```
 
-![image]()
+![image](image/main.jpg)
 
 ## NAT Gateways
 
@@ -86,7 +86,7 @@ resource "aws_nat_gateway" "nat" {
 
 ```
 
-![image]()
+![image](image/nat.jpg)
 
 ## AWS ROUTES
 
@@ -144,7 +144,7 @@ resource "aws_route_table_association" "public-subnets-assoc" {
 
 ```
 
-![image]()
+![image](image/route.jpg)
 
 Now if you run terraform plan and terraform apply it will add the following resources to AWS in multi-az set up:
 
@@ -156,11 +156,14 @@ Now if you run terraform plan and terraform apply it will add the following reso
 - 1 EIP
 - 2 Route tables
 
-![image]()
-![image]()
-![image]()
+![image](image/apply.jpg)
 
-![image]()
-![image]()
+![image](image/elastic-ip.jpg)
+
+![image](image/internet-gateway.jpg)
+
+![image](image/nat-gateway.jpg)
+
+![image](image/route-table.jpg)
 
 Now, we are done with Networking part of AWS set up, let us move on to Compute and Access Control configuration automation using Terraform!
