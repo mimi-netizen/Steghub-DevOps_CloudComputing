@@ -37,7 +37,7 @@ name = "ec2_instance_role"
 
 ```
 
-![image]()
+![image](image/assume.jpg)
 
 In this code we are creating AssumeRole with AssumeRole policy. It grants to an entity, in our case it is an EC2, permissions to assume the role.
 
@@ -75,7 +75,7 @@ resource "aws_iam_policy" "policy" {
 
 ```
 
-![image]()
+![image](image/policy.jpg)
 
 3. Attach the Policy to the IAM Role
    This is where, we will be attaching the policy which we created above, to the role we created in the first step.
@@ -88,7 +88,7 @@ resource "aws_iam_policy" "policy" {
 
 ```
 
-![image]()
+![image](image/attach.jpg)
 
 4. Create an Instance Profile and interpolate the IAM Role
 
@@ -100,6 +100,6 @@ resource "aws_iam_instance_profile" "ip" {
 
 ```
 
-![image](https://github.com/user-attachments/assets/c41591cf-3f2a-4c38-ae8c-6a2a7169ca3b)
+![image](image/instance.jpg)
 
 We are pretty much done with Identity and Management part for now, let us move on and create other resources required.
