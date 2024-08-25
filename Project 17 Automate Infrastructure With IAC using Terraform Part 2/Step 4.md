@@ -250,6 +250,8 @@ resource "aws_security_group_rule" "inbound-mysql-webserver" {
 
 ![image](image/SEC.jpg)
 
+![](image/sec-g.jpg)
+
 > **IMPORTANT NOTE:** We used the aws_security_group_rule to refrence another security group in a security group.
 
 ## 2. CREATE CERTIFICATE FROM AMAZON CERIFICATE MANAGER
@@ -260,20 +262,20 @@ Create `cert.tf` file and add the following code snippets to it.
 
 - Check out the terraform documentation for AWS Certificate manager
   NOTE: You'd have to create a hosted zone from the AWS management console first before making reference to the created hosted zone in the code below;
-  ![image](https://github.com/user-attachments/assets/cc3ee12e-833f-49f5-95f2-6aa3e60e650a)
+  ![image](image/hosted.jpg)
 
 ```bash
 # The entire section create a certifcate, public zone, and validate the certificate using DNS method
 
-# Create the certificate using a wildcard for all the domains created in tooling.cloudns.ch
+# Create the certificate using a wildcard for all the domains created in cdk-aws.dns-dynamic.net
 resource "aws_acm_certificate" "tooling" {
-  domain_name       = "*.tooling.cloudns.ch"
+  domain_name       = "*.cdk-aws.dns-dynamic.net"
   validation_method = "DNS"
 }
 
 # calling the hosted zone
 data "aws_route53_zone" "tooling" {
-  name         = "tooling.cloudns.ch"
+  name         = "cdk-aws.dns-dynamic.net"
   private_zone = false
 }
 
@@ -302,9 +304,9 @@ resource "aws_acm_certificate_validation" "tooling" {
 }
 
 # create records for tooling
-resource "aws_route53_record" "tooling" {
+resource "aws_route53_record" "toolingR" {
   zone_id = data.aws_route53_zone.tooling.zone_id
-  name    = "tooling.cloudns.ch"
+  name    = "tooling..cdk-aws.dns-dynamic.net"
   type    = "A"
 
   alias {
@@ -317,7 +319,7 @@ resource "aws_route53_record" "tooling" {
 # create records for wordpress
 resource "aws_route53_record" "wordpress" {
   zone_id = data.aws_route53_zone.tooling.zone_id
-  name    = "wordpress.tooling.cloudns.ch"
+  name    = "wordpress.cdk-aws.dns-dynamic.net"
   type    = "A"
 
   alias {
@@ -328,7 +330,11 @@ resource "aws_route53_record" "wordpress" {
 }
 ```
 
-![image]()
+![image](image/cert.jpg)
+
+![image](image/cert-issued.jpg)
+
+![image](image/records.jpg)
 
 ## 3. Create an external (Internet facing) Application Load Balancer (ALB)
 
