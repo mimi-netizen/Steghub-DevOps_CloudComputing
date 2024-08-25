@@ -1039,7 +1039,7 @@ resource "aws_db_instance" "ACS-rds" {
 }
 ```
 
-![image]()
+![image](image/rds.jpg)
 
 Before Applying, if you take note, we gave refrence to a lot of varibales in our resources that has not been declared in the
 variables.tf file. Go through the entire code and spot this variables and declare them in the variables.tf file.
@@ -1139,28 +1139,27 @@ enable_classiclink = "false"
 
 enable_classiclink_dns_support = "false"
 
-preferred_number_of_public_subnets = "2"
+preferred_number_of_public_subnets = 2
 
-preferred_number_of_private_subnets = "4"
+preferred_number_of_private_subnets = 4
 
-environment = "production"
+environment     = "production"
 
-ami = "ami-0b0af3577fe5e3532"
+ami             = "your ami"
 
-keypair = "devops"
+keypair         = "your keypair"
 
-# Ensure to change this to your acccount number
-account_no = "123456789"
+account_no      = your account number
 
-db-username = "melkamu"
+master-username = "your username"
 
-db-password = "PassWord.1"
+master-password = "your password"
 
 tags = {
   Enviroment      = "production"
-  Owner-Email     = "melkamu372@gmail.com"
+  Owner-Email     = "celynekydd@gmail.com"
   Managed-By      = "Terraform"
-  Billing-Account = "1234567890"
+  Billing-Account = "736498736845"
 }
 ```
 
@@ -1171,3 +1170,16 @@ apply our code we need to take note of two things;
   of modules in Project 18
 - Secondly, our application wont work because in out shell script that was passed into the launch some endpoints like the RDs and EFS
   point is needed in which they have not been created yet. So in project 19 we will use our Ansible knowledge to fix this.
+
+![image](image/db.jpg)
+
+Try to plan and apply your Terraform codes, explore the resources in AWS console and make sure you destroy them right away to avoid
+massive costs.
+
+```bash
+terraform destroy -auto-approve
+```
+
+### The End of Project 17
+
+Now We have fully automated creation of AWS Infrastructure for 2 websites with Terraform. In the next project we will further enhance our codes by refactoring and introducing more exciting Terraform concepts! Go ahead and continue your PBL journey!
