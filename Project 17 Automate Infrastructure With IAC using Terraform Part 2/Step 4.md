@@ -549,11 +549,11 @@ resource "aws_lb_listener_rule" "tooling-listener" {
 
 This Section we will create the Auto Scaling Group (ASG) Now we need to configure our ASG to be able to scale the EC2s out and in depending on the application traffic.
 
-Before we start configuring an ASG, we need to create the launch template and the the AMI needed. For now we are going to use a random AMI from AWS, then in project 19, we will use `Packerto` create our `ami`.
+Before we start configuring an ASG, we need to create the launch template and the the AMI needed. For now we are going to use a random AMI from AWS, then in project 19, we will use `Packer` to create our `ami`.
 
 To get random Amazon Machine Images (AMIs)
 
-![image]()
+![image](image/ami.jpg)
 
 Based on our Architetcture we need for Auto Scaling Groups for bastion, nginx, wordpress and tooling, so we will create two files;
 `asg-bastion-nginx.tf` will contain Launch Template and Austoscaling group for Bastion and Nginx, then `asg-wordpress-tooling.tf` will contain Launch Template and Austoscaling group for wordpress and tooling.
@@ -565,17 +565,17 @@ Useful Terraform Documentation, go through this documentation and understand the
 - [Autoscaling](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group)
 - [Launch-template](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/launch_template)
 
-Create `asg-bastion-nginx.tf`` and paste all the code snippet below;
+Create `asg-bastion-nginx.tf` and paste all the code snippet below;
 
 ```bash
 # creating sns topic for all the auto scaling groups
-resource "aws_sns_topic" "david-sns" {
+resource "aws_sns_topic" "kydd-sns" {
 name = "Default_CloudWatch_Alarms_Topic"
 }
 
 # creating notification for all the auto scaling groups
 
-resource "aws_autoscaling_notification" "david_notifications" {
+resource "aws_autoscaling_notification" "kydd_notifications" {
   group_names = [
     aws_autoscaling_group.bastion-asg.name,
     aws_autoscaling_group.nginx-asg.name,
@@ -589,7 +589,7 @@ resource "aws_autoscaling_notification" "david_notifications" {
     "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
   ]
 
-  topic_arn = aws_sns_topic.david-sns.arn
+  topic_arn = aws_sns_topic.kydd-sns.arn
 }
 
 # launch template for bastion
@@ -598,6 +598,7 @@ resource "random_shuffle" "az_list" {
   input        = data.aws_availability_zones.available.names
 }
 
+# launch template for bastion
 resource "aws_launch_template" "bastion-launch-template" {
   image_id               = var.ami
   instance_type          = "t2.micro"
@@ -724,13 +725,13 @@ resource "aws_autoscaling_group" "nginx-asg" {
 # attaching autoscaling group of nginx to external load balancer
 resource "aws_autoscaling_attachment" "asg_attachment_nginx" {
   autoscaling_group_name = aws_autoscaling_group.nginx-asg.id
-  alb_target_group_arn   = aws_lb_target_group.nginx-tgt.arn
+  lb_target_group_arn   = aws_lb_target_group.nginx-tgt.arn
 }
 ```
 
-![image]()
+![image](image/bast.jpg)
 
-Autoscaling for wordpres and toolibng will be created in a seperate file
+Autoscaling for wordpress and tooling will be created in a seperate file
 
 Create `asg-wordpress-tooling.tf` and paste the following code
 
@@ -791,7 +792,7 @@ resource "aws_autoscaling_group" "wordpress-asg" {
     version = "$Latest"
   }
   tag {
-    key                 = "melkamu"
+    key                 = "Name"
     value               = "wordpress-asg"
     propagate_at_launch = true
   }
@@ -871,11 +872,15 @@ resource "aws_autoscaling_group" "tooling-asg" {
 # attaching autoscaling group of  tooling application to internal loadbalancer
 resource "aws_autoscaling_attachment" "asg_attachment_tooling" {
   autoscaling_group_name = aws_autoscaling_group.tooling-asg.id
-  alb_target_group_arn   = aws_lb_target_group.tooling-tgt.arn
+  lb_target_group_arn   = aws_lb_target_group.tooling-tgt.arn
 }
 ```
 
-![image]()
+![image](image/sh.jpg)
+
+![image](image/launch-template.jpg)
+
+![image](image/ec2.png)
 
 ## STORAGE AND DATABASE
 
@@ -996,7 +1001,7 @@ resource "aws_efs_access_point" "tooling" {
 }
 ```
 
-![image]()
+![image](image/kms.jpg)
 
 ## 8. Create [MySQL RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html)
 
