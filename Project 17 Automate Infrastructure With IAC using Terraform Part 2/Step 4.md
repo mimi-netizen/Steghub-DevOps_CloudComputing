@@ -1216,7 +1216,7 @@ massive costs.
 terraform destroy -auto-approve
 ```
 
-![](image)
+![](image/destroy.jpg)
 
 ### The End of Project 17
 
