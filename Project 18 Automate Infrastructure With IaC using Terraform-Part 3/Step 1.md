@@ -41,24 +41,36 @@ To get to know how lock in DynamoDB works, read the following [article](https://
 Create a file and name it `backend.tf` Add the below code and replace the name of the S3 bucket you created in Project-16.
 
 ```bash
+# Note: The bucket name may not work for you since buckets are unique globally in AWS, so you must give it a unique name.
+
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "dev-terraform-bucket"
-  # Enable versioning so we can see the full revision history of our state files
-  versioning {
-    enabled = true
+  bucket = "kydd-dev-terraform-bucket"
+  force_destroy = true
+}
+
+# Enable versioning so we can see the full revision history of our state files
+
+resource "aws_s3_bucket_versioning" "versioning" {
+  bucket = aws_s3_bucket.terraform_state.id
+  versioning_configuration {
+    status = "Enabled"
   }
-  # Enable server-side encryption by default
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+}
+
+# Enable server-side encryption by default
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "state_encryption" {
+  bucket = aws_s3_bucket.terraform_state.id
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm     = "AES256"
     }
   }
 }
 ```
 
-![image](image)
+![image](image/buc.jpg)
 
 You must be aware that Terraform stores secret data inside the state files. Passwords, and secret keys processed by resources are
 always stored in there. Hence, you must consider to always enable encryption. You can see how we achieved that with
@@ -84,7 +96,7 @@ resource "aws_dynamodb_table" "terraform_locks" {
 }
 ```
 
-![image](image)
+![image](image/dynamo.jpg)
 
 Terraform expects that both S3 bucket and DynamoDB resources are already created before we configure the backend. So, let us run
 terraform apply to provision resources.
@@ -94,17 +106,18 @@ terraform apply to provision resources.
 ```bash
 terraform {
   backend "s3" {
-    bucket         = "dev-terraform-bucket"
+    bucket         = "francis-dev-terraform-bucket"
     key            = "global/s3/terraform.tfstate"
-    region         = "eu-central-1"
+    region         = "us-east-1"
     dynamodb_table = "terraform-locks"
     encrypt        = true
   }
 }
 ```
 
-![image](image)
-![image](image)
+![image](image/s3.jpg)
+
+![image](image/s31.jpg)
 
 Now its time to re-initialize the backend. Run terraform init and confirm you are happy to change the backend by typing yes
 
@@ -112,14 +125,18 @@ Now its time to re-initialize the backend. Run terraform init and confirm you ar
 terraform init
 ```
 
-![image](image)
+![image](image/init.jpg)
 
 - Verify the changes
   Before doing anything if you opened AWS now to see what happened you should be able to see the following:
 
-- tfstatefile is now inside the S3 bucket
+- `tfstatefile` is now inside the S3 bucket
+
+![image](image/tf.jpg)
 
 - DynamoDB table which we create has an entry which includes state file status
+
+![](image/dynamodb.jpg)
 
 Navigate to the DynamoDB table inside AWS and leave the page open in your browser.
 Run terraform plan and while that is running,
@@ -130,7 +147,7 @@ terraform plan
 
 refresh the browser and see how the lock is being handled:
 
-![image](image)
+![image](image/run.jpg)
 
 5. Add Terraform Output
    Before you run terraform apply let us add an output so that the S3 bucket Amazon Resource Names ARN and DynamoDB table name can be
@@ -149,7 +166,7 @@ output "dynamodb_table_name" {
 }
 ```
 
-![image](image)
+![image](image/output.jpg)
 
 Now we have everything ready to go!
 
@@ -164,9 +181,13 @@ several versions of your terraform.tfstate file in the S3 bucket:
 terraform apply
 ```
 
-![image](mage)
+![image](image/bucket.jpg)
 
-![image](image)
+![image](image/lock.jpg)
+
+![image](image/lock1.jpg)
+
+![image](image/lock2.jpg)
 
 With help of remote backend and locking configuration that we have just configured, **collaboration is no longer a problem**.
 
