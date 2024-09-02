@@ -18,7 +18,7 @@ type into directories within a ‘modules’ directory, for example, like this:
   - security: for creating security group resources
 ```
 
-![image](image)
+![image](image/look.jpg)
 
 Each module shall contain following files:
 
@@ -28,16 +28,20 @@ Each module shall contain following files:
 - variables.tf (as we learned before - it is a good practice not to hard code the values and use variables)
 ```
 
-![image](image)
+![image](image/model.jpg)
+
+![image](image/model1.jpg)
+
+![image](image/model2.jpg)
 
 It is also recommended to configure providers and backends sections in separate files but should be placed in the root module.
 
-![image](image)
+![image](image/prov.jpg)
 
-![image](image)
+![image](image/back.jpg)
 
 After you have given it a try, you can check out this [repository](https://github.com/darey-devops/PBL-project-18)
-for guidiance and erors fixing.
+for guidance and errors fixing.
 
 IMPORTANT: In the configuration sample from the repository, you can observe two examples of referencing the module:
 
@@ -50,7 +54,7 @@ module "VPC" {
   ...
 ```
 
-![image](image)
+![image](image/vpc.jpg)
 
 b. Refer to a module’s output by specifying the full path to the output variable by using module.%module_name%.%output_name%
 construction:
@@ -59,7 +63,7 @@ construction:
 subnets-compute = module.network.public_subnets-1
 ```
 
-![image](image)
+![image](image/net.jpg)
 
 # COMPLETE THE TERRAFORM CONFIGURATION
 
@@ -91,7 +95,7 @@ Complete the rest of the codes yourself, the resulting configuration structure i
     └── variables.tf
 ```
 
-![image](image)
+![image](image/mod.jpg)
 
 Now, the code is much more well-structured and can be easily read, edited and reused by your DevOps team members.
 
@@ -112,20 +116,70 @@ We will also see how to use terraform cloud for our backends.
 terraform validate
 ```
 
-![image](image)
+![image](image/validate.jpg)
 
 ```bash
 terraform plan
 ```
 
-![image](image)
+![image](image/plan1.jpg)
+
+![image](image/plan2.jpg)
+
+![image](image/plan%203.jpg)
+
+![image](image/plan4.jpg)
+
+```bash
+terraform apply
+```
+
+![image](image/apply1.jpg)
+
+![image](image/apply2.jpg)
+
+![image](image/apply3.jpg)
+
+![image](image/apply4.jpg)
+
+```bash
+aws console
+```
+
+![image](image/1.jpg)
+
+![image](image/2.jpg)
+
+![image](image/3.jpg)
+
+![image](image/4.jpg)
+
+![image](image/5.jpg)
+
+![image](image/6.jpg)
+
+![image](image/7.jpg)
+
+![image](image/8.jpg)
+
+![image](image/9.jpg)
+
+![image](image/10.jpg)
+
+![image](image/11.jpg)
+
+![image](image/12.jpg)
+
+![image](image/13.jpg)
+
+![image](image/14.jpg)
+
+![image](image/15.jpg)
 
 2. In order to make your configuration files more readable and follow canonical format and style – use terraform fmt command. It will
    apply Terraform language style conventions and format your .tf files in accordance to them.
 
 Navigate to Your Project Directory
-
-![image](image)
 
 Simply run the terraform fmt command to format all Terraform files in your project directory
 
@@ -138,7 +192,7 @@ terraform fmt -check
 
 ```
 
-![image](image)
+![image](image/format.jpg)
 
 ## The End of Project 18
 
