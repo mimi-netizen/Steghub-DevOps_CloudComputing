@@ -7,11 +7,13 @@ you understand which will serve your infrastructure best.
 For now, you can read more about both alternatives
 [here](https://developer.hashicorp.com/terraform/tutorials/modules/organize-configuration) and try both methods yourself, but we will
 explore them better in **next projects**
-**Create Environment-Specific Variable Files**
+
+## Create Environment-Specific Variable Files
+
 In our root directory create separate `.tfvars` files for each environment to specify the variable values. For example:
 
 - `dev.tfvars`
-- `1sit.tfvars`
+- `sit.tfvars`
 - `uat.tfvars`
 - `preprod.tfvars`
 - `prod.tfvars`
@@ -47,16 +49,17 @@ terraform apply -var-file=dev.tfvars
 
 > **It is enough as an introduction; we will explore them better in the next projects.**
 
-**Security Groups refactoring with dynamic block**
+## Security Groups refactoring with dynamic block
 
 For repetitive blocks of code you can use [dynamic blocks](https://developer.hashicorp.com/terraform/language/expressions/dynamic-blocks)
 in Terraform, to get to know more how to use them – [watch this video](https://youtu.be/tL58Qt-RGHY).
 
 **Refactor Security Groups create all security groups dynamically**
-![image](image)
+![image](image/sg.jpg)
 
 **creating dynamic ingress security groups**
-![image](image)
+
+![image](image/sg1.jpg)
 
 **EC2 refactoring with Map and Lookup**
 Remember, every piece of work you do, always try to make it dynamic to accommodate future changes. Amazon Machine Image (AMI) is a
@@ -75,7 +78,7 @@ variable "images" {
 }
 ```
 
-![image](image)
+![image](image/var.jpg)
 
 To select an appropriate AMI per region, we will use a lookup function which has following syntax: lookup(map, key, [default]).
 
@@ -87,7 +90,7 @@ resource "aws_instace" "web" {
    }
 ```
 
-![image](image)
+![image](image/compute.jpg)
 
 Now, the lookup function will load the variable images using the first parameter. But it also needs to know which of the key-value
 pairs to use. That is where the second parameter comes in. The key us-east-1 could be specified, but then we will not be doing
@@ -132,8 +135,6 @@ module "network" {
   source = "./modules/network"
 }
 ```
-
-![image](image)
 
 Note that the path to `network` module is set as relative to your working directory.
 
