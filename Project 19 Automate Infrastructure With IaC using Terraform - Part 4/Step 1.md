@@ -26,13 +26,13 @@ Most of the features are free, but if you want to explore the difference between
 
 Select `Start from scratch`, choose a name for your organization and create it.
 
-![image]()
+![image](image/org.jpg)
 
 ## 3. Configure a workspace
 
 Before we begin to configure our workspace - [watch this part of the video](https://www.youtube.com/watch?v=m3PlM4erixY&t=287s) to better understand the difference between `version control workflow`, `CLI-driven workflow` and `API-driven workflow` and other configurations that we are going to implement.
 
-![]()
+![](image/work.jpg)
 
 We will use `version control workflow` as the most common and recommended way to run Terraform commands triggered from our git repository.
 
@@ -40,14 +40,21 @@ Create a new repository in your GitHub and call it `terraform-cloud`, push your 
 
 Choose `version control workflow` and you will be promped to connect your GitHub account to your workspace - follow the prompt and add your newly created repository to the workspace.
 
-![]()
+![](image/vc.jpg)
 
 Move on to `Configure settings`, provide a description for your workspace and leave all the rest settings default, click `Create workspace`.
 
-![]()`
+![](image/work1.jpg)
 
-![]()
-![]()
+![](image/work2.jpg)
+
+![](image/work3.jpg)
+
+![](image/work4.jpg)
+
+![](image/work5.jpg)
+
+![](image/work6.jpg)
 
 ## 4. Configure variables
 
