@@ -62,7 +62,7 @@ Terraform Cloud supports two types of variables: `environment variables` and `Te
 
 Set two environment variables: **`AWS_ACCESS_KEY_ID`** and **`AWS_SECRET_ACCESS_KEY`**, set the values that you used in the last two projects. These credentials will be used to privision your AWS infrastructure by Terraform Cloud.
 
-![]()
+![image](image/variables.jpg)
 
 After you have set these 2 environment variables - your Terraform Cloud is all set to apply the codes from GitHub and create all necessary AWS resources.
 
@@ -79,13 +79,34 @@ Before we proceed, we need to ensure we have the following tools installed on ou
 
 - [packer](https://developer.hashicorp.com/packer/tutorials/docker-get-started/get-started-install-cli)
 
-  ![](./images/packer.png)
+  ![](image/packer.jpg)
 
 - [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 
-  ![](./images/ansible.png)
+  ![](image/ansible.jpg)
 
 Refer to this [repository](https://github.com/StegTechHub/PBL-project-19) for guidiance on how to refactor your enviroment to meet the new changes above and ensure you go through the `README.md` file.
+
+- Install `graphviz`
+
+  Graphviz is a powerful open-source tool for creating diagrams and visualizations of graph structures
+
+```bash
+sudo apt install graphviz
+```
+
+- Generate a Terraform Dependency Graph
+
+```bash
+terraform graph -type=plan | dot -Tpng > graph.png
+```
+
+```bash
+terraform graph | dot -Tpng > graph.png
+graph
+```
+
+![](image/graph.jpg)
 
 ### Action Plan for this project
 
@@ -106,7 +127,7 @@ Refer to this [repository](https://github.com/StegTechHub/PBL-project-19) for gu
 
 To follow file structure create a new folder and name it `AMI`. In this folder, create Bastion, Nginx and Webserver (for Tooling and Wordpress) AMI Packer template (`bastion.pkr.hcl`, `nginx.pkr.hcl`, `ubuntu.pkr.hcl` and `web.pkr.hcl`).
 
-![image](./images/folder-structure.png)
+![image](image/AMI.jpg)
 
 Packer template is a `JSON` or `HCL` file that defines the configurations for creating an AMI. Each AMI Bastion, Nginx and Web (for Tooling and WordPress) will have its own Packer template, or we can use a single template with multiple builders.
 
@@ -122,11 +143,66 @@ Ensure to update `Values` with the correct ami name
 
 **Output**
 
-![image]()
+![image](image/id.jpg)
 
 ### Packer code for bastion
 
-![image]()
+```bash
+variable "region" {
+  type    = string
+  default = "us-east-1"
+}
+
+packer {
+  required_plugins {
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
+  }
+}
+
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
+# source blocks are generated from your builders; a source can be referenced in
+# build blocks. A build block runs provisioners and post-processors on a
+# source.
+source "amazon-ebs" "terraform-bastion-prj-19" {
+
+  ami_name      = "terraform-bastion-prj-19-${local.timestamp}"
+  instance_type = "t2.small"
+  region        = var.region
+
+  source_ami_filter {
+    filters = {
+      name                = "RHEL-9.4.0_HVM-20240605-x86_64-82-Hourly2-GP3"
+      root-device-type    = "ebs"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["309956199498"]
+  }
+  ssh_username = "ec2-user"
+  tag {
+    key   = "Name"
+    value = "terraform-bastion-prj-19"
+  }
+}
+
+# a build block invokes sources and runs provisioning steps on them.
+build {
+  sources = ["source.amazon-ebs.terraform-bastion-prj-19"]
+
+  provisioner "shell" {
+    script = "bastion.sh"
+  }
+}
+
+```
+
+![image](image/bastion.jpg)
 
 To format a specific Packer configuration file, use the following command
 
@@ -139,13 +215,15 @@ packer fmt ubuntu.pkr.hcl
 packer fmt web.pkr.hcl
 ```
 
+![](image/Bast.jpg)
+
 ### Initialize the Plugins
 
-```hcl
+```bash
 packer init bastion.pkr.hcl
 ```
 
-![image](./images/init-pkr.png)
+![image](image/pinit.jpg)
 
 ### Validate each packer template
 
@@ -155,6 +233,8 @@ packer validate nginx.pkr.hcl
 packer validate ubuntu.pkr.hcl
 packer validate web.pkr.hcl
 ```
+
+![](image/valid.jpg)
 
 ### Run the packer commands to build AMI for Bastion server, Nginx server and webserver
 
