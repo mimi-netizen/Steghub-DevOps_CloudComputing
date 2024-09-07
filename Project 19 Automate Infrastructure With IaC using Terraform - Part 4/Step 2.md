@@ -130,31 +130,39 @@ ii. In the resulting popup, select Create an app > From scratch
 
 iii. Choose a name > select the workspace you would like to send your notifications > Create App
 
-![]()
+![](image/slack.jpg)
 
 iv. Click on `install to <Selected slack workspace name>` to install the Notification App
 
-![]()
+![](image/slack1.jpg)
 
 v. Select Incoming Webhooks and copy the webhook URL.
 
-![]()
+![](image/slack2.jpg)
+
+![](image/slack3.jpg)
 
 Now, let's create the slack notification (paste the webhook url)
 
-![]()
+![](image/slack4.jpg)
+
+![](image/slack5.jpg)
+
+![](image/slack6.jpg)
 
 The bastion instance type was changed back to t2.small in order to test it
 
-![]()
+![](image/slack7.jpg)
+
+![](image/slack9.jpg)
 
 Confirm the terraform process notification sent to the slack channel selected
 
-![]()
+![](image/slack8.jpg)
 
 4. Apply destroy from Terraform Cloud web console.
 
-![]()
+![](image/slack10.jpg)
 
 ### Public Module Registry vs Private Module Registry
 
