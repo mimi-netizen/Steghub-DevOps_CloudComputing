@@ -12,27 +12,27 @@ ssh-add -l
 
 - Update the `nginx.conf.j2` file to input the internal load balancer dns name generated.
 
-![]()
+![](image/ng.jpg)
 
 - Update the `RDS endpoints`, `Database name`, `password` and `username` in the `setup-db.yml` file for both the `tooling` and `wordpress` role.
 
 **For Tooling**
 
-![]()
+![](image/tool.jpg)
 
 **For Wordpress**
 
-![]()
+![](image/serup.jpg)
 
 - Update the `EFS` `Access point ID` for both the `wordpress` and `tooling` role in the `main.yml`
 
 **For Tooling**
 
-![]()
+![](image/tooling.jpg)
 
 **For Wordpress**
 
-![]()
+![](image/word.jpg)
 
 ### Access the bastion server with ssh agent
 
@@ -42,11 +42,11 @@ ssh -A ec2-user@<bastion-pub-ip>
 
 Confirm ansible is installed on bastion server
 
-![]()
+![](image/bb.jpg)
 
 - Verify the inventory
 
-![]()
+![](image/ansible-upgrade.jpg)
 
 Export the environment variable `ANSIBLE_CONFIG` to point to the `ansible.cfg` from the repo and run the ansible-playbook command:
 
@@ -56,53 +56,67 @@ export ANSIBLE_CONFIG=/home/ec2-user/terraform-cloud/ansible/roles/ansible.cfg
 ansible-playbook -i inventory/aws_ec2.yml playbook/site.yml
 ```
 
-![]()
-
 #### Access wordpress and tooling website via a browser
 
 Tooling website
 
-![]()
+![](image/php.jpg)
 
 Wordpress website
 
-![]()
+![](image/wordpress1.jpg)
+
+![](image/wordpress-done.jpg)
 
 # Practice Task №1
 
 1. Configure 3 branches in the `terraform-cloud` repository for `dev`, `test`, `prod` environments
 
-![image]()
+![](image/dev.jpg)
+
+![](image/dev1.jpg)
+
+![](image/branches.jpg)
 
 2. Make necessary configuration to trigger runs automatically only for dev environment
 
 - Create a workspace each for the 3 environments (i.e, `dev`, `test`, `prod`).
 
-![]()
+![](image/x.jpg)
 
 - Configure `Auto-Apply` for `dev` workspace to trigger runs automatically
 
 Go to the dev workspace in Terraform Cloud > Navigate to Settings > Vsersion Control > Check boxes for Auto Apply
 
-![]()
+![](image/vsc.jpg)
+
+![](image/vsc1.jpg)
 
 3. Create an Email and Slack notifications for certain events (e.g. `started plan` or `errored run`) and test it.
 
 **Email Notification:** In the dev workspace, Go to Settings > Notifications > Add a new notification
 
-![]()
+![](image/notif.jpg)
+
+![](image/notif1.jpg)
+
+![](image/notif3.jpg)
 
 The bastion instance type was changed to t3.small in order to test it
 
-![]()
+![](image/vb.jpg)
 
 This will automatically apply after a successful plan
 
-![]()
+![](image/dev-b.jpg)
 
 Confirm notification has bben sent to the provided email address
 
-![]()
+![](image/email.jpg)
+
+![](image/email1.jpg)
+
+![](image/email2.jpg)
 
 ### Slack Notification:
 
