@@ -316,13 +316,65 @@ In the terraform director, update the `terraform.auto.tfvars` with the new AMIs 
 
 - If planning has been successfull, you can proceed and confirm Apply - press `Confirm and apply`, provide a comment and `Confirm plan`
 
-![](image)
+![](image/create.jpg)
+
+![](image/create1.jpg)
+
+![](image/create2.jpg)
+
+![](image/create3.jpg)
+
+![](image/create4.jpg)
+
+![](image/create5.jpg)
 
 Check the logs and verify that everything has run correctly. Note that Terraform Cloud has generated a unique state version that you can open and see the codes applied and the changes made since the last run.
 
 Check the AWS console
 
-![]()
+![](image/1.jpg)
+
+![](image/2.jpg)
+
+![](image/3.jpg)
+
+![](image/4.jpg)
+
+![](image/5.jpg)
+
+![](image/6.jpg)
+
+![](image/7.jpg)
+
+![](image/8.jpg)
+
+![](image/9.jpg)
+
+![](image/10.jpg)
+
+![](image/11.jpg)
+
+![](image/12.jpg)
+
+![](image/13.jpg)
+
+![](image/14.jpg)
+
+![](image/15.jpg)
+
+![](image/16.jpg)
+
+![](image/17.jpg)
+
+![](image/18.jpg)
+
+![](image/19.jpg)
+
+![](image/20.jpg)
+
+![](image/21.jpg)
+
+![](image/22.jpg)
 
 ## 7. Test automated `terraform plan`
 
@@ -336,19 +388,21 @@ Since provisioning of new Cloud resources might incur significant costs. Even th
 
 - Add a VCS provider
 
-![]()
+![](image/auth.jpg)
+
+![](image/auth1.jpg)
 
 - Go to `Version Control` and click on `Change source`
 
-![]()
+![](image/version.jpg)
 
 - Click on `GitHub.com (Custom)`
 
-![]()
+![](image/custom.jpg)
 
 - Select the repository
 
-![]()
+![](image/repo.jpg)
 
 #### Make a change to any Terraform configuration file (.tf file)
 
@@ -358,6 +412,6 @@ Security group decription was edited in the variables.tf file and pushed to the 
 
 Click on `Runs` tab in the Terraform Cloud workspace. Notice that a new plan has been automatically triggered as a result of the push.
 
-![]()
+![](image/plan.jpg)
 
 **Note:** First, try to approach this project on your own, but if you hit any blocker and could not move forward with the project, refer to [support](https://www.youtube.com/watch?v=nCemvjcKuIA).
