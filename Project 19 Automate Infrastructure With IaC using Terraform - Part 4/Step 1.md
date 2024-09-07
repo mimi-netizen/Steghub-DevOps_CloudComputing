@@ -244,7 +244,11 @@ packer validate web.pkr.hcl
 packer build bastion.pkr.hcl
 ```
 
-![image]()
+![image](image/b.jpg)
+
+![image](image/b1.jpg)
+
+![image](image/b2.jpg)
 
 ### For Nginx
 
@@ -252,8 +256,13 @@ packer build bastion.pkr.hcl
 packer build nginx.pkr.hcl
 ```
 
-![image]()
-![image]()
+![image](image/nginx.jpg)
+
+![image](image/nginx1.jpg)
+
+![image](image/nginx2.jpg)
+
+![image](image/nginx3.jpg)
 
 ### For Webservers
 
@@ -261,8 +270,11 @@ packer build nginx.pkr.hcl
 packer build web.pkr.hcl
 ```
 
-![image]()
-![image]()
+![image](image/web.jpg)
+
+![image](image/web1.jpg)
+
+![image](image/web2.jpg)
 
 ### For Ubuntu (Jenkins, Artifactory and sonarqube Server)
 
@@ -270,32 +282,41 @@ packer build web.pkr.hcl
 packer build ubuntu.pkr.hcl
 ```
 
-![]()
-![]()
+![](image/ubuntu.jpg)
+
+![](image/ubuntu1.jpg)
 
 ### The new AMI's from the packer build in the terraform script
 
-![]()
+![](image/amis.jpg)
 
 In the terraform director, update the `terraform.auto.tfvars` with the new AMIs IDs built with packer which terraform will use to provision Bastion, Nginx, Tooling and Wordpress server
 
-![image]()
+![image](image/auto.jpg)
 
 ## 6. Run `terraform plan` and `terraform apply` from web console
 
 - Switch to `Runs` tab and click on `Queue plan manualy` button.
 
-![]()
-![]()
-![]()
-![]()
+![](image/t.jpg)
+
+![](image/t1.jpg)
+
+![](image/t2.jpg)
+
+![](image/t3.jpg)
+
+![](image/t4.jpg)
+
+![](image/t5.jpg)
+
+![](image/t6.jpg)
+
+![](image/t7.jpg)
 
 - If planning has been successfull, you can proceed and confirm Apply - press `Confirm and apply`, provide a comment and `Confirm plan`
 
-![]()
-![]()
-![]()
-![]()
+![](image)
 
 Check the logs and verify that everything has run correctly. Note that Terraform Cloud has generated a unique state version that you can open and see the codes applied and the changes made since the last run.
 
