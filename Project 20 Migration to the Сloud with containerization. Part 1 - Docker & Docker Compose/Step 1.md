@@ -134,7 +134,7 @@ docker images ls
 docker run --name <container_name> -e MYSQL_ROOT_PASSWORD=<my-secret-pw> -d mysql/mysql-server:latest
 ```
 
-![](./images/dk-run1.png)
+![](image/latest.jpg)
 
 - Replace <container_name> with the name of your choice. If you do not provide a name, Docker will generate a random one
 - The -d option instructs Docker to run the container as a service in the background
@@ -147,7 +147,7 @@ docker run --name <container_name> -e MYSQL_ROOT_PASSWORD=<my-secret-pw> -d mysq
 docker ps -a
 ```
 
-![](./images/dk-ps.png)
+![](image/psa.jpg)
 
 You should see the newly created container listed in the output. It includes container details, one being the status of this virtual environment. The status changes from `health: starting` to `healthy`, once the setup is complete.
 
