@@ -279,13 +279,13 @@ Migration has taken place in the prvious run
 
 ### 1. Create an account in [Docker Hub](https://hub.docker.com/)
 
-![](./images/create-hub-aact.png)
+![](image/HUB.jpg)
 
 ### 2. Create a new Docker Hub repository
 
-![](./images/create-hub-repo.png)
+![](image/repo.jpg)
 
-![](./images/dock-hub-repo.png)
+![](image/repo1.jpg)
 
 ### 3. Push the docker images from your PC to the repository
 
@@ -294,20 +294,22 @@ Sign in to docker and tag the docker image
 ```docker
 docker login
 
-docker tag php-todo:0.0.1 francdocmain/php-todo-app:0.0.1
+docker tag php-todo:0.0.1 celynekydd/php-todo-app:0.0.1
 ```
 
-![](./images/dock-login.png)
+![](image/login.jpg)
+
+![](image/tag.jpg)
 
 Push the docker image to the repository created
 
 ```docker
-docker push francdocmain/php-todo-app:0.0.1
+sudo docker push celynekydd/php-todo-app:0.0.1
 ```
 
-![](./images/dock-push.png)
+![](image/push.jpg)
 
-![](./images/dock-hub-image.png)
+![](image/pushed.jpg)
 
 ## Part 3
 
