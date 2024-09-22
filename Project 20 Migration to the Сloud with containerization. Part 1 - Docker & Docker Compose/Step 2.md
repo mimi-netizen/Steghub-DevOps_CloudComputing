@@ -471,7 +471,7 @@ which docker
 
 Add a webhook to the github repo
 
-![](./images/webhook.png)
+![](image/webhook.jpg)
 
 - Install Blue Ocean plugin and Open it from dashboard
 - Select create New pipeline
@@ -479,25 +479,22 @@ Add a webhook to the github repo
 - Select the repo for the pipeline
 - Select create pipeline
 
-![](./images/conn-repo1.png)
-![](./images/conn-repo2.png)
-
 ### 3. Create a multi-branch pipeline
-
-![](./images/multi-branch.png)
 
 ### 4. Simulate a CI pipeline from a feature and master branch using previously created Jenkinsfile
 
-**For Feature branch**
+![](image/1.jpg)
 
-![](./images/feature-build.png)
+![](image/2.jpg)
 
-**For Main branch**
+![](image/3.jpg)
 
-![](./images/main-build.png)
+![](image/4.jpg)
+
+![](image/5.jpg)
 
 #### 5. Ensure that the tagged images from your Jenkinsfile have a prefix that suggests which branch the image was pushed from. For example, feature-0.0.1.
 
 #### 6. Verify that the images pushed from the CI can be found at the registry.
 
-![](./images/dk-hub-images.png)
+![](image/6.jpg)
