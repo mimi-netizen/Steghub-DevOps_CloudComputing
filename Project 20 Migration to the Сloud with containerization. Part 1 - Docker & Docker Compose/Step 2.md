@@ -209,7 +209,7 @@ docker run --network tooling_app_network --env-file html/.env -p 8085:80 -it too
 
 Download php-todo repository [from here](https://github.com/StegTechHub/php-todo)
 
-![](./images/clone-todo.png)
+![](image/cln.jpg)
 
 The project below will challenge you a little bit, but the experience there is very valuable for future projects.
 
@@ -221,9 +221,9 @@ Here is the [todo-app repository](https://github.com/francdomain/docker-php-todo
 
 **Dokerfile**
 
-![](./images/dockerfile-todo.png)
+![](image/dof.jpg)
 
-![](./images/dot-env-todo.png)
+![](image/env.jpg)
 
 ### 2. Run both database and app on your laptop Docker Engine
 
@@ -233,9 +233,13 @@ Here is the [todo-app repository](https://github.com/francdomain/docker-php-todo
 docker run --network tooling_app_network -h mysqlserverhost --name=mysql-server -e MYSQL_ROOT_PASSWORD=$MYSQL_PW  -d mysql/mysql-server:latest
 ```
 
+![](image/tool.jpg)
+
 Create a script `create_user.sql` to create database and user
 
-![](./images/create-db.png)
+![](image/db.jpg)
+
+![](image/script.jpg)
 
 Create database and user using the script
 
@@ -243,7 +247,7 @@ Create database and user using the script
 docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < ./create_user.sql
 ```
 
-![](./images/run-db.png)
+![](image/ms.jpg)
 
 **Run todo app**
 
@@ -253,9 +257,7 @@ Build the todo app
 docker build -t php-todo:0.0.1 .
 ```
 
-![](./images/build-todo.png)
-
-![](./images/dock-images.png)
+![](image/bld.jpg)
 
 ```docker
 docker run --network tooling_app_network --rm --name php-todo --env-file .env -p 8090:8000 -it php-todo:0.0.1
@@ -263,17 +265,15 @@ docker run --network tooling_app_network --rm --name php-todo --env-file .env -p
 
 Migration has taken place in the prvious run
 
-![](./images/migration.png)
+![](image/app-docker.jpg)
 
-![](./images/run-app.png)
-
-![](./images/dock-ps.png)
+![](image/dd.jpg)
 
 ### 3. Access the application from the browser
 
-![](./images/todo-website1.png)
+![](image/80901.jpg)
 
-![](./images/todo-website2.png)
+![](image/8090.jpg)
 
 ## Part 2
 
