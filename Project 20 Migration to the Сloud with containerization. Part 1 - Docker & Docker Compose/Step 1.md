@@ -165,29 +165,51 @@ docker exec -it <container_name> mysql -uroot -p
 
 Provide the root password when prompted. With that, you have connected the MySQL client to the server.
 
-![](./images/mysql-shell.png)
+![](image/mysql.jpg)
 
 **Finally**, change the server root password to protect your database.
 
-![](./images/change-root-pwd.png)
-
 Stop the running container
 
-![](./images/stop-run.png)
+![](image/msq.jpg)
 
 ### Approach 2
 
-First, create a network:
+At this stage you are now able to create a docker container but we will need to add a network. So, stop and remove the previous mysql docker container.
+
+```bash
+docker ps -a
+docker stop mysql-server
+docker rm mysql-server or <container ID> ea751c5996d1
+```
+
+verify that the container is deleted
+
+```bash
+docker ps -a
+```
+
+![](image/ps.jpg)
+
+Next, create a network:
 
 ```bash
 docker network create --subnet=172.18.0.0/24 tooling_app_network
 ```
 
-![](./images/create-network.png)
+![](image/net.jpg)
 
 Creating a custom network is not necessary because even if we do not create a network, Docker will use the default network for all the containers you run. By default, the network we created above is of `DRIVER Bridge`. So, also, it is the default network. You can verify this by running the `docker network ls` command.
 
-![](./images/default-networks.png)
+![](image/net-ls.jpg)
+
+to see the details:
+
+```bash
+sudo docker network  inspect  tooling_app_network
+```
+
+![](image/inspect.jpg)
 
 But there are use cases where this is necessary. For example, if there is a requirement to control the `cidr range` of the containers running the entire application stack. This will be an ideal situation to create a network and specify the `--subnet`.
 
@@ -197,11 +219,17 @@ For clarity's sake, we will create a network with a subnet dedicated for our pro
 
 First, let us create an environment variable to store the root password:
 
-![](./images/create-env.png)
+```bash
+export MYSQL_PW=PassWord.1
+```
 
-Remove existing container
+verify the environment variable is created
 
-![](./images/rm-exist-contner.png)
+```bash
+echo $MYSQL_PW
+```
+
+![](image/pass.jpg)
 
 Then, pull the image and run the container, all in one command like below:
 
@@ -209,9 +237,9 @@ Then, pull the image and run the container, all in one command like below:
 docker run --network tooling_app_network -h mysqlserverhost --name=mysql-server -e MYSQL_ROOT_PASSWORD=$MYSQL_PW  -d mysql/mysql-server:latest
 ```
 
-![](./images/dk-run-network.png)
+![](image/run.jpg)
 
-Flags used
+**_Flags used_**
 
 - -d runs the container in detached mode
 - --network connects a container to a network
@@ -225,20 +253,20 @@ Verify the container is running:
 docker ps -a
 ```
 
-![](./images/new-container.png)
+![](image/dpsa.jpg)
 
 As we already know, it is best practice not to connect to the MySQL server remotely using the root user. Therefore, we will create an `SQL` script that will create a user we can use to connect remotely.
 
 Create a file and name it `create_user.sql` and add the below code in the file:
 
 ```sql
-CREATE USER '<user>'@'%' IDENTIFIED BY '<client-secret-password>';
-GRANT ALL PRIVILEGES ON * . * TO '<user>'@'%';
+CREATE USER 'celyne'@'%' IDENTIFIED BY 'PassWord.1';
+GRANT ALL PRIVILEGES ON * . * TO 'celyne'@'%';
 ```
 
-![](./images/create-file.png)
+![](image/touch.jpg)
 
-![](./images/add-code.png)
+![](image/celyne.jpg)
 
 Run the script:
 
@@ -252,7 +280,7 @@ If you see a warning like below, it is acceptable to ignore:
 mysql: [Warning] Using a password on the command line interface can be insecure.;
 ```
 
-![](./images/run-script.png)
+![](image/warning.jpg)
 
 ## Connecting to the MySQL server from a second container running the MySQL client utility
 
@@ -264,9 +292,11 @@ Run the MySQL Client Container:
 docker run --network tooling_app_network --name mysql-client -it --rm mysql mysql -h mysqlserverhost -u <user-created-from-the-SQL-script> -p
 ```
 
-![](./images/client-access.png)
+![](image/sql.jpg)
 
-Flags used:
+![](image/sql1.jpg)
+
+**_Flags used:_**
 
 - --name gives the container a name
 - -it runs in interactive mode and Allocate a pseudo-TTY
