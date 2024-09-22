@@ -321,7 +321,7 @@ pipeline {
 
     environment {
         DOCKER_REGISTRY = "docker.io"
-        DOCKER_IMAGE = "francdocmain/php-todo-app"
+        DOCKER_IMAGE = "celynekydd/php-todo-app"
     }
 
     stages {
@@ -382,11 +382,11 @@ pipeline {
 }
 ```
 
-![](./images/jenkinsfile.png)
+![](image/jenkins.jpg)
 
 Launch ec2 instance for jenkins
 
-![](./images/jenkins-server.png)
+![](image/jenkin.jpg)
 
 #### Install docker on jenkins server
 
@@ -423,6 +423,8 @@ sudo systemctl enable docker
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
+![](image/d.jpg)
+
 #### Ensure Jenkins Has Permission to Run Docker
 
 - Add Jenkins User to Docker Group
@@ -433,14 +435,14 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
 ```
 
-![](./images/jenkins-dock-grp.png)
+![](image/juser.jpg)
 
 #### Install docker plugins
 
 - Go to Manage Jenkins > Manage Plugins > Available.
 - Search for Docker Pipeline and install it.
 
-![](./images/dock-plugins.png)
+![](image/plug.jpg)
 
 #### Docker Tool Configuration:
 
@@ -450,20 +452,20 @@ sudo systemctl restart jenkins
 which docker
 ```
 
-![](./images/which.png)
+![](image/which.jpg)
 
 - Go to Manage Jenkins > Tools, Scrol to Docker installations
 
-![](./images/dock-tool-config.png)
+![](image/bin.jpg)
 
 #### Add Docker credentials to Jenkins.
 
 - Go to Jenkins Dashboard > Manage Jenkins > Credentials.
   Add your Docker `username` and `password` and the credential ID (from jenkinsfile) there.
 
-![](./images/dock-credentials.png)
+![](image/credentials.jpg)
 
-![](./images/credentials.png)
+![](image/credentials1.jpg)
 
 ### 2. Connect your repo to Jenkins
 
