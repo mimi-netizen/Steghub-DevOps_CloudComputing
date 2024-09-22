@@ -100,11 +100,21 @@ Let us start assembling our application from the Database layer - we will use a 
 
 Start by pulling the appropriate Docker image for MySQL. We can download a specific version or opt for the latest release, as seen in the following command:
 
+Search for the available MySql docker image in the docker hub registry
+
+```bash
+docker search mysql-server
+```
+
+![](image/search.jpg)
+
+Next, we will pull the first on the list, which is the offical and latest version
+
 ```bash
 docker pull mysql/mysql-server:latest
 ```
 
-![](./images/dk-pull.png)
+![](image/pull.jpg)
 
 If you are interested in a particular version of MySQL, replace latest with the version number. Visit Docker Hub to check other tags [here](https://hub.docker.com/r/mysql/mysql-cluster/tags)
 
@@ -114,7 +124,7 @@ List the images to check that you have downloaded them successfully:
 docker images ls
 ```
 
-![](./images/dk-image.png)
+![](image/images.jpg)
 
 ## Step 2: Deploy the MySQL Container to your Docker Engine
 
