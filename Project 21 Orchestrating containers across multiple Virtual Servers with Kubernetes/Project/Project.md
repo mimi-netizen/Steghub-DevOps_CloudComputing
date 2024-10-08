@@ -458,9 +458,9 @@ TARGET_GROUP_ARN=$(aws elbv2 create-target-group \
   --output text --query 'TargetGroups[].TargetGroupArn')
 ```
 
-![](./images/create-tg.png)
+![](image/tg.jpg)
 
-![](./images/tg-console.png)
+![](image/tg1.jpg)
 
 13. Register targets: (Just like above, no real targets. You will just put the IP addresses so that, when the nodes become available, they will be used as targets.)
 
