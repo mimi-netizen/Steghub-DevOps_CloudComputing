@@ -1515,7 +1515,7 @@ With input synchronization enabled, any command you type in one pane will be rep
   - `Press Ctrl-b` then `:`.
   - Type `setw synchronize-panes off` and `press Enter`.
 
-![](./images/tmux-pans.png)
+![](image/tmux.jpg)
 
 1. **SSH into the controller server**
 
@@ -1554,9 +1554,9 @@ master_3_ip=$(aws ec2 describe-instances \
 
 You should have a similar pane like below. You should be able to see all the files that have been sent to the nodes.
 
-![](./images/ssh-access.png)
+![](image/ubuntu.jpg)
 
-![](./images/tmux-pans-ssh.png)
+![](image/ubuntu1.jpg)
 
 2. **Download and install `etcd`**
 
@@ -1584,7 +1584,7 @@ wget -q --show-progress --https-only --timestamping \
 }
 ```
 
-![](./images/config-ectcd.png)
+![](image/ac.jpg)
 
 5. The instance internal IP address will be used to serve client requests and communicate with etcd cluster peers. Retrieve the internal IP address for the current compute instance:
 
@@ -1606,7 +1606,7 @@ ETCD_NAME=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254
 echo ${ETCD_NAME}
 ```
 
-![](./images/get-internal-ip.png)
+![](image/echo.jpg)
 
 7. Create the `etcd.service` systemd unit file:
 
@@ -1646,7 +1646,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-![](./images/create-etcd-service.png)
+![](image/aeon.jpg)
 
 8. Start and enable the `etcd` Server
 
@@ -1676,13 +1676,13 @@ ade74a4f39c39f33, started, master-1, https://172.31.0.11:2380, https://172.31.0.
 ed33b44c0b153ee3, started, master-2, https://172.31.0.12:2380, https://172.31.0.12:2379, false
 ```
 
-![](./images/verify-etcd.png)
+![](image/ac1.jpg)
 
 ```bash
 systemctl status etcd
 ```
 
-![](./images/etcd-status.png)
+![](image/peer.jpg)
 
 ## Bootstrap the `Control Plane`
 
@@ -1703,6 +1703,8 @@ wget -q --show-progress --https-only --timestamping \
   "https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kube-scheduler" \
   "https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl"
 ```
+
+![](image/kube1.jpg)
 
 3. Install the Kubernetes binaries:
 
@@ -1725,8 +1727,6 @@ wget -q --show-progress --https-only --timestamping \
 }
 ```
 
-![](./images/config-k8s-api-server.png)
-
 The instance internal IP address will be used to advertise the API Server to members of the cluster. Retrieve the internal IP address for the current compute instance:
 
 ```bash
@@ -1734,6 +1734,8 @@ TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-meta
 
 export INTERNAL_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/local-ipv4)
 ```
+
+![](image/ac2.jpg)
 
 **Create the kube-apiserver.service systemd unit file:**
 
@@ -1842,7 +1844,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-![](./images/create-ctrl-manager-file.png)
+![](image/eof.jpg)
 
 6. Configure the Kubernetes Scheduler
 
@@ -1866,7 +1868,7 @@ leaderElection:
 EOF
 ```
 
-![](./images/kube-scheduler-yml.png)
+![](image//tee.jpg)
 
 **Create the kube-scheduler.service systemd unit file**
 
@@ -1888,7 +1890,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-![](./images/kube-scheduler-service.png)
+![](image/target.jpg)
 
 7. Start the Controller Services
 
@@ -1900,7 +1902,7 @@ EOF
 }
 ```
 
-![](./images/start-apiserver.png)
+![](image/link.jpg)
 
 **Check the status of the services.**
 
@@ -1914,11 +1916,13 @@ Start with the `kube-scheduler` and `kube-controller-manager`. It may take up to
 }
 ```
 
-![](./images/scheduler%20status.png)
+![](image/sche.jpg)
 
-![](./images/controller-status.png)
+![](image//cont.jpg)
 
 **Observation:** The `api-server` failed to start up on the server. As DevOps engineers, we must be able to solve problems.
+
+![](image/api.jpg)
 
 **HINTS:**
 
@@ -1961,7 +1965,7 @@ After fixing the error, check the api-server status again:
 sudo systemctl status kube-apiserver
 ```
 
-![](./images/apiserver-status.png)
+![](image/api1.jpg)
 
 # Test that Everything is working fine
 
