@@ -407,30 +407,25 @@ aws ec2 authorize-security-group-ingress \
   --cidr 0.0.0.0/0
 ```
 
-![](./images/master-node-output.png)
-![](./images/sg-master-node.png)
+![](image/sec.jpg)
 
 Create Inbound traffic for all communication within the subnet to connect on ports used by the worker nodes
 
-![](./images/create-worker.png)
-![](./images/worker-ing-output.png)
+![](image/sec1.jpg)
 
 Create inbound traffic to allow connections to the Kubernetes API Server listening on port 6443
 
-![](./images/create-api-ing.png)
-![](./images/api-ing-output.png)
+![](image/sec2.jpg)
 
 Create Inbound traffic for SSH from anywhere (Do not do this in production. Limit access ONLY to IPs or CIDR that MUST connect)
 
-![](./images/ssh-ing.png)
-![](./images/create-ssh-ing.png)
+![](image/sec3.jpg)
 
 Create ICMP ingress for all types
 
-![](./images/create-icmp-ing.png)
-![](./images/icmp-ing-output.png)
+![](image/sec4.jpg)
 
-![](./images/sg-console.png)
+![](image/sec5.jpg)
 
 ### Network Load Balancer
 
@@ -445,9 +440,9 @@ LOAD_BALANCER_ARN=$(aws elbv2 create-load-balancer \
   --output text --query 'LoadBalancers[].LoadBalancerArn')
 ```
 
-![](./images/create-network-lb.png)
+![](image/lb.jpg)
 
-![](./images/nlb-console.png)
+![](image/lb1.jpg)
 
 ### Tagret Group
 
