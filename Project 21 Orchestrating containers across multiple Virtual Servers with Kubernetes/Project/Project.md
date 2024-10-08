@@ -166,7 +166,6 @@ If you have issues using the binaries directly, you should consider using the pa
 brew install cfssl
 ```
 
-![](./images/install-cfssl.png)
 Verify that cfssl version 1.4.1 or higher is installed:
 
 #### cfssl version
@@ -178,8 +177,6 @@ Version: 1.4.1
 Runtime: go1.12.12
 ```
 
-![](./images/cfssl-version.png)
-
 #### cfssljson --version
 
 ```css
@@ -187,23 +184,31 @@ Version: 1.4.1
 Runtime: go1.12.12
 ```
 
-![](./images/cfssljson-version.png)
-
 ### Linux Or Windows using Gitbash or similar tool
 
 ```bash
 wget -q --show-progress --https-only --timestamping \
-  https://storage.googleapis.com/kubernetes-the-hard-way/cfssl/1.4.1/linux/cfssl \
-  https://storage.googleapis.com/kubernetes-the-hard-way/cfssl/1.4.1/linux/cfssljson
+  https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 \
+  https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 ```
 
 ```bash
-chmod +x cfssl cfssljson
+chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
 ```
 
 ```bash
-sudo mv cfssl cfssljson /usr/local/bin/
+sudo mv cfssl_linux-amd64 /usr/bin/cfssl
 ```
+
+```bash
+sudo mv cfssljson_linux-amd64 /usr/bin/cfssljson
+```
+
+```bash
+cfssl version
+```
+
+![](image/cli3.jpg)
 
 # AWS Cloud resources for Kubernetes Cluster
 
@@ -214,6 +219,11 @@ As we already know, we need some machines to run the `control plane` and the `wo
 ### Virtual Private Cloud - VPC
 
 1. Create a directory named k8s-cluster-from-ground-up
+
+```bash
+mkdir k8s-cluster-from-ground-up
+```
+
 2. Create a VPC and store the ID as a variable:
 
 ```bash
@@ -222,8 +232,6 @@ VPC_ID=$(aws ec2 create-vpc \
   --output text --query 'Vpc.VpcId'
   )
 ```
-
-![](./images/create-vpc.png)
 
 3. Tag the VPC so that it is named:
 
@@ -235,7 +243,7 @@ aws ec2 create-tags \
   --tags Key=Name,Value=${NAME}
 ```
 
-![](./images/name-vpc.png)
+![](image/cli4.jpg)
 
 #### Domain Name System - DNS
 
@@ -247,8 +255,6 @@ aws ec2 modify-vpc-attribute \
   --enable-dns-support '{"Value": true}'
 ```
 
-![](./images/en-dns-support.png)
-
 5. Enable DNS support for hostnames:
 
 ```bash
@@ -257,9 +263,9 @@ aws ec2 modify-vpc-attribute \
   --enable-dns-hostnames '{"Value": true}'
 ```
 
-![](./images/en-dns-hostname.png)
+![](image/cli5.jpg)
 
-![](./images/vpc-console.png)
+![](image/vpc.jpg)
 
 ### AWS Region
 
