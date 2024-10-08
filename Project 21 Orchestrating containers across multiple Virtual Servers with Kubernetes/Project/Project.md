@@ -702,21 +702,23 @@ OU – Organizational Unit
 2021/05/16 20:18:44 [INFO] signed certificate with serial number 478642753175858256977534824638605235819766817855
 ```
 
-![](./images/cert-gen.png)
+![](image/cert.jpg)
+
+![](image/cert1.jpg)
 
 List the directory to see the created files
 
 ```bash
 ls -ltr
 
--rw-r--r--  1 dare  dare   232 16 May 20:18 ca-config.json
--rw-r--r--  1 dare  dare   207 16 May 20:18 ca-csr.json
--rw-r--r--  1 dare  dare  1306 16 May 20:18 ca.pem
--rw-------  1 dare  dare  1679 16 May 20:18 ca-key.pem
--rw-r--r--  1 dare  dare  1001 16 May 20:18 ca.csr
+-rwxrwxrwx 1 celyne celyne  232 Oct  8 09:54 ca-config.json
+-rwxrwxrwx 1 celyne celyne  222 Oct  8 09:54 ca-csr.json
+-rwxrwxrwx 1 celyne celyne 1395 Oct  8 09:54 ca.pem
+-rwxrwxrwx 1 celyne celyne 1679 Oct  8 09:54 ca-key.pem
+-rwxrwxrwx 1 celyne celyne 1021 Oct  8 09:54 ca.csr
 ```
 
-![](./images/ls-dir.png)
+![](image/cert2.jpg)
 
 The 3 important files here are:
 
@@ -793,9 +795,9 @@ cfssl gencert \
 }
 ```
 
-![](./images/cert-gen2.png)
+![](image/cert4.jpg)
 
-![](./images/ls-ltr-cert.png)
+![](image/cert5.jpg)
 
 ### Creating the other certificates: for the following Kubernetes components:
 
@@ -839,7 +841,7 @@ cfssl gencert \
 }
 ```
 
-![](./images/cert-gen-scheduler.png)
+![](image/cert6.jpg)
 
 _If you see any warning message, it is safe to ignore it._
 
@@ -877,7 +879,7 @@ cfssl gencert \
 }
 ```
 
-![](./images/cert-gen-proxier.png)
+![](image/cert7.jpg)
 
 4. **`kube-controller-manager` Client Certificate and Private Key**
 
@@ -912,7 +914,7 @@ cfssl gencert \
 }
 ```
 
-![](./images/cert-gen-controller.png)
+![](image/cert8.jpg)
 
 5. **`kubelet` Client Certificate and Private Key**
 
@@ -963,7 +965,9 @@ EOF
 done
 ```
 
-![](./images/add-client-cert.png)
+![](image/ca.jpg)
+
+![](image/ca1.jpg)
 
 6. **Finally, `kubernetes admin user's` Client Certificate and Private Key**
 
@@ -997,7 +1001,7 @@ cfssl gencert \
 }
 ```
 
-![](./images/add-admin-user.png)
+![](image/ca2.jpg)
 
 7. **Actually, we are not done yet!**
 
@@ -1036,9 +1040,11 @@ cfssl gencert \
 }
 ```
 
-![](./images/service-acct-cert.png)
+![](image/ca3.jpg)
 
-![](./images/all-cert-files.png)
+![](image/ca4.jpg)
+
+![](image/ca5.jpg)
 
 ## Step 4a - Distributing the Client and Server Certificates
 
