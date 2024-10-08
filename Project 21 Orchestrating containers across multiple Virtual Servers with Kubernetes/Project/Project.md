@@ -272,10 +272,10 @@ aws ec2 modify-vpc-attribute \
 6. Set the required region
 
 ```bash
-AWS_REGION=us-east-1
+AWS_REGION=ca-central-1
 ```
 
-![](./images/region.png)
+![](image/region.jpg)
 
 ### Subnet
 
