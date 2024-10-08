@@ -47,15 +47,17 @@ First, we will need some client tools installed and configurations made on our c
 
 Configure AWS CLI to access all AWS services used, for this we need to have a user with `programmatic access keys` configured in AWS Identity and Access Management (IAM):
 
-![](./images/create-user.png)
+![](image/dashboard.jpg)
+
+![](image/dashboard1.jpg)
 
 Set permissions
 
-![](./images/set-permission.png)
+![](image/dashboard2.jpg)
 
 Generate access keys and store them in a safe place
 
-![](./images/access-key.png)
+![](image/dashboard3.jpg)
 
 On your local workstation download and install the latest version of [AWS CLI](https://aws.amazon.com/cli/)
 
@@ -69,6 +71,8 @@ Default region name [None]: us-west-2
 Default output format [None]: json
 ```
 
+![](image/cli.jpg)
+
 Test your `AWS CLI` by running:
 
 ```bash
@@ -77,7 +81,7 @@ aws ec2 describe-vpcs
 
 and check if you can see `VPC` details.
 
-![](./images/desc-vpc.png)
+![](image/cli1.jpg)
 
 ## Install kubectl
 
@@ -133,7 +137,7 @@ sudo mv kubectl /usr/local/bin/
 Client Version: version.Info{Major:"1", Minor:"20+", GitVersion:"v1.20.4-dirty", GitCommit:"e87da0bd6e03ec3fea7933c4b5263d151aafd07c", GitTreeState:"dirty", BuildDate:"2021-03-15T10:03:32Z", GoVersion:"go1.16.2", Compiler:"gc", Platform:"darwin/amd64"}
 ```
 
-![](./images/kubectl-version.png)
+![](image/cli2.jpg)
 
 ## Install CFSSL and CFSSLJSON
 
