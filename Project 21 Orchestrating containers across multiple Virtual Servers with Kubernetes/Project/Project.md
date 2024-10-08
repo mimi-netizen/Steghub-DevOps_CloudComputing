@@ -1085,7 +1085,9 @@ k8s-cluster-from-ground-up-worker-2-key.pem                                     
 k8s-cluster-from-ground-up-worker-2.pem
 ```
 
-![](./images/cp-worker-node.png)
+![](image/node.jpg)
+
+![](image/node1.jpg)
 
 **Master or Controller node:** - Note that only the `api-server` related files will be sent over to the master nodes.
 
@@ -1124,7 +1126,9 @@ master-kubernetes.pem                                                           
 master-kubernetes-key.pem
 ```
 
-![](./images/cp-master-node.png)
+![](image/node2.jpg)
+
+![](image/node3.jpg)
 
 The `kube-proxy`, `kube-controller-manager`, `kube-scheduler`, and `kubelet client` certificates will be used to generate client authentication configuration files later.
 
