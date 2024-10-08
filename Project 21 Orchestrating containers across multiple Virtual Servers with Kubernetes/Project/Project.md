@@ -485,11 +485,9 @@ aws elbv2 create-listener \
   --output text --query 'Listeners[].ListenerArn'
 ```
 
-![](./images/create-listener.png)
+![](image/isten.jpg)
 
-![](./images/listen-arn.png)
-
-![](./images/listener.png)
+![](image/isten1.jpg)
 
 ### K8s Public Address
 
