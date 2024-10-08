@@ -444,7 +444,7 @@ LOAD_BALANCER_ARN=$(aws elbv2 create-load-balancer \
 
 ![](image/lb1.jpg)
 
-### Tagret Group
+### Target Group
 
 Create a target group: (For now it will be unhealthy because there are no real targets yet.)
 
@@ -470,9 +470,9 @@ aws elbv2 register-targets \
   --targets Id=172.31.0.1{0,1,2}
 ```
 
-![](./images/register-tg.png)
+![](image/tg2.jpg)
 
-![](./images/targets.png)
+![](image/tg3.jpg)
 
 14. Create a listener to listen for requests and forward to the target nodes on TCP port 6443
 
