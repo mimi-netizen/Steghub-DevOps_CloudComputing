@@ -1146,7 +1146,7 @@ First, let us create a few environment variables for reuse by multiple commands.
 KUBERNETES_API_SERVER_ADDRESS=$(aws elbv2 describe-load-balancers --load-balancer-arns ${LOAD_BALANCER_ARN} --output text --query 'LoadBalancers[].DNSName')
 ```
 
-![](./images/api-envar.png)
+![](image/server.jpg)
 
 1. Generate the `kubelet` kubeconfig file
 
@@ -1212,7 +1212,9 @@ Context "default" created.
 Switched to context "default".
 ```
 
-![](./images/kubelet-kubconfig.png)
+![](image/xu.jpg)
+
+![](image/xu1.jpg)
 
 List the output
 
@@ -1228,7 +1230,7 @@ OUTPUT:
 -rw-------  1 dare  staff  6606 22 Jun 20:40 k8s-cluster-from-ground-up-worker-2.kubeconfig
 ```
 
-![](./images/ls-kubeconfig.png)
+![](image/config.jpg)
 
 Open up the kubeconfig files generated and review the 3 different sections that have been configured:
 
@@ -1269,7 +1271,7 @@ kubectl config use-context %context-name%
 }
 ```
 
-![](./images/gen-kube-proxy.png)
+![](image/context.jpg)
 
 3. Generate the **Kube-Controller-Manager** kubeconfig
 
@@ -1298,7 +1300,7 @@ Notice that the `--server` is set to use `127.0.0.1`. This is because, this comp
 }
 ```
 
-![](./images/control-plane-kubeconfig.png)
+![](image/context1.jpg)
 
 4. Generating the **Kube-Scheduler** Kubeconfig
 
@@ -1325,7 +1327,7 @@ Notice that the `--server` is set to use `127.0.0.1`. This is because, this comp
 }
 ```
 
-![](./images/kube-scheduler-kconfig.png)
+![](image/context1.jpg)
 
 5. Finally, generate the `kubeconfig` file for the `admin user`
 
@@ -1352,11 +1354,11 @@ Notice that the `--server` is set to use `127.0.0.1`. This is because, this comp
 }
 ```
 
-![](./images/admin-kubeconfig.png)
+![](image/context2.jpg)
 
 **TASK: Distribute the files to their respective servers, using `scp` and a `for loop` like we have done previously. This is a test to validate that you understand which component must go to which node.**
 
-![](./images/dir-files.png)
+![](image/config1.jpg)
 
 **For Worker Nodes**
 
