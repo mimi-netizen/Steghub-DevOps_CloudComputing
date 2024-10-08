@@ -1375,8 +1375,7 @@ for i in 0 1 2; do
 done
 ```
 
-![](./images/cp-worker-kubeconfig.png)
-![](./images/admin-to-worker-node.png)
+![](image/config2.jpg)
 
 **For Master Nodes**
 
@@ -1393,7 +1392,7 @@ instance="${NAME}-master-${i}" \
 done
 ```
 
-![](./images/cp-master-kubeconfig.png)
+![](image/config3.jpg)
 
 ## Step 5 - Prepare the etcd database for encryption at rest.
 
@@ -1419,7 +1418,7 @@ OUTPUT:
 OuxSvV5XUQVid4fNNbeyFEDTUPr1yozZPQ+E6Eqj80m1FSVDB6jOHt9miD/7kMdJIvVshlMgxY80wFajlqItug===$
 ```
 
-![](./images/encrypt-key.png)
+![](image/etcd.jpg)
 
 **Create an `encryption-config.yaml` file as [documented officially by kubernetes](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#understanding-the-encryption-at-rest-configuration)**
 
@@ -1439,7 +1438,7 @@ resources:
 EOF
 ```
 
-![](./images/encrypt-config-file.png)
+![](image/cat.jpg)
 
 Send the encryption file to the **Controller** nodes using `scp` and a `for loop`.
 
@@ -1454,7 +1453,7 @@ instance="${NAME}-master-${i}" \
 done
 ```
 
-![](./images/cp-encrypt-config.png)
+![](image/cat1.jpg)
 
 ## Bootstrap `etcd` cluster
 
