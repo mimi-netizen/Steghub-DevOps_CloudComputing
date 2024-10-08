@@ -354,12 +354,9 @@ aws ec2 create-route \
 }
 ```
 
-![](./images/create-rtb.png)
+![](image/rt.jpg)
 
-![](./images/rtb-assc-output1.png)
-![](./images/rtb-assc-output2.png)
-
-![](./images/rtb-console.png)
+![](image/rt1.jpg)
 
 ### Security Groups
 
