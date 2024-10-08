@@ -292,9 +292,9 @@ aws ec2 create-tags \
   --tags Key=Name,Value=${NAME}
 ```
 
-![](./images/create-subnet.png)
+![](image/sub.jpg)
 
-![](./images/subnet-console.png)
+![](image/sub1.jpg)
 
 ### Internet Gateway - IGW
 
@@ -313,9 +313,9 @@ aws ec2 attach-internet-gateway \
   --vpc-id ${VPC_ID}
 ```
 
-![](./images/create-igw.png)
+![](image/ig.jpg)
 
-![](./images/igw-console.png)
+![](image/ig1.jpg)
 
 ### Route tables
 
