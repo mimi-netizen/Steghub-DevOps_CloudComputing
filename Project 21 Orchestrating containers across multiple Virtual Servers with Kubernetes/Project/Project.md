@@ -499,7 +499,7 @@ KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
   --output text --query 'LoadBalancers[].DNSName')
 ```
 
-![](./images/k8s-pubip.png)
+![](image/kube.jpg)
 
 ## Step 2 - Create Compute Resources
 
@@ -518,9 +518,11 @@ IMAGE_ID=$(aws ec2 describe-images --owners 099720109477 \
 
 Install `jq` (which is used for processing JSON output) if not already installed.
 
-![](./images/install-jq.png)
+```bash
+sudo snap install jq
+```
 
-![](./images/create-ami.png)
+![](image/IMAGE.jpg)
 
 ### SSH key-pair
 
@@ -536,9 +538,9 @@ aws ec2 create-key-pair \
 chmod 600 ssh/${NAME}.id_rsa
 ```
 
-![](./images/create-ssh-key.png)
+![](image/kp.jpg)
 
-![](./images/ssh-console.png)
+![](image/kp1.jpg)
 
 ### EC2 Instances for Controle Plane (Master Nodes)
 
