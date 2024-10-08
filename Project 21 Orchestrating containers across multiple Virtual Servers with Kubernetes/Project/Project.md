@@ -568,8 +568,6 @@ for i in 0 1 2; do
 done
 ```
 
-![](./images/create-instance.png)
-
 ### EC2 Instances for Worker Nodes
 
 4. Create 3 worker nodes:
@@ -596,9 +594,9 @@ for i in 0 1 2; do
 done
 ```
 
-![](./images/create-worker-node.png)
+![](image/instance.jpg)
 
-![](./images/instances.png)
+![](image/instance1.jpg)
 
 ## Step 3 - Prepare The Self-Signed Certificate Authority And Generate TLS Certificates
 
