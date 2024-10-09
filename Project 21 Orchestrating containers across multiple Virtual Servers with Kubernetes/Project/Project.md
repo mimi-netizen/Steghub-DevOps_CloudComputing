@@ -1965,7 +1965,7 @@ After fixing the error, check the api-server status again:
 sudo systemctl status kube-apiserver
 ```
 
-![](image/api1.jpg)
+![](image/api-server.jpg)
 
 # Test that Everything is working fine
 
