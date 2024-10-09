@@ -2001,7 +2001,7 @@ kube-public       Active   22m
 kube-system       Active   22m
 ```
 
-![](./images/get-namespace.png)
+![](image/namespacess.jpg)
 
 3. To reach the Kubernetes API Server publicly
 
@@ -2033,9 +2033,11 @@ OUTPUT:
 kubectl get componentstatuses --kubeconfig admin.kubeconfig
 ```
 
-![](./images/component-status.png)
+![](image/to-get-status.jpg)
 
-![](./images/compo-status-console.png)
+![](image/healthy-tg.jpg)
+
+![](image/healthy-tg1.jpg)
 
 5. On one of the controller nodes, configure **Role Based Access Control** (RBAC) so that the api-server has necessary authorization for for the kubelet.
 
@@ -2065,7 +2067,7 @@ rules:
 EOF
 ```
 
-![](./images/cluster-role.png)
+![](image/create-cluster.jpg)
 
 - Create the **ClusterRoleBinding** to bind the kubernetes user with the role created above
 
@@ -2087,7 +2089,7 @@ subjects:
 EOF
 ```
 
-![](./images/cluster-role-binding.png)
+![](image/cluster-role-binsing.jpg)
 
 # Configuring the Kubernetes Worker nodes
 
@@ -2125,7 +2127,7 @@ rules:
 EOF
 ```
 
-![](./images/clust-role.png)
+![](image/worker%20nodes.jpg)
 
 2. Bind the `system:kube-apiserver-to-kubelet` **ClusterRole** to the `kubernetes` user so that API server can authenticate successfully to the `kubelets` on the worker nodes:
 
@@ -2147,7 +2149,7 @@ subjects:
 EOF
 ```
 
-![](./images/clust-role-binding.png)
+![](image/bind-worker-nodes.jpg)
 
 # Bootstraping components on the worker nodes
 
