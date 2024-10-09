@@ -1983,7 +1983,7 @@ Kubernetes control plane is running at https://k8s-api-server.svc.darey.io:6443
 To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 ```
 
-![](./images/cluster-info.png)
+![](image/kubetcl.jpg)
 
 2. To get the current namespaces:
 
