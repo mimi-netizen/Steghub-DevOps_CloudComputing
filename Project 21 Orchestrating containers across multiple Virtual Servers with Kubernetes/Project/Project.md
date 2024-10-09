@@ -2701,14 +2701,6 @@ sudo systemctl status kube-proxy
 
 ![](./images/kube-proxy-status.png)
 
-Now you should have the worker nodes joined to the cluster, and in a **READY** state.
-
-```bash
-kubectl get nodes --kubeconfig admin.kubeconfig -o wide
-```
-
-![](./images/kubectl-get-node.png)
-
 **Troubleshooting Tips:** If you have issues at this point. Consider the below:
 
 1. Use journalctl -u <service name> to get the log output and read what might be wrong with starting up the service. You can redirect the output into a file and analyse it.
