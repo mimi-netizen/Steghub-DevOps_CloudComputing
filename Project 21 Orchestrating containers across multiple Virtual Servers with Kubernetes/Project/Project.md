@@ -2198,7 +2198,7 @@ worker_3_ip=$(aws ec2 describe-instances \
 }
 ```
 
-![](./images/install-socat.png)
+![](image/os-dependencies.jpg)
 
 ### More about the dependencies:
 
@@ -2277,6 +2277,8 @@ sudo usermod -aG docker ${USER} && \
 sudo systemctl status docker
 ```
 
+![](image/install-docker.jpg)
+
 **NOTE:** _exit the shell and log back in. Otherwise, you will face a permission denied error. Alternatively, you can run `newgrp docker` without exiting the shell. But you will need to provide the password of the logged in user_
 
 - **Containerd**
@@ -2289,7 +2291,7 @@ wget https://github.com/opencontainers/runc/releases/download/v1.0.0-rc93/runc.a
   https://github.com/containerd/containerd/releases/download/v1.4.4/containerd-1.4.4-linux-amd64.tar.gz
 ```
 
-![](./images/download-containerd.png)
+![](image/download-binaries.jpg)
 
 **Configure containerd:**
 
@@ -2305,7 +2307,7 @@ wget https://github.com/opencontainers/runc/releases/download/v1.0.0-rc93/runc.a
 }
 ```
 
-![](./images/configure-containerd.png)
+![](image/configure-containerd.jpg)
 
 ```bash
 sudo mkdir -p /etc/containerd/
@@ -2323,7 +2325,7 @@ cat << EOF | sudo tee /etc/containerd/config.toml
 EOF
 ```
 
-![](./images/config-containerd.png)
+![](image/cat-containerd.jpg)
 
 Create the **containerd.service** systemd unit file:
 
@@ -2351,7 +2353,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-![](./images/cond-service.png)
+![](image/containered-service.jpg)
 
 ### 5. Create directories to configure `kubelet`, `kube-proxy`, `cni`, and a directory to keep the `kubernetes` `root` `ca` file:
 
@@ -2364,6 +2366,8 @@ sudo mkdir -p \
   /var/lib/kubernetes \
   /var/run/kubernetes
 ```
+
+![](image/create-directories.jpg)
 
 ### 6. Download and Install CNI
 
@@ -2407,7 +2411,7 @@ The output shows the plugins that comes with the CNI.
 ./bandwidth
 ```
 
-![](./images/install-cni.png)
+![](image/install-cni.jpg)
 
 There are few other plugins that are not included in the CNI, which are also widely used in the industry. They all have their unique implementation approach and set of features.
 
@@ -2438,7 +2442,7 @@ wget -q --show-progress --https-only --timestamping \
 }
 ```
 
-![](./images/bin-kubectl.png)
+![](image/install-binaries.jpgg)
 
 **Configure the worker nodes components**
 
@@ -2446,7 +2450,7 @@ wget -q --show-progress --https-only --timestamping \
 
 In the home directory, you should have the certificates and `kubeconfig` file for each node. A list in the home folder should look like below:
 
-![](./images/check-dirs.png)
+![](image/ls-ltr.jpg)
 
 **Configuring the network**
 
@@ -2459,8 +2463,6 @@ POD_CIDR=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" \
 
 echo "${POD_CIDR}"
 ```
-
-![](./images/pod-cidr.png)
 
 In case you are wondering where this `$POD_CIDR` is coming from. Well, this was configured at the time of creating the worker nodes. Remember the for loop below? The `--user-data` flag is where we specified what we want the POD_CIDR to be. It is very important to ensure that the CIDR does not overlap with EC2 IPs within the subnet. In the real world, this will be decided in collaboration with the Network team.
 
@@ -2484,7 +2486,7 @@ For a better understanding, of Kubernetes networking, let us assume that we have
 
 Network configuration will look like this:
 
-![](./images/k8s-network-config.png)
+![](image/k8s-network-config.png)
 
 Notice, that both containers share a single virtual network interface veth0 that belongs to a virtual network within a single node. This virtual interface veth0 is used to allow communication from a pod to the outer world through a bridge cbr0 (custom bridge). This bridge is an interface that forwards the traffic from the Pods on one node to other nodes through a physical network interface eth0. Routing between the nodes is done by means of a router with the routing table.
 
@@ -2518,6 +2520,8 @@ cat > 172-20-bridge.conf <<EOF
 EOF
 ```
 
+![](image/bridge.jpg)
+
 **Loopback:**
 
 ```bash
@@ -2529,7 +2533,7 @@ cat > 99-loopback.conf <<EOF
 EOF
 ```
 
-![](./images/bridge-loopback.png)
+![](image/loopback.jpg)
 
 ### 11. Move the files to the network configuration directory:
 
@@ -2549,6 +2553,8 @@ WORKER_NAME=${NAME}-$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" \
 echo "${WORKER_NAME}"
 ```
 
+![](image/echo-worker-name.jpg)
+
 ### 13. Move the certificates and kubeconfig file to their respective configuration directories:
 
 ```bash
@@ -2557,8 +2563,6 @@ sudo mv ${WORKER_NAME}.kubeconfig /var/lib/kubelet/kubeconfig
 sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
 sudo mv ca.pem /var/lib/kubernetes/
 ```
-
-![](./images/workers-name.png)
 
 ### 14. Create the `kubelet-config.yaml` file
 
@@ -2596,7 +2600,7 @@ tlsPrivateKeyFile: "/var/lib/kubelet/${WORKER_NAME}-key.pem"
 EOF
 ```
 
-![](./images/kubeconfig-yaml.png)
+![](image/cat-echo-worker-name.jpg)
 
 Let us talk about the configuration file kubelet-config.yaml and the actual configuration for a bit. Before creating the systemd file for **kubelet**, it is recommended to create the `kubelet-config.yaml` and set the configuration there rather than using multiple startup flags in systemd. You will simply point to the `yaml` file.
 
@@ -2610,7 +2614,7 @@ In Kubernetes, `Pods` are able to find each other using service names through th
 
 In Linux, the `/etc/resolv.conf` file is where the DNS server is configured. If you want to use Google's public DNS server (8.8.8.8) your /etc/resolv.conf file will have following entry:
 
-```
+```bash
 nameserver 8.8.8.8
 ```
 
@@ -2656,7 +2660,7 @@ clusterCIDR: "172.31.0.0/16"
 EOF
 ```
 
-![](./images/kubelet-service.png)
+![](image/proxy-yaml.jpg)
 
 ### 17. Configure the Kube Proxy systemd service
 
@@ -2675,7 +2679,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-![](./images/kube-proxy-service.png)
+![](image/proxy-systemd.jpg)
 
 ### 18. Reload configurations and start both services
 
@@ -2687,7 +2691,7 @@ EOF
 }
 ```
 
-![](./images/start-containerd.png)
+![](image/daemon-reload.jpg)
 
 ```bash
 sudo systemctl status containerd
@@ -2695,11 +2699,11 @@ sudo systemctl status kubelet
 sudo systemctl status kube-proxy
 ```
 
-![](./images/containerd-status.png)
+![](image/status.jpg)
 
-![](./images/kubelet-status.png)
+![](image/status-kube-proxy.jpg)
 
-![](./images/kube-proxy-status.png)
+![](image/status-containered.jpg)
 
 **Troubleshooting Tips:** If you have issues at this point. Consider the below:
 
