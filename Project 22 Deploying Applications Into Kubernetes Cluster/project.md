@@ -683,11 +683,11 @@ nginx-rc-kmh8m   1/1     Running   0          6s
 nginx-rc-zlgvp   1/1     Running   0          4m30s
 ```
 
-![](./images/rs-scale-5.png)
+![](image/scale.jpg)
 
 Scaling down will work the same way, so scale it down to 3 replicas.
 
-![](./images/rs-scale-3.png)
+![](image/scale-down.jpg)
 
 ### Declarative:
 
@@ -764,7 +764,7 @@ spec:
 EOF
 ```
 
-![](./images/update-rs-manifest.png)
+![](image/eof-rs.jpg)
 
 In the above spec file, under the selector, **matchLabels** and **matchExpression** are used to specify the key-value pair. The **matchLabel** works exactly the same way as the equality-based selector, and the matchExpression is used to specify the set based selectors. This feature is the main differentiator between **ReplicaSet** and previously mentioned obsolete **ReplicationController**.
 
@@ -785,7 +785,7 @@ NAME       DESIRED   CURRENT   READY   AGE     CONTAINERS        IMAGES         
 nginx-rs   3         3         3       5m34s   nginx-container   nginx:latest   env=prod,tier in (frontend)
 ```
 
-![](./images/new-rs.png)
+![](image/rnginx.jpg)
 
 ## Using AWS Load Balancer to access your service in Kubernetes.
 
@@ -820,6 +820,8 @@ Apply the configuration:
 kubectl apply -f nginx-service.yaml
 ```
 
+![](image/configured.jpg)
+
 Get the newly created service :
 
 ```bash
@@ -839,15 +841,11 @@ export AWS_SDK_LOAD_CONFIG=1
 
 This environment variable ensures that the AWS SDK checks both **~/.aws/credentials** and **~/.aws/config** files.
 
-![](./images/nginx-service-update.png)
-
 An ELB resource will be created in your AWS console.
-
-![](./images/ELB.png)
 
 A Kubernetes component in the control plane called [Cloud-controller-manager](https://kubernetes.io/docs/concepts/architecture/cloud-controller/) is responsible for triggeriong this action. It connects to your specific cloud provider's (AWS) APIs and create resources such as Load balancers. It will ensure that the resource is appropriately tagged:
 
-![](./images/ELB-tag.png)
+![](image/cluster-ng.jpg)
 
 Get the output of the entire `yaml` for the service. You will see additional information about this service in which you did not define them in the `yaml` manifest. Kubernetes did this for you.
 
@@ -890,8 +888,6 @@ status:
       - hostname: ac12145d6a8b5491d95ff8e2c6296b46-588706163.eu-central-1.elb.amazonaws.com
 ```
 
-![](./images/nginx-svc-yaml.png)
-
 1. A **clusterIP** key is updated in the manifest and assigned an IP address. Even though you have specified a Loadbalancer service type, internally it still requires a clusterIP to route the external traffic through.
 
 2. In the ports section, nodePort is still used. This is because Kubernetes still needs to use a dedicated port on the worker node to route the traffic through. Ensure that port range **30000-32767** is opened in your inbound Security Group configuration.
@@ -905,7 +901,7 @@ status:
 `
    Copy and paste the load balancer's address to the browser, and you will access the Nginx service
 
-![](./images/ELB-dns.png)
+![](image/nginx-cluster.jpg)
 
 ## Do not Use Replication Controllers - Use Deployment Controllers Instead
 
