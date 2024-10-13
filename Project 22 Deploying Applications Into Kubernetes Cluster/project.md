@@ -531,6 +531,8 @@ Output:
 pod "nginx-pod" deleted
 ```
 
+![](image/delete-pod.jpg)
+
 ## Create a ReplicaSet
 
 Let us create a `rs.yaml` manifest for a ReplicaSet object:
@@ -561,13 +563,13 @@ spec:
 EOF
 ```
 
-![](./images/create-rs.png)
+![](image/replica.jpg)
 
 ```bash
 kubectl apply -f rs.yaml
 ```
 
-![](./images/apply-nginx-rs.png)
+![](image/rs-yml.jpg)
 
 The manifest file of ReplicaSet consist of the following fields:
 
@@ -591,7 +593,7 @@ nginx-pod-kg7v6   1/1     Running   0          7m41s   172.50.192.152   ip-172-5
 nginx-pod-ntbn4   1/1     Running   0          7m41s   172.50.202.162   ip-172-50-202-18.eu-central-1.compute.internal    <none>           <none>
 ```
 
-![](./images/get-rs-pods.png)
+![](image/rs-pods.jpg)
 
 Here we see three `ngix-pods` with some random suffixes (e.g., `-j784r`) - it means, that these Pods were created and named automatically by some other object (higher level of abstraction) such as ReplicaSet.
 
@@ -601,7 +603,7 @@ Try to delete one of the Pods:
 kubectl delete pod nginx-rs-52597
 ```
 
-![](./images/del-pod.png)
+![](image/rs-delete.jpg)
 
 You can see, that we still have all 3 Pods, but one has been recreated (can you differentiate the new one?)
 
@@ -611,7 +613,7 @@ Explore the ReplicaSet created:
 kubectl get rs -o wide
 ```
 
-![](./images/get-rs-wide.png)
+![](image/rs-created.jpg)
 
 **Notice**, that ReplicaSet understands which Pods to create by using **SELECTOR** key-value pair.
 
@@ -628,19 +630,23 @@ Try both commands in action and see the difference. Also try `get` with `-o json
 kubectl describe rs nginx-rs
 ```
 
-![](./images/desc-rs.png)
+![](image/rs-describe.jpg)
 
 ```bash
 kubectl get rs nginx-rs -o yaml
 ```
 
-![](./images/get-rs-yml.png)
+![](image/rsyml.jpg)
+
+![](image/rsyml1.jpg)
 
 ```bash
 kubectl get rs nginx-rs -o json
 ```
 
-![](./images/get-rs-json.png)
+![](image/rs-json.jpg)
+
+![](image/rs-json1.jpg)
 
 ## Scale ReplicaSet up and down
 
