@@ -1087,7 +1087,7 @@ Let us try that:
 kubectl scale deployment nginx-deployment --replicas=1
 ```
 
-![](./images/scale-to-1.png)
+![](image/rep-ready.jpg)
 
 2. Exec into the running container (figure out the command yourself)
 
@@ -1095,7 +1095,7 @@ kubectl scale deployment nginx-deployment --replicas=1
 kubectl exec -it nginx-deployment-56466d4948-78j9c -- /bin/bash
 ```
 
-![](./images/exec-in.png)
+![](image/run-con.jpg)
 
 3. Install vim so that you can edit the file
 
@@ -1104,15 +1104,13 @@ apt-get update
 apt-get install vim
 ```
 
-![](./images/install-vim.png)
+![](image/install-vim.jpg)
 
 4. Update the content of the file and add the code below **/usr/share/nginx/html/index.html**
 
 ```bash
 vim /usr/share/nginx/html/index.html
 ```
-
-![](./images/use-vim.png)
 
 ```html
 <!DOCTYPE html>
@@ -1143,11 +1141,21 @@ vim /usr/share/nginx/html/index.html
 </html>
 ```
 
-![](./images/html.png)
+![](image/vi.jpg)
+
+**_HINT: PORT FORWARDING :_** Use the following command to forward a local port to the port on the NGINX pod.
+
+```
+kubectl port-forward nginx-deployment-7d476d754d-5bbqq 8080:80
+```
+
+![](image/f.jpg)
+
+![](image/f1.jpg)
 
 5. Check the browser - You should see this
 
-![](./images/steghub-start-pg.png)
+![](image/f2.jpg)
 
 6. Now, delete the only running Pod so that a new one is automatically recreated.
 
@@ -1155,7 +1163,7 @@ vim /usr/share/nginx/html/index.html
 kubectl delete pod nginx-deployment-56466d4948-tg9j8
 ```
 
-![](./images/delete-pod.png)
+![](image/delete-pd.jpg)
 
 7. **Refresh the web page** - You will see that the content you saved in the container is no longer there. That is because Pods do not store data when they are being recreated - that is why they are called `ephemeral` or `stateless`. (_But not to worry, we will address this with persistent volumes in the next project_)
 
@@ -1171,7 +1179,9 @@ To make the data persist in case of a Pod's failure, you will need to configure 
 kubectl delete deployment nginx-deployment
 ```
 
-![](./images/del-deploy.png)
+![](image/ngin-wb.jpg)
+
+![](image/ngin.jpg)
 
 In the next project,
 
