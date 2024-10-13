@@ -923,7 +923,7 @@ Let us see Deployment in action.
 kubectl delete rs nginx-rs
 ```
 
-![](./images/delete-rs.png)
+![](image/delete-replicas.jpg)
 
 2. Understand the layout of the deployment.yaml manifest below. Lets go through the 3 separated sections:
 
@@ -984,13 +984,11 @@ spec:
 EOF
 ```
 
-![](./images/create-dp.png)
-
 ```bash
 kubectl apply -f deployment.yaml
 ```
 
-![](./images/apply-dp.png)
+![](image/d-yml.jpg)
 
 Run commands to get the following
 
@@ -1005,7 +1003,7 @@ NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           39s
 ```
 
-![](./images/get-dp.png)
+![](image/dep.jpg)
 
 2. Get the ReplicaSet
 
@@ -1018,7 +1016,7 @@ NAME                          DESIRED   CURRENT   READY   AGE
 nginx-deployment-56466d4948   3         3         3       24s
 ```
 
-![](./images/get-repli.png)
+![](image/dep-rs.jpg)
 
 3. Get the Pods
 
@@ -1033,7 +1031,7 @@ nginx-deployment-56466d4948-tg9j8   1/1     Running   0          12s
 nginx-deployment-56466d4948-ttn5t   1/1     Running   0          12s
 ```
 
-![](./images/get-pods-dp.png)
+![](image/dep-pods.jpg)
 
 4. Scale the replicas in the Deployment to 15 Pods
 
@@ -1041,7 +1039,9 @@ nginx-deployment-56466d4948-ttn5t   1/1     Running   0          12s
 kubectl scale deployment nginx-deployment --replicas=15
 ```
 
-![](./images/scale-dp.png)
+![](image/dscale.jpg)
+
+![](image/dscale1.jpg)
 
 5. Exec into one of the Pod's container to run Linux commands
 
@@ -1055,7 +1055,7 @@ List the files and folders in the Nginx directory
 ls -ltr /etc/nginx/
 ```
 
-![](./images/check-file-list.png)
+![](image/ls-ltr.jpg)
 
 Check the content of the default Nginx configuration file
 
@@ -1063,11 +1063,13 @@ Check the content of the default Nginx configuration file
 cat  /etc/nginx/conf.d/default.conf
 ```
 
-![](./images/default-nginx.png)
+![](image/catn.jpg)
+
+![](image/catn1.jpg)
 
 Now, as we have got acquainted with most common Kubernetes workloads to deploy applications:
 
-![](./images/k8s-workload.png)
+![](image/k8s-workload.png)
 
 it is time to explore how Kubernetes is able to manage persistent data.
 
