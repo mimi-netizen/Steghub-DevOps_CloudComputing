@@ -178,7 +178,7 @@ EOF
 kubectl apply -f nginx-pod.yaml
 ```
 
-![](image/dep.jpg)
+![](image/nginx-pod.yml.jpg)
 
 **Tasks**
 
@@ -188,7 +188,7 @@ kubectl apply -f nginx-pod.yaml
 kubectl get pods
 ```
 
-![](./images/running-pods.png)
+![](image/get-pods.jpg)
 
 - Check the logs of the pod
 
@@ -204,7 +204,7 @@ else
 fi
 ```
 
-![](./images/pod-log.png)
+![](image/epoll.jpg)
 
 - Exec into the pod and navigate to the nginx configuration file **/etc/nginx/conf.d**
 
@@ -216,7 +216,9 @@ cd /etc/nginx/conf.d
 
 - Open the config files to see the default configuration.
 
-![](./images/default-nginx.png)
+![](image/confd.jpg)
+
+![](image/confd1.jpg)
 
 **NOTE:** There are some restrictions when using an awsElasticBlockStore volume:
 
@@ -245,7 +247,7 @@ NAME                                READY   STATUS    RESTARTS   AGE   IP       
 nginx-deployment-6fdcffd8fc-thcfp   1/1     Running   0          64m   10.0.3.159   ip-10-0-3-233.eu-west-2.compute.internal   <none>           <none>
 ```
 
-![](./images/pod-node.png)
+![](image/inxdp.jpg)
 
 The NODE column shows the node the pode is running on
 
@@ -255,19 +257,21 @@ The NODE column shows the node the pode is running on
 kubectl describe node ip-192-168-11-24.ec2.internal
 ```
 
-![](./images/node-az.png)
+![](image/topology.jpg)
 
 The information is written in the labels section of the describe command.
 
-4. So, in the case above, we know the AZ for the node is in `us-east-1d` hence, the volume must be created in the same AZ. Choose the size of the required volume.
+4. So, in the case above, we know the AZ for the node is in `us-east-1f` hence, the volume must be created in the same AZ. Choose the size of the required volume.
 
 The **create volume** selection should be like:
 
-![](./images/create-vol.png)
+![](image/volume.jpg)
+
+![](image/volume1.jpg)
 
 5. Copy the **VolumeID**
 
-![](./images/node-vol.png)
+![](image/vid.jpg)
 
 6. Update the deployment configuration with the volume spec.
 
@@ -303,7 +307,7 @@ spec:
 EOF
 ```
 
-![](./images/vol-id.png)
+![](image/gpv.jpg)
 
 Apply the new configuration and check the pod. As you can see, the old pod is being terminated while the updated one is up and running.
 
@@ -311,7 +315,7 @@ Apply the new configuration and check the pod. As you can see, the old pod is be
 kubectl apply -f nginx-pod.yaml
 ```
 
-![](./images/new-pod-with-vol.png)
+![](image/applyp.jpg)
 
 Now, the new pod has a volume attached to it, and can be used to run a container for statefuleness. Go ahead and explore the running pod. Run `describe` on both the **pod** and **deployment**
 
@@ -319,13 +323,13 @@ Now, the new pod has a volume attached to it, and can be used to run a container
 kubectl describe pod nginx-deployment-6fbdb6d65f-jslb9
 ```
 
-![](./images/describe-pod.png)
+![](image/describe-p.jpg)
 
 ```bash
 kubectl describe deployment nginx-deployment
 ```
 
-![](./images/describe-deploy.png)
+![](image/describe-d.jpg)
 
 At this point, even though the pod can be used for a stateful application, the configuration is not yet complete. This is because, the **volume is not yet mounted onto any specific filesystem inside the container**. The directory **/usr/share/nginx/html** which holds the software/website code is still **ephemeral**, and if there is any kind of update to the `index.html` file, the new changes will only be there for as long as the pod is still running. If the pod dies after, all previously written data will be erased.
 
@@ -368,7 +372,8 @@ spec:
 EOF
 ```
 
-![](./images/mount-vol.png)
+![](image/sudo-n.jpg)
+![](image/nfigured.jpg)
 
 Notice the newly added section:
 
@@ -384,9 +389,15 @@ In as much as we now have a way to persist data, we also have new problems.
 
 1. If you **port forward** the service and try to reach the endpoint, you will get a 403 error. This is because mounting a volume on a filesystem that already contains data will automatically erase all the existing data. This strategy for statefulness is preferred if the mounted volume already contains the data which you want to be made available to the container.
 
-![](./images/port-fwd.png)
-
 2. It is still a manual process to create a volume, manually ensure that the volume created is in the same Avaioability zone in which the pod is running, and then update the manifest file to use the volume ID. All of these is against DevOps principles because it will mean having a lot of road blocks to getting a simple thing done.
+
+![](image/port.jpg)
+
+![](image/port1.jpg)
+
+![](image/port2.jpg)
+
+![](image/port3.jpg)
 
 The more elegant way to achieve this is through **Persistent Volume** and **Persistent Volume claims**.
 
