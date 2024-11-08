@@ -429,7 +429,7 @@ NAME               PROVISIONER        RECLAIMPOLICY      VOLUMEBINDINGMODE    AL
 gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer        false             18d
 ```
 
-![](./images/storage-class.png)
+![](image/class.jpg)
 
 Of course, if the cluster is not EKS, then the storage class will be different. For example if the cluster is based on Google's `GKE` or Azure's `AKS`, then the storage class will be different.
 
@@ -513,7 +513,7 @@ spec:
   storageClassName: gp2
 ```
 
-![](./images/nginx-pvc-yml.png)
+![](image/pvc.jpg)
 
 Apply the manifest file and you will get an output like below
 
@@ -525,7 +525,7 @@ persistentvolumeclaim/nginx-volume-claim created
 kubectl apply -f nginx-pvc.yaml
 ```
 
-![](./images/apply-pvc.png)
+![](image/claim.jpg)
 
 **Run get on the pvc and you will notice that it is in pending state.**
 
@@ -538,7 +538,7 @@ NAME                 STATUS      VOLUME            CAPACITY   ACCESS MODES   STO
 nginx-volume-claim   Pending                                                 gp2            61s
 ```
 
-![](./images/get-pvc.png)
+![](image/pend.jpg)
 
 **To troubleshoot this**, simply run a describe on the pvc. Then you will see in the Message section that this pvc is waiting for the first consumer to be created before binding the PVC to a PV.
 
@@ -565,7 +565,7 @@ Events:
   Normal  WaitForFirstConsumer  7s (x11 over 2m24s)  persistentvolume-controller  waiting for first consumer to be created before binding
 ```
 
-![](./images/describe-pvc.png)
+![](image/pvc1.jpg)
 
 If you run `kubectl get pv` you will see that no PV is created yet. The _waiting for first consumer to be created before binding_ is a configuration setting from the storageClass. See the `VolumeBindingMode` section below.
 
@@ -587,7 +587,7 @@ VolumeBindingMode:     WaitForFirstConsumer
 Events:                <none>
 ```
 
-![](./images/describe-storageclass.png)
+![](image/storage.jpg)
 
 To proceed, simply apply the new deployment configuration below.
 
@@ -615,16 +615,16 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: nginx-volume-claim
-              mountPath: "/tmp/fnc"
+              mountPath: "/tmp/cdk"
       volumes:
         - name: nginx-volume-claim
           persistentVolumeClaim:
             claimName: nginx-volume-claim
 ```
 
-![](./images/vol-storageclass.png)
+![](image/deployment.jpg)
 
-**Notice** that the volumes section now has a **persistentVolumeClaim**. With the new deployment manifest, the **/tmp/fnc** directory will be persisted, and any data written in there will be stored permanetly on the volume, which can be used by another Pod if the current one gets replaced.
+**Notice** that the volumes section now has a **persistentVolumeClaim**. With the new deployment manifest, the **/tmp/cdk** directory will be persisted, and any data written in there will be stored permanetly on the volume, which can be used by another Pod if the current one gets replaced.
 
 Apply the manifest
 
@@ -632,7 +632,7 @@ Apply the manifest
 kubectl apply -f nginx-deployment.yaml
 ```
 
-![](./images/apply-nginx-deploy.png)
+![](image/dpc.jpg)
 
 Now lets check the dynamically created PV
 
@@ -652,7 +652,7 @@ After running the command above, there was this output "No resource found"
 
 Confirm PVC status `kubectl get pvc`
 
-![](./images/get-pvc.png)
+![](image/pdn.jpg)
 
 The status remained Pending.
 
@@ -660,10 +660,12 @@ then I described the PVC - `kubectl describe pvc nginx-volume-claim`.
 
 The logs below was present in the Event section
 
+```bash
+Normal  WaitForFirstConsumer  5m9s (x26 over 11m)   persistentvolume-controller  waiting for first consumer to be created before binding
+Normal  ExternalProvisioning  69s (x10 over 3m11s)  persistentvolume-controller  waiting for a volume to be created, either by external provisioner "ebs.csi.aws.com" or manually created by system administrator
 ```
-Normal  WaitForFirstConsumer  48m (x242 over 108m)  persistentvolume-controller  waiting for first consumer to be created before binding
-Normal  ExternalProvisioning  3m (x166 over 43m)    persistentvolume-controller  Waiting for a volume to be created either by the external provisioner 'ebs.csi.aws.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
-```
+
+![](image/err.jpg)
 
 This shows that the eks cluster is attempting to provision an EBS volume using the AWS EBS CSI driver, but it is unable to complete the process. Specifically, it is waiting for the volume to be created by the external provisioner (ebs.csi.aws.com).
 
@@ -672,12 +674,12 @@ This suggests that EBS CSI driver may not be installed, or it may not be running
 Attempt installation of the driver
 
 ```bash
-eksctl create addon --name aws-ebs-csi-driver --cluster fnc-eks-cluster
+eksctl create addon --name aws-ebs-csi-driver --cluster cdk-eks-cluster
+
+eks utils migrate-to-pod-identity --cluster cdk-eks-cluster --approve
 ```
 
-![](./images/install-ebs-driver.png)
-
-![](./images/migrate-to-pod.png)
+![](image/addon.jpg)
 
 The EBS CSI driver requires proper IAM permissions to create and manage EBS volumes. If the necessary permissions are not attached to the EBS CSI service account or the worker node role, it will fail to provision the volume.
 
@@ -702,12 +704,14 @@ The EBS CSI driver requires proper IAM permissions to create and manage EBS volu
 }
 ```
 
+![](image/policy.jpg)
+
 - Click Next
 - Search for and select the AmazonEBSCSIDriverPolicy.
 - Click Next and provide a role name - **EBSCSIControllerRole**
 - Review and click Create Role
 
-![]()
+![](image/policy1.jpg)
 
 2. Annotate the Kubernetes Service Account to Use the IAM Role
 
@@ -736,7 +740,7 @@ The EBS CSI driver requires proper IAM permissions to create and manage EBS volu
 - Replace <oidc-provider> with your OIDC provider URL, which can be retrieved from your EKS cluster.
 - Save the changes to the trust relationship.
 
-![](./images/trust-relation.png)
+![](image/effects.jpg)
 
 Now confirm PVC status again
 
@@ -744,7 +748,7 @@ Now confirm PVC status again
 kubectl get pvc
 ```
 
-![](./images/bound-pvc.png)
+![](image/pvc2.jpg)
 
 Now lets check the dynamically created PV
 
@@ -752,15 +756,15 @@ Now lets check the dynamically created PV
 kubectl get pv
 ```
 
-![](./images/get-pv.png)
+![](image/pv.jpg)
 
 ```bash
 kubectl describe pvc nginx-volume-claim
 ```
 
-![](./images/describ-pvc.png)
+![](image/clam.jpg)
 
-![](./images/dynamin-vol.png)
+![](image/ekss.jpg)
 
 ### Approach 2 (Attempt this on your own). [See an example here](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-volume-claim-templates.html)
 
