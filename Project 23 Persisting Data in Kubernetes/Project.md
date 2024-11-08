@@ -1056,6 +1056,14 @@ deployment.apps/nginx-deployment restarted
 
 This will terminate the running pod and spin up a new one.
 
+To delete all the resources created
+
+```bash
+eksctl delete cluster --name cdk-eks-cluster --region us-east-1
+```
+
+![](image/delete.jpg)
+
 **The End**
 
 In the next project
