@@ -23,30 +23,70 @@ eksctl version
 - Create EKS cluster using `eksctl`
 
 ```bash
-eksctl create cluster --name cdk-eks-cluster --region ca-central-1 --nodegroup-name cdk-node-group --node-type t3.medium --nodes 2
+eksctl create cluster --name cdk-eks-cluster --region us-east-1 --nodegroup-name cdk-node-group --node-type t3.medium --nodes 2
 ```
 
-![](image/cluster-creation.jpg)
+![](image/eks.jpg)
+
+![](image/eks1.jpg)
 
 - Enable **OIDC** to allow the cluster to use **IAM roles** for service accounts and automatically configure **IAM permissions** for addons.
 
 ```bash
-eksctl utils associate-iam-oidc-provider --cluster fnc-eks-cluster --approve
+eksctl utils associate-iam-oidc-provider --cluster cdk-eks-cluster --approve
 ```
 
-![](image/OIDC.jpg)
+![](image/enable.jpg)
 
 - Check the cluster status and verify API connection
 
-![](image/update.jpg)
+```bash
+aws eks update-kubeconfig --name cdk-eks-cluster --region us-east-1
+
+kubectl config current-context
+
+kubectl get svc
+
+kubectl get nodes
+
+kubectl get ns
+
+eksctl get cluster --region us-east-1
+```
+
+![](image/clusters.jpg)
 
 - Check the cluster in the AWS console
 
-![](image/cluster.jpg)
+![](image/r.jpg)
+
+![](image/r1.jpg)
+
+![](image/r2.jpg)
+
+![](image/r3.jpg)
+
+![](image/r4.jpg)
+
+![](image/r5.jpg)
+
+![](image/r6.jpg)
+
+![](image/r7.jpg)
+
+![](image/r8.jpg)
 
 - ConfigMap
 
-![](image/map.jpg)
+```bash
+kubectl get configmap aws-auth -n kube-system -o yaml
+
+kubectl auth can-i list pods --all-namespaces
+
+kubectl get pods --all-namespaces
+```
+
+![](image/configmap.jpg)
 
 Now we know that containers are stateless by design, which means that data does not persist in the containers. Even when you run the containers in kubernetes pods, they still remain stateless unless you ensure that your configuration supports statefulness.
 
@@ -134,13 +174,11 @@ spec:
 EOF
 ```
 
-![](./images/nginx-pod.png)
-
 ```bash
 kubectl apply -f nginx-pod.yaml
 ```
 
-![](./images/run-nginx-pod.png)
+![](image/dep.jpg)
 
 **Tasks**
 
