@@ -883,7 +883,7 @@ data:
 EOF
 ```
 
-![](./images/cofigmap.png)
+![](image/karibu.jpg)
 
 - Apply the new manifest file
 
@@ -891,7 +891,7 @@ EOF
 kubectl apply -f nginx-configmap.yaml
 ```
 
-![](./images/apply-configmap.png)
+![](image/created.jpg)
 
 - Update the deployment file to use the configmap in the volumeMounts section
 
@@ -936,7 +936,9 @@ EOF
 kubectl apply -f nginx-pod-with-cm.yaml
 ```
 
-![](./images/pod-with-config.png)
+![](image/html2.jpg)
+
+![](image/html1.jpg)
 
 - Now the `index.html` file is no longer ephemeral because it is using a configMap that has been mounted onto the filesystem. This is now evident when you **exec** into the pod and list the **/usr/share/nginx/html** directory
 
@@ -950,7 +952,7 @@ lrwxrwxrwx 1 root root 17 Feb 19 16:16 index.html -> ..data/index.html
 kubectl exec -it nginx-deployment-5f5874b487-z9ctz -- /bin/bash
 ```
 
-![](./images/exec-config-pod.png)
+![](image/ltr.jpg)
 
 You can now see that the `index.html` is now a soft link to `../data`
 
@@ -976,7 +978,7 @@ kube-root-ca.crt     1      17d
 website-index-file   1      46m
 ```
 
-![](./images/get-cm.png)
+![](image/get.jpg)
 
 We are interested in the **website-index-file** configmap
 
@@ -994,7 +996,7 @@ You should see an output like this
 configmap/website-index-file edited
 ```
 
-![](./images/edit-config.png)
+![](image/edit.jpg)
 
 ```yaml
 apiVersion: v1
@@ -1036,9 +1038,9 @@ kubectl get pods
 kubectl port-forward pod/nginx-deployment-74b5dcf9f5-zqgjq  8089:80
 ```
 
-![](./images/pt-fwd.png)
+![](image/pfd.jpg)
 
-![](./images/new-nginx-site.png)
+![](image/pfd1.jpg)
 
 If you wish to restart the deployment for any reason, simply use the command
 
