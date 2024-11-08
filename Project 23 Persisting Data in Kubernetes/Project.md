@@ -799,7 +799,7 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: nginx-volume
-              mountPath: "/tmp/fnc"
+              mountPath: "/tmp/cdk"
   volumeClaimTemplates:
     - metadata:
         name: nginx-volume
@@ -810,8 +810,6 @@ spec:
             storage: 2Gi
         storageClassName: gp2
 ```
-
-![](./images/volclaim-template.png)
 
 ## ConfigMap
 
@@ -824,9 +822,9 @@ Lets go through the below process so that you can see an example of a `configMap
 1. Remove the **volumeMounts** and **PVC** sections of the manifest and use kubectl to apply the configuration
 2. port forward the service and ensure that you are able to see the **Welcome to nginx** page
 
-![](./images/pot-fwd.png)
+![](image/fwd.jpg)
 
-![](./images/welcom-nginx.png)
+![](image/fwd1.jpg)
 
 3. exec into the running container and keep a copy of the **index.html** file somewhere. For example
 
@@ -836,11 +834,11 @@ kubectl exec -it nginx-deployment-79d8c764bc-j6sp9 -- bash
 cat /usr/share/nginx/html/index.html
 ```
 
-![](./images/sh-html.png)
+![](image/welcome.jpg)
 
 4. Copy the output and save the file on your local pc because we will need it to create a configmap.
 
-![](./images/index-html.png)
+![](image/html.jpg)
 
 ## Persisting configuration data with configMaps
 
