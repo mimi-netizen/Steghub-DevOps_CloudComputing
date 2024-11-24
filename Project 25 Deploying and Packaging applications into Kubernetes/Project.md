@@ -475,7 +475,11 @@ Within the hosted zone is where all the necessary DNS records will be created. S
 
 For detailed read on selecting between CNAME and Alias based records, read the [official documentation](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
 
-![](./images/r53.png)
+![](image/cname.jpg)
+
+![](image/cname-dns-checkerr.jpg)
+
+![](image/cname-3.jpg)
 
 ## Visiting the application from the browser
 
@@ -489,7 +493,7 @@ To confirm this,
 
 Click on the **Not Secure** part of the browser.
 
-![](./images/jfrog-ui-login.png)
+![](image/not-secure.jpg)
 
 ## Explore Artifactory Web UI
 
@@ -526,17 +530,17 @@ Congratulations. You have just deployed JFrog Artifactory!
    password: password
 ```
 
-![](./images/get-login-cred.png)
+![](image/n-tools.jpg)
 
 2. Insert the username and password to load the Get Started page
 
-![](./images/insert-cred.png)
+![](image/admin.jpg)
 
-![](./images/jfrog-ui.png)
+![](image/admin1.jpg)
 
 3. Reset the admin password
 
-![](./images/reset-pwd.png)
+![](image/admin2.jpg)
 
 4. Activate the Artifactory License. You will need to purchase a license to use Artifactory enterprise features.
 
@@ -546,28 +550,28 @@ Congratulations. You have just deployed JFrog Artifactory!
 
 6. In exactly 1 minute, the license key had arrived. Simply copy the key and apply to the console.
 
-![](./images/mail-j-key.png)
+![](image/license.jpg)
 
-![](./images/jf-key.png)
+![](image/license1.jpg)
 
 7. Set the Base URL. Ensure to use https
 
-![](./images/base-url.png)
+![](image/tool.jpg)
 
 8. Skip the Proxy setting
 
-![](./images/set-proxy.png)
+![](image/proxy.jpg)
 
 9. Skip creation of repositories for now. You will create them yourself later on.
 
-![](./images/skip-create-repo.png)
+![](image/repos.jpg)
 
 10. finish the setup
 
-![](./images/congrat-jf.png)
+![](image/congrats.jpg)
 
-![](./images/welcom-to-jf.png)
+![](image/kufinish-kumalo.jpg)
 
 Next, its time to fix the TLS/SSL configuration so that we will have a trusted **HTTPS** URL
 
-**Continued in [project 26](https://github.com/francdomain/StegHub_DevOps-Cloud_Engineering/blob/main/Implementing_Secure_HTTPS_with_Cert-Manager_and_Let%E2%80%99s_Encrypt/project_26.md)**.
+**Continued in [project 26](https://github.com/mimi-netizen/Steghub-DevOps_CloudComputing)**.
