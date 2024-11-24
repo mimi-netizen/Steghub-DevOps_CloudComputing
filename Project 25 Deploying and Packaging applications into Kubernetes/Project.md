@@ -166,31 +166,31 @@ Helm uses the values.yaml file to set every single configuration that the chart 
 
 - Click on the DEFAULT VALUES section on Artifact hub
 
-![](./images/default-value-section.png)
+![](image/default.jpg)
 
 - Here you can search for key and value pairs
 
-![](./images/default-values.png)
+![](image/value-keys.jpg)
 
 - For example, when you type `nginx` in the search bar, it shows all the configured options for the nginx proxy.
 
-![](./images/search-nginx.png)
+![](image/ng-ks.jpg)
 
 - Selecting `nginx.enabled` from the list will take you directly to the configuration in the YAML file.
 
-![](./images/nginx-enabled.png)
+![](image/nginx-enabled.jpg)
 
 - Search for `nginx.service` and select nginx.service.type
 
-![](./images/nginx-svc.png)
+![](image/nginx-service-type.jpg)
 
 - You will see the confired type of Kubernetes service for Nginx. As you can see, it is `LoadBalancer` by default
 
-![](./images/nginx-servic.png)
+![](image/load-balancer.jpg)
 
 - To work directly with the `values.yaml` file, you can download the file locally by clicking on the download icon.
 
-![](./images/download-default-val.png)
+![](image/download.jpg)
 
 ## Is the Load Balancer Service type the Ideal configuration option to use in the Real World?
 
