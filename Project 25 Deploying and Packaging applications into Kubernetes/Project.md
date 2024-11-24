@@ -286,7 +286,7 @@ helm upgrade --install ingress-nginx ingress-nginx \
 --namespace ingress-nginx --create-namespace
 ```
 
-![](./images/install-ing-nginx.png)
+![](image/ingress.jpg)
 
 **Notice:**
 
@@ -317,7 +317,7 @@ helm upgrade --install ingress-nginx ingress-nginx/ingress-nginx --namespace ing
 kubectl get pods --namespace=ingress-nginx
 ```
 
-![](./images/ing-nginx-pod.png)
+![](image/ingress-running.jpg)
 
 3. After a while, they should all be running. The following command will wait for the ingress controller pod to be up, running, and ready:
 
@@ -328,7 +328,7 @@ kubectl wait --namespace ingress-nginx \
   --timeout=120s
 ```
 
-![](./images/condition.png)
+![](image/condition-met.jpg)
 
 4. Check to see the created load balancer in AWS.
 
@@ -344,13 +344,13 @@ ingress-nginx-controller             LoadBalancer   172.16.11.35    a38db84e7d21
 ingress-nginx-controller-admission   ClusterIP      172.16.94.137   <none>                                                                   443/TCP                      50s
 ```
 
-![](./images/nginx-service.png)
+![](image/condition.jpg)
 
 The `ingress-nginx-controller` service that was created is of the type `LoadBalancer`. That will be the load balancer to be used by all applications which require external access, and is using this ingress controller.
 
 If you go ahead to AWS console, copy the address in the **EXTERNAL-IP** column, and search for the loadbalancer, you will see an output like below.
 
-![](./images/nginx-lb.png)
+![](image/lb.jpg)
 
 5. Check the IngressClass that identifies this ingress controller.
 
@@ -358,7 +358,7 @@ If you go ahead to AWS console, copy the address in the **EXTERNAL-IP** column, 
 kubectl get ingressclass -n ingress-nginx
 ```
 
-![](./images/ingress-class.png)
+![](image/class.jpg)
 
 ## Deploy Artifactory Ingress
 
@@ -374,7 +374,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: "tooling.artifactory.fnc.dns-dynamic.net"
+    - host: "tooling-artifactory-cdk-aws.dns-dynamic.net"
       http:
         paths:
           - path: /
@@ -386,14 +386,14 @@ spec:
                   number: 8082
 ```
 
-![](./images/artifact-ingress.png)
+![](image/dns.jpg)
 
 ```bash
 kubectl apply -f artifactory-ingress.yaml -n tools
 ```
 
 Output:
-![](./images/apply-err.png)
+![](image/fail.jpg)
 
 The error message, “context deadline exceeded,” show that the Kubernetes API server failed to connect to the Nginx Ingress Controller admission webhook within the specified timeout (10 seconds in this case).
 
@@ -407,7 +407,7 @@ kubectl get all -n ingress-nginx
 
 Look for any pods related to admission-webhook or ingress-nginx-controller-admission.
 
-![](./images/all-ingress-nginx.png)
+![](image/desired.jpg)
 
 The ingress-nginx-controller-admission service is present in the ingress-nginx namespace but there’s no corresponding pod running for the admission webhook.
 
@@ -427,20 +427,18 @@ helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
 kubectl apply -f artifactory-ingress.yaml -n tools
 ```
 
-![](./images/webhook-err.png)
+![](image/errors-ng.jpg)
 
 The error dial tcp 10.0.0.117:8443: i/o timeout shows that the ingress-nginx-controller-admission service cannot be reached, which is preventing the webhook from functioning correctly.
 
 - Open port 8443 on the worker nodes inbound rule and apply the ingress artifactory file again
-
-![](./images/apply-ing-artifact.png)
 
 ```bash
 kubectl get ingress -n tools
 ```
 
 Output:
-![](./images/artifactory-ingress.png)
+![](image/configure.jpg)
 
 Now, take note of
 
