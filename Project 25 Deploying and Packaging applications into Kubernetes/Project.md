@@ -574,4 +574,4 @@ Congratulations. You have just deployed JFrog Artifactory!
 
 Next, its time to fix the TLS/SSL configuration so that we will have a trusted **HTTPS** URL
 
-**Continued in [project 26](https://github.com/mimi-netizen/Steghub-DevOps_CloudComputing)**.
+**Continued in [project 26](https://github.com/mimi-netizen/Steghub-DevOps_CloudComputing/tree/main/Project%2026%20Implementing%20Secure%20HTTPS%20with%20Cert-Manager%20and%20Let%E2%80%99s%20Encrypt)**.
