@@ -427,28 +427,28 @@ NAME                                                          READY   SECRET    
 certificate.cert-manager.io/tooling.artifactory.steghub.com   True    tooling.artifactory.steghub.com   10m
 ```
 
-![](image)
+![](image/ready-true.jpg)
 
 ## Step 5: Test HTTPS Access
 
-1. Open a web browser and navigate to https://tooling.artifactory.fnc.dns-dynamic.net
+1. Open a web browser and navigate to https://tooling-artifactory.cdk-aws.dns-dynamic.net/
 
-![](./images/artifactory-web-ui.png)
+![](image/open-browser.jpg)
 
 2. Verify that the connection is secure and the certificate is valid.
 
 - Click on the padlock icon in the address bar
 
-![](./images/secure-conn.png)
+![](image/padlock-icon.jpg)
 
 - View the certificate details
 - Confirm that Let's Encrypt issues it
 
-![](./images/valid-cert.png)
+![](image/view-certificate.jpg)
 
 Flow of HTTPS traffic and certificate issuance
 
-![](./images/https-traffic-flow.png)
+![](image/https-traffic-flow.png)
 
 1. User sends an HTTPS request to the Ingress Controller
 2. Cert-Manager requests a certificate from Let's Encrypt
@@ -478,4 +478,4 @@ In this project, we've successfully implemented HTTPS for our Artifactory deploy
 
 ### Click below to see the automation of entire process and implementation of SSL/TLS certificate.
 
-**[Automation with Terraform and Helm](https://github.com/francdomain/k8s_with_terraform_and_helm)**
+**[Automation with Terraform and Helm](https://github.com/mimi-netizen/EKS-Cluster-with-Terraform)**
