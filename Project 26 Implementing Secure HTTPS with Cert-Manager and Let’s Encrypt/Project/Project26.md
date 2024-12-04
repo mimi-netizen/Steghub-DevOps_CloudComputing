@@ -411,6 +411,8 @@ kubectl describe certificate artifactory-tls -n tools
 
 ![](image/6.issuingcertificate.jpg)
 
+**_make sure port 53 is open in your security inbound and outbound rules_**
+
 Look for the "Status" section to confirm that the certificate was successfully issued. When you check it first, you should see something like this:
 
 ```
