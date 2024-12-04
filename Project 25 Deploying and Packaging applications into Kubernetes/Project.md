@@ -421,6 +421,8 @@ helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
     --set controller.admissionWebhooks.enabled=true
 ```
 
+![](image/add.jpg)
+
 - Apply the ingress artifactory file again
 
 ```bash
