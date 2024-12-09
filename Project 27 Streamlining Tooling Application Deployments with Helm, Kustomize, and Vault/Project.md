@@ -614,7 +614,11 @@ echo "Database loaded successfully and temporary file cleaned up."
 ./load_tooling_db.sh
 ```
 
-![](./images/exec-script.png)
+**_make sure MySQL Client is installed_**
+
+![](image/run.jpg)
+
+![](image/run1.jpg)
 
 **Check that the database has been imported**
 
@@ -623,7 +627,9 @@ sudo mysql -h <aurora-db-endpoint> -u <db-username> -p
 SHOW DATABASES;
 ```
 
-![](./images/check-db.png)
+![](image/mysql.jpg)
+
+![](image/mysql1.jpg)
 
 ## Step 3:
 
@@ -658,7 +664,7 @@ kubectl apply -f overlays/sit/database-secret.yaml
 kubectl apply -f overlays/prod/database-secret.yaml
 ```
 
-![](./images/apply-secret.png)
+![](image/credentials.jpg)
 
 ## Step 4: Configure Environment Variables for Database Connectivity in the Deployment Files, using the values stored in the Kubernetes Secret.
 
@@ -856,7 +862,7 @@ kubectl apply -k overlays/prod
 kubectl apply -k overlays/sit
 ```
 
-![](./images/apply-patches.png)
+![](image/apply2.jpg)
 
 # Integrate Vault with Kubernetes
 
@@ -887,7 +893,7 @@ vault
         └── values.yaml
 ```
 
-![](./images/vault-folders.png)
+![](image/touch-vault.jpg)
 
 ### Content of each file.
 
@@ -998,9 +1004,9 @@ Most of the configuration for the Vault installation will be done in this values
 │   ├── main.tf
 │   ├── variables.tf
 │   └── providers.tf
-│   └── ...
-└── vault/
 ```
+
+![](image/terraform.jpg)
 
 We will be creating the AWS KMS key because when a Vault server is started, it starts in a sealed state and it does not know how to decrypt data. Before any operation can be performed on the Vault, it must be unsealed. Unsealing is the process by which the Vault root key is used to decrypt the data encryption key that the Vault uses to encrypt all data.
 
@@ -1095,9 +1101,9 @@ terraform plan -out tfplan
 terraform apply tfplan
 ```
 
-![](./images/tf-plan.png)
+![](image/tinit.jpg)
 
-![](./images/tf-apply.png)
+![](image/tapply.jpg)
 
 Before we add the content of the values file, we need to install the Ingress Controller and Cert-Manager. If you don't have those tools installed in your cluster, you can reference the last two projects for this.
 
@@ -1112,6 +1118,8 @@ helm upgrade --install ingress-nginx ingress-nginx \
 This will install the controller in the ingress-nginx namespace, creating that namespace if it doesn't already exist.
 
 - **Cert-Manager:** This is a Kubernetes addon to automate the management and issuance of TLS certificates from various issuing sources. It will ensure certificates are valid and up to date periodically, and attempt to renew certificates at an appropriate time before expiry. Visit the last project documentation for the installation.
+
+![](image/namespaces.jpg)
 
 After the installation of the Cert-manager and Ingress controller, the next step is to configure the Vault cluster from the values file and then deploy it.
 
