@@ -1326,7 +1326,7 @@ Apply the changes to your cluster
 kubectl kustomize --enable-helm overlays/dev | kubectl apply -f -
 ```
 
-![](./images/install-vault.png)
+![](image/kustomize.jpg)
 
 We use the command above instead of `kubectl apply -k overlays/dev` due to a current limitation in Kustomize when working with Helm charts. The direct `-k` flag doesn't automatically enable Helm chart processing, which is required for our deployment. While this is a known limitation in Kustomize, this alternative command serves our purpose effectively by explicitly enabling Helm support using the `--enable-helm` flag and piping the output to kubectl apply.
 
@@ -1338,7 +1338,7 @@ Follow the next steps to initialize the Vault cluster.
 kubectl get po -n vault
 ```
 
-![](./images/vault-pod.png)
+![](image/vault-pods.jpg)
 
 - Run the command below to execute the command on the pods with running status
 
@@ -1366,7 +1366,7 @@ HA Enabled               true
 vault status
 ```
 
-![](./images/exec-vault-po.png)
+![](image/vault-status.jpg)
 
 - To initialize the Vault cluster you will run:
 
@@ -1399,7 +1399,7 @@ Copy the output into a file and save it.
 vault status
 ```
 
-![](./images/check-vt-status2.png)
+![](image/vault-staatuses.jpg)
 
 From the `vault status` output, before you initialize the Vault cluster, you will see that the seal type is `awskms`, but after initializing the vault cluster you will get the **recovery keys** because some of the Vault operations still require **Shamir keys**. The Recovery keys generated after running `vault operator init` can be used to unseal the cluster when it is sealed manually or to regenerate a root token.
 
@@ -1417,19 +1417,16 @@ To store the secrets we need to create a Vault secret of type **KV Version 2**, 
 
 **Install Vault locally**
 
-macOS Package manager
-
 ```bash
-brew tap hashicorp/tap
-brew install hashicorp/tap/vault
+sudo snap install vault
 ```
 
-![](./images/install-vault-locally.png)
+![](image/vault-install.jpg)
 
 Export the vault address and login.
 
 ```bash
-export VAULT_ADDR="https://tooling.vault.fncdev.online"
+export VAULT_ADDR="https://tooling.vault.cdk-aws.dns-dynamic.net"
 
 vault login
 ```
