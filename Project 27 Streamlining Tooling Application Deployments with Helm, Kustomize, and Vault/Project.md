@@ -1119,7 +1119,9 @@ This will install the controller in the ingress-nginx namespace, creating that n
 
 - **Cert-Manager:** This is a Kubernetes addon to automate the management and issuance of TLS certificates from various issuing sources. It will ensure certificates are valid and up to date periodically, and attempt to renew certificates at an appropriate time before expiry. Visit the last project documentation for the installation.
 
+![](image/1.cert-manager.jpg)
 ![](image/namespaces.jpg)
+![](image/2.verified.jpg)
 
 After the installation of the Cert-manager and Ingress controller, the next step is to configure the Vault cluster from the values file and then deploy it.
 
