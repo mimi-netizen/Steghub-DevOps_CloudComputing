@@ -1435,7 +1435,7 @@ vault login
 
 - Retrieve the root token from the previous output saved when you initialized the vault pod. Copy and paste the root token after the vault login command.
 
-![](./images/vault-login.png)
+![](image/3.vault-login.jpg)
 
 - Enable the kv-v2 secrets at the path `app`.
 
@@ -1443,7 +1443,7 @@ vault login
 vault secrets enable -path=app kv-v2
 ```
 
-![](./images/enable-kv.png)
+![](image/4.enable-secrets.jpg)
 
 - Create the tooling application database credentials at the path `app/database/config/dev`.
 
@@ -1457,6 +1457,8 @@ vault kv put app/database/config/dev username=db password=password host=http://<
 vault kv get app/database/config/dev
 ```
 
+![](image/5.vault-kv.jpg)
+
 ## Configure Kubernetes Authentication
 
 - Enable the Kubernetes auth method at the default path.
@@ -1465,7 +1467,7 @@ vault kv get app/database/config/dev
 vault auth enable kubernetes
 ```
 
-![](./images/enable-k8s.png)
+![](image/6.enable-kubernetes.jpg)
 
 - Configure Vault to talk to Kubernetes with the `/config` path. This will require the Kubernetes **host address**, use `kubectl cluster-info` to get the Kubernetes host address and **TCP port** and replace it with the kubernetes_host in the command below.
 
@@ -1480,7 +1482,7 @@ You will get something like this:
 Success! Data written to: auth/kubernetes/config
 ```
 
-![](./images/vault-k8s.png)
+![](image/7.cluster.jpg)
 
 - For the tooling application to read the database credentials, it needs the read capability to the path `app/data/database/config`. We can do this by creating a policy and attaching it to the Kubernetes authentication role we will create.
 
@@ -1492,7 +1494,7 @@ path "app/data/database/config/*" {
 EOF
 ```
 
-![](./images/app-write-db.png)
+![](image/8.eof.jpg)
 
 - Create a Kubernetes authentication role named `tooling-role`
 
@@ -1510,7 +1512,7 @@ From the command above we are passing the service account name and namespace to 
 Success! Data written to: auth/kubernetes/role/tooling-role
 ```
 
-![](./images/k8s-auth-role.png)
+![](image/9.role.jpg)
 
 ## Inject Secrets into the Tooling Application
 
@@ -1527,7 +1529,7 @@ metadata:
   name: tooling-sa
 ```
 
-![](./images/dev-sa.png)
+![](image/10.tooling-sa.jpg)
 
 - In the **`tooling-app-kustomize/overlays/dev/deployment.yaml`** file, replace the content with:
 
@@ -1556,7 +1558,7 @@ spec:
       serviceAccountName: tooling-sa
 ```
 
-![](./images/dev-deploy.png)
+![](image/12.deployment.jpg)
 
 Add the **service-account.yaml** file under the resources field of your Kustomization file in the dev directory. The Kustomization file should look like this:
 
@@ -1575,7 +1577,7 @@ patches:
   - path: deployment.yaml
 ```
 
-![](./images/dev-kustom.png)
+![](image/13.kustomization.jpg)
 
 **Apply the configuration.**
 
@@ -1583,7 +1585,7 @@ patches:
 kubectl apply -k overlays/dev
 ```
 
-![](./images/apply-new-dev.png)
+![](image/14.apply.jpg)
 
 You can inspect the tooling application pod, you will find out that the new pod now launches two containers. The application container, named tooling, and the Vault Agent container, named vault-agent.
 
@@ -1606,25 +1608,29 @@ You can work on passing the credentials file as an environment variable so that 
 
 We have been using the Vault CLI for our vault configurations but you can also use the vault UI to do some of the configurations. To view the vault UI, copy and paste the vault address on your browser, and then you will see the login page.
 
-![](./images/vault-ui.png)
+![](image/vault-ui.jpg)
 
 You can log in using the token you got after initializing the vault cluster. Check the database KV secret created before which is at the path app/database/config/dev.
 
-![](./images/vault-ui-login.png)
+![](image/vault-ui-1.jpg)
 
-![](./images/inside-vault-ui.png)
+![](image/vault-ui-2.jpg)
 
-![](./images/check-path.png)
+![](image/vault-ui-3.jpg)
 
 - Check the tooling-role Kubernetes auth method role.
 
-![](./images/k8s-auth-method.png)
+![](image/vault-ui-4.jpg)
 
-![](./images/tooling-role.png)
+![](image/vault-ui-4.1.jpg)
+
+![](image/vault-ui-5.jpg)
 
 - Navigate to the vault policy attached to the tooling-role Kubernetes auth method.
 
-![](./images/vault-policy.png)
+![](image/vault-ui-6.jpg)
+
+![](image/vault-policy.png)
 
 Congratulations! You have completed this project. By completing this project, you've gained valuable experience in implementing a robust and secure Kubernetes deployment strategy using a powerful combination of **Helm**, **Kustomize**, and **Vault**.
 
